@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
 <?php
-    $connection = mysqli_connect('localhost','root','','peer_assessment')
+    $connection = mysqli_connect('localhost','root','Ng2+9&sX','peer_assessment')
         or die('Error: '.mysql_error());
-    $query = "SELECT * FROM assessments";
+    
+    /*$query = "INSERT INTO users (Group_ID, First_Name, Surname, login, password)"."VALUES ('${users['firstName']}','${users['surname']}')";
     $result = mysqli_query($connection, $query)
-        or die ('Error: '.mysql_error());
-    while($row = mysqli_fetch_row($result)){
-        var_dump($row);
-        echo $row;
-    }    
-?>
+        or die ('Error: '.mysql_error());   */
+?>*/
 
 
 
@@ -24,13 +14,13 @@ and open the template in the editor.
     
     <head>
         
-        <title>Peer Assessment</title>
+        <title>Registration</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href='css/bootstrap.min.css' rel='stylesheet'>
     <style>
 
-
+        
 
 
     </style>
@@ -49,10 +39,25 @@ and open the template in the editor.
                         <td>
                             <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
                                 <tr>
-                                    <td colspan="3"><strong>Member Login </strong></td>
+                                    <td colspan="3"><strong>Member Registration </strong></td>
+                                </tr>
+                                 <tr>
+                                    <td width="78">First name</td>
+                                    <td width="6">:</td>
+                                    <td width="294"><input name="myusername" type="text" id="myusername"></td>
+                                </tr>
+                                 <tr>
+                                    <td width="78">Surname</td>
+                                    <td width="6">:</td>
+                                    <td width="294"><input name="myusername" type="text" id="myusername"></td>
                                 </tr>
                                 <tr>
                                     <td width="78">Username</td>
+                                    <td width="6">:</td>
+                                    <td width="294"><input name="myusername" type="text" id="myusername"></td>
+                                </tr>
+                                 <tr>
+                                    <td width="78">Group ID</td>
                                     <td width="6">:</td>
                                     <td width="294"><input name="myusername" type="text" id="myusername"></td>
                                 </tr>
@@ -62,9 +67,14 @@ and open the template in the editor.
                                     <td><input name="mypassword" type="text" id="mypassword"></td>
                                 </tr>
                                 <tr>
+                                    <td>Re-enter Password</td>
+                                    <td>:</td>
+                                    <td><input name="mypassword" type="text" id="mypassword"></td>
+                                </tr>
+                                <tr>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
-                                    <td><input type="submit" name="Submit" value="Login"></td>
+                                    <td><input type="submit" name="Submit" value="Register"></td>
                                 </tr>
                             </table>
                         </td>
