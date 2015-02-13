@@ -39,9 +39,8 @@ and open the template in the editor.
 
 
 <html>
-
-    <form action="users.php"><input type = "submit" value = "Go to Users"></form>
     <form action="reports.php"><input type = "submit" value = "Go to Reports"></form>
+    <form action="users.php"><input type = "submit" value = "Go to Users"></form>
     
     <h1>Assessments</h1>
     
@@ -49,10 +48,10 @@ and open the template in the editor.
         <?php
         //PHP insertion
             while($row = mysqli_fetch_assoc($result)){
-                echo "<li>"."Assessment ID: ". $row["Assessment_ID"]. "</li>"; 
-                echo "<li>"."Assessment Score: ". $row["Assessment"]. "</li>";
-                echo "<li>"."Report ID: ". $row["Report_ID"]. "</li>";
-                echo "<li>"."User ID: ". $row["User_ID"]. "</li>";
+                echo "<li>"."Assessment ID: ". $row["assessment_id"]. "</li>"; 
+                echo "<li>"."Assessment Score: ". $row["assessment"]. "</li>";
+                echo "<li>"."Report ID: ". $row["report_id"]. "</li>";
+                echo "<li>"."User ID: ". $row["user_id"]. "</li>";
                 echo "<hr />";
             }
         ?>

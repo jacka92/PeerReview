@@ -24,7 +24,7 @@ and open the template in the editor.
     
     //query handling
     $query = "SELECT * "; 
-    $query .= "FROM assessments ";
+    $query .= "FROM reports ";
     
     $result = mysqli_query($connection, $query);
 
@@ -39,8 +39,9 @@ and open the template in the editor.
 
 
 <html>
-    <form action="users.php"><input type = "submit" value = "Go to Users"></form>
+  
     <form action="assessments.php"><input type = "submit" value = "Go to Assessments"></form>
+    <form action="users.php"><input type = "submit" value = "Go to Users"></form>
     
     <h1>Reports</h1>
     
@@ -48,10 +49,9 @@ and open the template in the editor.
         <?php
         //PHP insertion
             while($row = mysqli_fetch_assoc($result)){
-                echo "<li>"."Assessment ID: ". $row["Assessment_ID"]. "</li>"; 
-                echo "<li>"."Assessment Score: ". $row["Assessment"]. "</li>";
-                echo "<li>"."Report ID: ". $row["Report_ID"]. "</li>";
-                echo "<li>"."User ID: ". $row["User_ID"]. "</li>";
+                echo "<li>"."Report ID : ". $row["report_id"]. "</li>"; 
+                echo "<li>"."Group ID: ". $row["group_id"]. "</li>";
+                echo "<li>"."Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
                 echo "<hr />";
             }
         ?>
