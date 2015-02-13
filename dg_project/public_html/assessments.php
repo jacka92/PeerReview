@@ -39,8 +39,11 @@ and open the template in the editor.
 
 
 <html>
-    <td><input type="submit" name="Submit" value="Login"></td>
-    <h1>Assessment Page</h1>
+
+    <form action="users.php"><input type = "submit" value = "Go to Users"></form>
+    <form action="reports.php"><input type = "submit" value = "Go to Reports"></form>
+    
+    <h1>Assessments</h1>
     
     <ul>
         <?php

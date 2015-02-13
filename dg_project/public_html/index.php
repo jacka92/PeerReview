@@ -31,7 +31,7 @@ and open the template in the editor.
             <p>Samuel name-complex Partridge</p>
             <table width="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
                 <tr>
-                    <form name="form1" method="post" action="assessment.php">
+                    <form name="form1" method="post" action="assessments.php"> <!-- TODO replace -->
                         <td>
                             <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
                                 <tr>
