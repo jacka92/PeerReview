@@ -16,7 +16,7 @@ and open the template in the editor.
     
     //error handling
     if (mysqli_connect_errno()){
-           die("Database connection has failed: "
+           die("Database connection failed: "
                .mysqli_connect_error()
                ." (" .mysqli_connect_errno(). ")"
               );
@@ -24,14 +24,13 @@ and open the template in the editor.
     
     //query handling
     $query = "SELECT * FROM assessments";
-    $result = mysqli_query($connection, $query)
-        or die ('Error: '.mysql_error());
+    $result = mysqli_query($connection, $query);
 
-
-    while($row = mysqli_fetch_row($result)){
-        var_dump($row);
-        echo $row;
-    }    
+    //query error handling
+    if (!$result){
+        die("Database query failed.");
+    }
+    
 ?>
 
 
@@ -55,6 +54,11 @@ and open the template in the editor.
     </head>
 
         <body>
+
+            
+            
+            
+            
             <h1>Bullshit fucking database</h1>
             <h2>These are the pieces of shits involved in this stupid application</h2>
             <p>Pejhmon asshole Kamaie</p>
@@ -88,6 +92,15 @@ and open the template in the editor.
                     </form>
                 </tr>
             </table>
+            
+                        <?php
+                while($row = mysqli_fetch_row($result)){
+        var_dump($row);
+        echo $row;
+    }    
+
+            ?>
+            
         </body>
 </html>
 
