@@ -23,7 +23,8 @@ and open the template in the editor.
     }
     
     //query handling
-    $query = "SELECT * FROM assessments";
+    $query = "SELECT * "; 
+    $query .= "FROM assessments ";
     $result = mysqli_query($connection, $query);
 
     //query error handling
@@ -37,6 +38,18 @@ and open the template in the editor.
 
 
 <html>
+    <ul>
+        <?php
+        //PHP insertion
+            while($row = mysqli_fetch_assoc($result)){
+                echo "<li>"."Assessment ID: ". $row["Assessment_ID"]. "</li>"; 
+                echo "<li>"."Assessment Score: ". $row["Assessment"]. "</li>";
+                echo "<li>"."Report ID: ". $row["Report_ID"]. "</li>";
+                echo "<li>"."User ID: ". $row["User_ID"]. "</li>";
+                echo "<hr />";
+            }
+        ?>
+    </ul>
     
     <head>
         
@@ -93,13 +106,7 @@ and open the template in the editor.
                 </tr>
             </table>
             
-                        <?php
-                while($row = mysqli_fetch_row($result)){
-        var_dump($row);
-        echo $row;
-    }    
 
-            ?>
             
         </body>
 </html>
