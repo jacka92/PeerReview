@@ -6,8 +6,14 @@ and open the template in the editor.
 -->
 
 <?php
-    $connection = mysqli_connect('localhost','root','','peer_assessment')
+    $dbhost = 'localhost';
+    $dbuser = 'root';
+    $dbpassword = '';
+    $dbname = 'peer_assessment';
+    
+    $connection = mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname)
         or die('Error: '.mysql_error());
+
     $query = "SELECT * FROM assessments";
     $result = mysqli_query($connection, $query)
         or die ('Error: '.mysql_error());
