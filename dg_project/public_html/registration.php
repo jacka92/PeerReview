@@ -1,89 +1,92 @@
-<?php
+    <!DOCTYPE html>
+    <?php
     $connection = mysqli_connect('localhost','root','Ng2+9&sX','peer_assessment')
-        or die('Error: '.mysql_error());
+    or die('Error: '.mysql_error());
+
     
-    /*$query = "INSERT INTO users (Group_ID, First_Name, Surname, login, password)"."VALUES ('${users['firstName']}','${users['surname']}')";
-    $result = mysqli_query($connection, $query)
-        or die ('Error: '.mysql_error());   */
-?>*/
+        /*   */
+        ?>
+<?php 
+
+        if(isset($_POST['submit'])){
+            $First_Name = $_POST['name'];
+            $Surname = $_POST['surname'];
+            $Group_ID = $_POST['group_id'];
+            $User = $_POST['user'];
+            $Pass = $_POST['pass'];
+            $CPass = $_POST['cpass']; ///////////////$_POST superglobal is an assoc array
+
+            
+                $query = "INSERT INTO users (Group_ID, First_Name, Surname, login, password) VALUES ({$Group_ID},'{$First_Name}','{$Surname}','{$User}','{$Pass}')";
+                $result = mysqli_query($connection, $query)
+                    or die ('Error: '.mysql_error());       
+
+        }
+        ?>
+        <html>
+        <head>
+
+            <title>Registration</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href='css/bootstrap.min.css' rel='stylesheet'>
+            <style>
+
+            
 
 
+            </style>
 
+        </head>
 
-<html>
-    
-    <head>
-        
-        <title>Registration</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href='css/bootstrap.min.css' rel='stylesheet'>
-    <style>
-
-        
-
-
-    </style>
-
-    </head>
-
-        <body>
-            <h1>Bullshit fucking database</h1>
-            <h2>These are the pieces of shits involved in this stupid application</h2>
-            <p>Pejhmon asshole Kamaie</p>
-            <p>Jack weak-as-fuck Armstrong</p>
-            <p>Samuel name-complex Partridge</p>
-            <table width="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+       <body>
+    <h1>Bullshit fucking database</h1>
+    <h2>These are the pieces of shits involved in this stupid
+        application</h2>
+    <p>Pejhmon asshole Kamaie</p>
+    <p>Jack weak-as-fuck Armstrong</p>
+    <p>Samuel name-complex Partridge</p>
+<body id="body-color">
+    <div id="Sign-Up">
+        <fieldset style="width: 30%">
+            <legend>Registration Form</legend>
+            <table border="0">
                 <tr>
-                    <form name="form1" method="post" action="checklogin.php">
-                        <td>
-                            <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
-                                <tr>
-                                    <td colspan="3"><strong>Member Registration </strong></td>
-                                </tr>
-                                 <tr>
-                                    <td width="78">First name</td>
-                                    <td width="6">:</td>
-                                    <td width="294"><input name="myusername" type="text" id="myusername"></td>
-                                </tr>
-                                 <tr>
-                                    <td width="78">Surname</td>
-                                    <td width="6">:</td>
-                                    <td width="294"><input name="myusername" type="text" id="myusername"></td>
-                                </tr>
-                                <tr>
-                                    <td width="78">Username</td>
-                                    <td width="6">:</td>
-                                    <td width="294"><input name="myusername" type="text" id="myusername"></td>
-                                </tr>
-                                 <tr>
-                                    <td width="78">Group ID</td>
-                                    <td width="6">:</td>
-                                    <td width="294"><input name="myusername" type="text" id="myusername"></td>
-                                </tr>
-                                <tr>
-                                    <td>Password</td>
-                                    <td>:</td>
-                                    <td><input name="mypassword" type="text" id="mypassword"></td>
-                                </tr>
-                                <tr>
-                                    <td>Re-enter Password</td>
-                                    <td>:</td>
-                                    <td><input name="mypassword" type="text" id="mypassword"></td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td><input type="submit" name="Submit" value="Register"></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </form>
+                    <form method="post" action="registration_successful.php">
+                        <td>First name</td>
+                        <td><input type="text" name="name"></td>
                 </tr>
+                 <tr>
+                    <td>Surname</td>
+                    <td><input type="text" name="surname"></td>
+                </tr>
+                <tr>
+                    <td>Group ID</td>
+                    <td><input type="text" name="group_id"></td>
+                </tr>
+                <tr>
+                    <td>UserName</td>
+                    <td><input type="text" name="user"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="pass"></td>
+                </tr>
+                <tr>
+                    <td>Confirm Password</td>
+                    <td><input type="password" name="cpass"></td>
+                </tr>
+                <tr>
+                    <td><input id="button" type="submit" name="submit"
+                        value="Sign-Up"></td>
+                </tr>
+
+                </form>
             </table>
-        </body>
+        </fieldset>
+    </div>
 </html>
 
 <?php
-    mysqli_close($connection);
+mysqli_close($connection);
 ?>
