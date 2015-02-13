@@ -6,17 +6,28 @@ and open the template in the editor.
 -->
 
 <?php
+    //Creating the db connection
     $dbhost = 'localhost';
     $dbuser = 'root';
     $dbpassword = '';
     $dbname = 'peer_assessment';
     
-    $connection = mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname)
-        or die('Error: '.mysql_error());
-
+    $connection = mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
+    
+    //error handling
+    if (mysqli_connect_errno()){
+           die("Database connection has failed: "
+               .mysqli_connect_error()
+               ." (" .mysqli_connect_errno(). ")"
+              );
+    }
+    
+    //query handling
     $query = "SELECT * FROM assessments";
     $result = mysqli_query($connection, $query)
         or die ('Error: '.mysql_error());
+
+
     while($row = mysqli_fetch_row($result)){
         var_dump($row);
         echo $row;
