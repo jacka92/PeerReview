@@ -5,51 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 
-<?php
-    //Creating the db connection
-    $dbhost = 'localhost';
-    $dbuser = 'root';
-    $dbpassword = '';
-    $dbname = 'peer_assessment';
-    
-    $connection = mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-    
-    //error handling
-    if (mysqli_connect_errno()){
-           die("Database connection failed: "
-               .mysqli_connect_error()
-               ." (" .mysqli_connect_errno(). ")"
-              );
-    }
-    
-    //query handling
-    $query = "SELECT * "; 
-    $query .= "FROM assessments ";
-    $result = mysqli_query($connection, $query);
-
-    //query error handling
-    if (!$result){
-        die("Database query failed.");
-    }
-    
-?>
-
-
-
-
 <html>
-    <ul>
-        <?php
-        //PHP insertion
-            while($row = mysqli_fetch_assoc($result)){
-                echo "<li>"."Assessment ID: ". $row["Assessment_ID"]. "</li>"; 
-                echo "<li>"."Assessment Score: ". $row["Assessment"]. "</li>";
-                echo "<li>"."Report ID: ". $row["Report_ID"]. "</li>";
-                echo "<li>"."User ID: ". $row["User_ID"]. "</li>";
-                echo "<hr />";
-            }
-        ?>
-    </ul>
     
     <head>
         
@@ -68,10 +24,6 @@ and open the template in the editor.
 
         <body>
 
-            
-            
-            
-            
             <h1>Bullshit fucking database</h1>
             <h2>These are the pieces of shits involved in this stupid application</h2>
             <p>Pejhmon asshole Kamaie</p>
@@ -79,7 +31,7 @@ and open the template in the editor.
             <p>Samuel name-complex Partridge</p>
             <table width="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
                 <tr>
-                    <form name="form1" method="post" action="checklogin.php">
+                    <form name="form1" method="post" action="assessment.php">
                         <td>
                             <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
                                 <tr>
@@ -110,7 +62,3 @@ and open the template in the editor.
             
         </body>
 </html>
-
-<?php
-    mysqli_close($connection);
-?>
