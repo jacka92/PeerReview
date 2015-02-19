@@ -1,5 +1,5 @@
 <?php 
-	$connection = mysqli_connect('localhost','root','','peer_assessment')
+	$connection = mysqli_connect('localhost','root','Ng2+9&sX','peer_assessment')
     or die('Error: '.mysql_error());
 
     		$First_Name = $_POST['name'];
@@ -12,7 +12,7 @@
 if ( (isset($_POST["name"])) and (isset($_POST["name"])) and(isset($_POST["name"])) and (isset($_POST["name"])) 
 	and (isset($_POST["name"])) and (isset($_POST["name"])) and (isset($_POST["name"])) and ($Pass == $CPass)){
 	
-	$query = "INSERT INTO users (Group_ID, First_Name, Surname, login, password) VALUES ({$Group_ID},'{$First_Name}','{$Surname}','{$User}','{$Pass}')";
+	$query = "INSERT INTO users (group_id, first_name, surname, login, password) VALUES ({$Group_ID},'{$First_Name}','{$Surname}','{$User}','{$Pass}')";
                 $result = mysqli_query($connection, $query)
                     or die ('Error: '.mysql_error());  
 } else {
@@ -28,6 +28,6 @@ if (isset($_POST["group_id"])){
 
  
 
-echo "Hi, {$Name} , your Group ID is {$Group_ID}";
+echo "Hi, {$First_Name} , your Group ID is {$Group_ID}";
 
 ?>

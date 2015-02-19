@@ -1,30 +1,8 @@
     <!DOCTYPE html>
     <?php
-    $connection = mysqli_connect('localhost','root','','peer_assessment')
-    or die('Error: '.mysql_error());
+    $connection = mysqli_connect('localhost','root','Ng2+9&sX','peer_assessment')
+    or die('Error: '.mysql_error());?>
 
-    
-<<<<<<< HEAD
-     
-=======
-        /* Removed password Ng2+9&sX  */
->>>>>>> c1a56fea77646dd5b4de8fa25227974899c79539
-        ?>
-<?php 
-
-        // if(isset($_POST['submit'])){
-        //     $First_Name = $_POST['name'];
-        //     $Surname = $_POST['surname'];
-        //     $Group_ID = $_POST['group_id'];
-        //     $User = $_POST['user'];
-        //     $Pass = $_POST['pass'];
-        //     $CPass = $_POST['cpass']; ///////////////$_POST superglobal is an assoc array
-
-            
-                    
-
-        // }
-        ?>
         <html>
         <head>
 
