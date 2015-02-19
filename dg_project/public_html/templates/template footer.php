@@ -1,5 +1,8 @@
 <?php
 	echo "
+		<!-- Close body text formatting -->
+		</div>
+
 		<!-- Fixed footer -->
 		<nav class='navbar navbar-inverse navbar-fixed-bottom'>
 			<div class='container'>

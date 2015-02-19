@@ -1,7 +1,6 @@
 
 <?php
 	echo "
-
 		<!-- Fixed navbar -->
 		<nav class='navbar navbar-inverse navbar-fixed-top'>
 			<div class='container'>
@@ -16,9 +15,9 @@
 				</div>
 				<div id='navbar' class='navbar-collapse collapse'>
 					<ul class='nav navbar-nav'>
-						<li class='active'><a href='#'>Home</a></li>
-						<li><a href='#about'>About</a></li>
-						<li><a href='#contact'>Contact</a></li>
+						<li class='active'><a href='dashboard.php'>Dashboard</a></li>
+						<li><a href='assessments/assessments.php'>Assessments</a></li>
+						<li><a href='reports/reports.php'>Reports</a></li>
 						<li class='dropdown'>
 							<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Dropdown <span class='caret'></span></a>
 							<ul class='dropdown-menu' role='menu'>
@@ -35,6 +34,9 @@
 				</div>
 			</div>
 		</nav>
+
+		<!-- Body text formatting -->
+		<div class='container'>
 	";
 ?>
 		
