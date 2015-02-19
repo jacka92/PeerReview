@@ -57,7 +57,7 @@ and open the template in the editor.
                 
             </tr>
             
-        </table>
+        </table>    
         
 
         <?php include 'templates/template footer.php';?>

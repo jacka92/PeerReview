@@ -42,8 +42,7 @@ and open the template in the editor.
     <form action="reports.php"><input type = "submit" value = "Go to Reports"></form>
     <form action="users.php"><input type = "submit" value = "Go to Users"></form>
     <form action="insert_assessment.php"><input type = "submit" value = "Insert an Ass"></form>
-    <form action="update_assessment.php"><input type = "submit" value = "Update an Ass"></form>
-    <form action="delete_assessment.php"><input type = "submit" value = "Delete an Ass"></form>
+
     
     <h1>Assessments</h1>
     
@@ -55,6 +54,10 @@ and open the template in the editor.
                 echo "<li>"."Assessment Score: ". $row["assessment"]. "</li>";
                 echo "<li>"."Report ID: ". $row["report_id"]. "</li>";
                 echo "<li>"."User ID: ". $row["user_id"]. "</li>";
+                ?>
+                    <form action="update_assessment.php"><input type = "submit" value = "Update an Ass"></form>
+                    <form action="delete_assessment.php"><input type = "submit" value = "Delete an Ass"></form>
+                <?php
                 echo "<hr />";
             }
         ?>
