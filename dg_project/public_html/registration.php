@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
     <?php
     $connection = mysqli_connect('localhost','root','','peer_assessment')
     or die('Error: '.mysql_error());
 
     
-        /* Removed password: Ng2+9&sX (by SJMP)   */
+        /* Removed password Ng2+9&sX  */
         ?>
 <?php 
 
-  
+        if(isset($_POST['submit'])){
             $First_Name = $_POST['name'];
             $Surname = $_POST['surname'];
             $Group_ID = $_POST['group_id'];
@@ -16,10 +16,11 @@
             $Pass = $_POST['pass'];
             $CPass = $_POST['cpass']; ///////////////$_POST superglobal is an assoc array
 
-        if(isset($_POST['name'])){
-            $query = "INSERT INTO users (Group_ID, First_Name, Surname, login, password) VALUES ({$Group_ID},'{$First_Name}','{$Surname}','{$User}','{$Pass}')";
+            
+                $query = "INSERT INTO users (Group_ID, First_Name, Surname, login, password) VALUES ({$Group_ID},'{$First_Name}','{$Surname}','{$User}','{$Pass}')";
                 $result = mysqli_query($connection, $query)
                     or die ('Error: '.mysql_error());       
+
         }
         ?>
         <html>
@@ -39,7 +40,7 @@
         </head>
 
        <body>
-    <h1>Register</h1>
+    <h1>Bullshit fucking database</h1>
 
 <body id="body-color">
     <div id="Sign-Up">
@@ -72,7 +73,6 @@
                     <td><input type="password" name="cpass"></td>
                 </tr>
                 <tr>
-                    <?php if(empty($row['yourColumn'])) ?>
                     <td><input id="button" type="submit" name="submit"
                         value="Sign-Up"></td>
                 </tr>
