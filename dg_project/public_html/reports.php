@@ -39,7 +39,6 @@ and open the template in the editor.
 
 
 <html>
-
     <head>
         
         <title>Peer Assessment</title>
@@ -73,7 +72,6 @@ and open the template in the editor.
 
         <?php include 'templates/template footer.php';?>
     </body>
-
 </html>
 
 <?php
