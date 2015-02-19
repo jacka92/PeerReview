@@ -1,14 +1,14 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <?php
-    $connection = mysqli_connect('localhost','root','Ng2+9&sX','peer_assessment')
+    $connection = mysqli_connect('localhost','root','','peer_assessment')
     or die('Error: '.mysql_error());
 
     
-        /*   */
+        /* Removed password: Ng2+9&sX (by SJMP)   */
         ?>
 <?php 
 
-        if(isset($_POST['submit'])){
+  
             $First_Name = $_POST['name'];
             $Surname = $_POST['surname'];
             $Group_ID = $_POST['group_id'];
@@ -16,11 +16,10 @@
             $Pass = $_POST['pass'];
             $CPass = $_POST['cpass']; ///////////////$_POST superglobal is an assoc array
 
-            
-                $query = "INSERT INTO users (Group_ID, First_Name, Surname, login, password) VALUES ({$Group_ID},'{$First_Name}','{$Surname}','{$User}','{$Pass}')";
+        if(isset($_POST['name'])){
+            $query = "INSERT INTO users (Group_ID, First_Name, Surname, login, password) VALUES ({$Group_ID},'{$First_Name}','{$Surname}','{$User}','{$Pass}')";
                 $result = mysqli_query($connection, $query)
                     or die ('Error: '.mysql_error());       
-
         }
         ?>
         <html>
@@ -40,12 +39,8 @@
         </head>
 
        <body>
-    <h1>Bullshit fucking database</h1>
-    <h2>These are the pieces of shits involved in this stupid
-        application</h2>
-    <p>Pejhmon asshole Kamaie</p>
-    <p>Jack weak-as-fuck Armstrong</p>
-    <p>Samuel name-complex Partridge</p>
+    <h1>Register</h1>
+
 <body id="body-color">
     <div id="Sign-Up">
         <fieldset style="width: 30%">
@@ -77,6 +72,7 @@
                     <td><input type="password" name="cpass"></td>
                 </tr>
                 <tr>
+                    <?php if(empty($row['yourColumn'])) ?>
                     <td><input id="button" type="submit" name="submit"
                         value="Sign-Up"></td>
                 </tr>

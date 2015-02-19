@@ -52,10 +52,17 @@ and open the template in the editor.
                                     <td>&nbsp;</td>
                                     <td><input type="submit" name="Submit" value="Login"></td>
                                 </tr>
+                                <tr>
+                                    
+                                </tr>
+                                
                             </table>
+                            <a href = "registration.php">Register account</a>
                         </td>
                     </form>
+                    
                 </tr>
+                
             </table>
             
 
