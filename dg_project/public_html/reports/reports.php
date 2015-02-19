@@ -24,7 +24,7 @@ and open the template in the editor.
     
     //query handling
     $query = "SELECT * "; 
-    $query .= "FROM users ";
+    $query .= "FROM reports ";
     
     $result = mysqli_query($connection, $query);
 
@@ -40,29 +40,34 @@ and open the template in the editor.
 
 <html>
     <head>
-        <title>Users</title>
+        
+        <title>Peer Assessment</title>
         <?php include 'templates/header imports.php';?>
+
     </head>
 
     <body role='document'>
+
         <?php include 'templates/template header.php';?>
 
         <form action="assessments/assessments.php"><input type = "submit" value = "Go to Assessments"></form>
-        <form action="reports/reports.php"><input type = "submit" value = "Go to Reports"></form>
+        <form action="../users.php"><input type = "submit" value = "Go to Users"></form>
+        <form action="insert_report.php"><input type = "submit" value = "Insert a Report"></form>
 
-
-        <h1>Users</h1>
-
+        
+        <h1>Reports</h1>
+        
         <ul>
             <?php
             //PHP insertion
                 while($row = mysqli_fetch_assoc($result)){
-                    echo "<li>"."User ID: ". $row["user_id"]. "</li>"; 
+                    echo "<li>"."Report ID : ". $row["report_id"]. "</li>"; 
                     echo "<li>"."Group ID: ". $row["group_id"]. "</li>";
-                    echo "<li>"."First Name: ". $row["first_name"]. "</li>";
-                    echo "<li>"."Surname: ". $row["surname"]. "</li>";
-                    echo "<li>"."Login: ". $row["login"]. "</li>";
-                    echo "<li>"."Password: ". $row["password"]. "</li>";
+                    echo "<li>"."Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
+                    ?>         
+                        <form action="update_report.php"><input type = "submit" value = "Update a Report"></form>
+                        <form action="delete_report.php"><input type = "submit" value = "Delete a Report"></form> 
+                    <?php
                     echo "<hr />";
                 }
             ?>
