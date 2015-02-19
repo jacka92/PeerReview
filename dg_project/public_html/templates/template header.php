@@ -11,13 +11,13 @@
 						<span class='icon-bar'></span>
 						<span class='icon-bar'></span>
 					</button>
-					<a class='navbar-brand' href='#'>Peer Review</a>
+					<a class='navbar-brand' href='index.php'>Peer Review</a>
 				</div>
 				<div id='navbar' class='navbar-collapse collapse'>
 					<ul class='nav navbar-nav'>
 						<li class='active'><a href='dashboard.php'>Dashboard</a></li>
-						<li><a href='assessments/assessments.php'>Assessments</a></li>
-						<li><a href='reports/reports.php'>Reports</a></li>
+						<li><a href='assessments.php'>Assessments</a></li>
+						<li><a href='reports.php'>Reports</a></li>
 						<li class='dropdown'>
 							<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Dropdown <span class='caret'></span></a>
 							<ul class='dropdown-menu' role='menu'>

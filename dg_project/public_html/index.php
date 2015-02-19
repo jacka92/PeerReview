@@ -3,7 +3,7 @@
     <head>
         
         <title>Peer Assessment</title>
-        <?php include 'templates/header imports.php';?>
+        <?php include 'templates/imports.php';?>
 
     </head>
 
@@ -45,11 +45,6 @@
                             
                         </table>
                         <a href = "registration.php">Register account</a>
-
-<!--        
-                        <a href = "registration/registration.php">Register account</a>
-Replace the above with this once reg has moved into it's folder-->
-
                     </td>
                 </form>
                 

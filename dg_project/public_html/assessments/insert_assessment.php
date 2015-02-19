@@ -9,7 +9,7 @@ and open the template in the editor.
     <head>
         
         <title>Insert Assessments</title>
-        <?php include 'templates/header imports.php';?>
+        <?php include 'templates/imports.php';?>
 
     </head>
 
