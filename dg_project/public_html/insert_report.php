@@ -23,8 +23,10 @@ and open the template in the editor.
     }
     
     //query handling
-    $query = "SELECT * "; 
-    $query .= "FROM reports ";
+    $query = "UPDATE reports SET "; 
+    $query .= "report_id ='{$report_id}', ";
+    $query .= "report_id ='{$report_id}', ";
+    $query .= "report_id ='{$report_id}', ";
     
     $result = mysqli_query($connection, $query);
 
@@ -42,10 +44,8 @@ and open the template in the editor.
   
     <form action="assessments.php"><input type = "submit" value = "Go to Assessments"></form>
     <form action="users.php"><input type = "submit" value = "Go to Users"></form>
-    <form action="update_report.php"><input type = "submit" value = "Update a Report"></form>
-    <form action="delete_report.php"><input type = "submit" value = "Delete a Report"></form>
     
-    <h1>Reports</h1>
+    <h1>Insert New Report</h1>
     
     <ul>
         <?php
