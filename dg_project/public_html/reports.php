@@ -39,27 +39,39 @@ and open the template in the editor.
 
 
 <html>
-  
-    <form action="assessments.php"><input type = "submit" value = "Go to Assessments"></form>
-    <form action="users.php"><input type = "submit" value = "Go to Users"></form>
-    <form action="insert_report.php"><input type = "submit" value = "Insert a Report"></form>
-    <form action="update_report.php"><input type = "submit" value = "Update a Report"></form>
-    <form action="delete_report.php"><input type = "submit" value = "Delete a Report"></form>
-    
-    <h1>Reports</h1>
-    
-    <ul>
-        <?php
-        //PHP insertion
-            while($row = mysqli_fetch_assoc($result)){
-                echo "<li>"."Report ID : ". $row["report_id"]. "</li>"; 
-                echo "<li>"."Group ID: ". $row["group_id"]. "</li>";
-                echo "<li>"."Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
-                echo "<hr />";
-            }
-        ?>
-    </ul>
-   
+    <head>
+        
+        <title>Peer Assessment</title>
+        <?php include 'templates/header imports.php';?>
+
+    </head>
+
+    <body role='document'>
+
+        <?php include 'templates/template header.php';?>
+
+        <form action="assessments.php"><input type = "submit" value = "Go to Assessments"></form>
+        <form action="users.php"><input type = "submit" value = "Go to Users"></form>
+        <form action="insert_report.php"><input type = "submit" value = "Insert a Report"></form>
+        <form action="update_report.php"><input type = "submit" value = "Update a Report"></form>
+        <form action="delete_report.php"><input type = "submit" value = "Delete a Report"></form>
+        
+        <h1>Reports</h1>
+        
+        <ul>
+            <?php
+            //PHP insertion
+                while($row = mysqli_fetch_assoc($result)){
+                    echo "<li>"."Report ID : ". $row["report_id"]. "</li>"; 
+                    echo "<li>"."Group ID: ". $row["group_id"]. "</li>";
+                    echo "<li>"."Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
+                    echo "<hr />";
+                }
+            ?>
+        </ul>
+
+        <?php include 'templates/template footer.php';?>
+    </body>
 </html>
 
 <?php

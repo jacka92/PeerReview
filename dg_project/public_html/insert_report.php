@@ -6,8 +6,18 @@ and open the template in the editor.
 -->
 
 <html>
-      <form action="reports.php"><input type = "submit" value = "Return"></form>
+    <head>
+        <title>Insert Reports</title>
+        <?php include 'templates/header imports.php';?>
+    </head>
 
+    <body role='document'>
+        <?php include 'templates/template header.php';?>
+
+        <form action="reports.php"><input type = "submit" value = "Return"></form>
+
+        <?php include 'templates/template footer.php';?>
+    </body>
 </html>
 
 
