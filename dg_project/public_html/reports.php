@@ -42,6 +42,7 @@ and open the template in the editor.
   
     <form action="assessments.php"><input type = "submit" value = "Go to Assessments"></form>
     <form action="users.php"><input type = "submit" value = "Go to Users"></form>
+    <form action="insert_report.php"><input type = "submit" value = "Insert a Report"></form>
     <form action="update_report.php"><input type = "submit" value = "Update a Report"></form>
     <form action="delete_report.php"><input type = "submit" value = "Delete a Report"></form>
     

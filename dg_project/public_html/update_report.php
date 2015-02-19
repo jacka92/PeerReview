@@ -31,7 +31,7 @@ and open the template in the editor.
     //Test update
     $report_id = 999;
     $group_id = 999;
-    $mark_aggregate = 1 ;
+    $mark_aggregate = 999 ;
     
     //update query handling
     $query = "UPDATE reports SET "; 

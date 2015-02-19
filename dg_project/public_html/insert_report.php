@@ -5,6 +5,12 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 
+<html>
+      <form action="reports.php"><input type = "submit" value = "Return"></form>
+
+</html>
+
+
 <?php
     //Creating the db connection
     $dbhost = 'localhost';
@@ -22,45 +28,27 @@ and open the template in the editor.
               );
     }
     
-    //query handling
-    $query = "UPDATE reports SET "; 
-    $query .= "report_id ='{$report_id}', ";
-    $query .= "report_id ='{$report_id}', ";
-    $query .= "report_id ='{$report_id}', ";
+    //Test update
+    $report_id = 999;
+    $group_id = 0;
+    $mark_aggregate = 0;
+    
+    //delete query handling
+    $query = "INSERT INTO reports ( ";
+    $query .= "report_id, group_id, mark_aggregate ";
+    $query .= ") VALUES ( ";
+    $query .= "'{$report_id}''{$group_id}','{$mark_aggregate}' ";
+    $query .= ")";
     
     $result = mysqli_query($connection, $query);
 
     //query error handling
-    if (!$result){
-        die("Database query failed.");
+    if ($result && mysqli_affected_rows($connection) == 1){
+        echo "Success!";
+    }else{
+        die("Insert failed. No changes made to database.") . mysqli_error($connection);
     }
     
-?>
 
-
-
-
-<html>
-  
-    <form action="assessments.php"><input type = "submit" value = "Go to Assessments"></form>
-    <form action="users.php"><input type = "submit" value = "Go to Users"></form>
-    
-    <h1>Insert New Report</h1>
-    
-    <ul>
-        <?php
-        //PHP insertion
-            while($row = mysqli_fetch_assoc($result)){
-                echo "<li>"."Report ID : ". $row["report_id"]. "</li>"; 
-                echo "<li>"."Group ID: ". $row["group_id"]. "</li>";
-                echo "<li>"."Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
-                echo "<hr />";
-            }
-        ?>
-    </ul>
-   
-</html>
-
-<?php
     mysqli_close($connection);
 ?>
