@@ -1,6 +1,6 @@
     <!DOCTYPE html>
     <?php
-    $connection = mysqli_connect('localhost','root','Ng2+9&sX','peer_assessment')
+    $connection = mysqli_connect('localhost','root','','peer_assessment')
     or die('Error: '.mysql_error());?>
 
         <html>
