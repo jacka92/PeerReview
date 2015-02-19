@@ -34,11 +34,10 @@ and open the template in the editor.
     $mark_aggregate = 0;
     
     //delete query handling
-    $query = "INSERT INTO reports ( ";
-    $query .= "report_id, group_id, mark_aggregate ";
-    $query .= ") VALUES ( ";
-    $query .= "'{$report_id}''{$group_id}','{$mark_aggregate}' ";
-    $query .= ")";
+    $query = "INSERT INTO reports ";
+    $query .= "(report_id, group_id, mark_aggregate) ";
+    $query .= "VALUES ";
+    $query .= "('{$report_id}','{$group_id}','{$mark_aggregate}')";
     
     $result = mysqli_query($connection, $query);
 
@@ -46,7 +45,7 @@ and open the template in the editor.
     if ($result && mysqli_affected_rows($connection) == 1){
         echo "Success!";
     }else{
-        die("Insert failed. No changes made to database.") . mysqli_error($connection);
+        die("Insert failed. No changes made to database.") .mysqli_error($connection);
     }
     
 
