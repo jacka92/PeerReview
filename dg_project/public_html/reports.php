@@ -42,7 +42,7 @@ and open the template in the editor.
     <head>
         
         <title>Peer Assessment</title>
-        <?php include 'templates/header imports.php';?>
+        <?php include 'templates/imports.php';?>
 
     </head>
 
@@ -52,7 +52,7 @@ and open the template in the editor.
 
         <form action="assessments.php"><input type = "submit" value = "Go to Assessments"></form>
         <form action="users.php"><input type = "submit" value = "Go to Users"></form>
-        <form action="insert_report.php"><input type = "submit" value = "Insert a Report"></form>
+        <form action="reports/insert_report.php"><input type = "submit" value = "Insert a Report"></form>
 
         
         <h1>Reports</h1>
@@ -65,8 +65,8 @@ and open the template in the editor.
                     echo "<li>"."Group ID: ". $row["group_id"]. "</li>";
                     echo "<li>"."Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
                     ?>         
-                        <form action="update_report.php"><input type = "submit" value = "Update a Report"></form>
-                        <form action="delete_report.php"><input type = "submit" value = "Delete a Report"></form> 
+                        <form action="reports/update_report.php"><input type = "submit" value = "Update a Report"></form>
+                        <form action="reports/delete_report.php"><input type = "submit" value = "Delete a Report"></form> 
                     <?php
                     echo "<hr />";
                 }

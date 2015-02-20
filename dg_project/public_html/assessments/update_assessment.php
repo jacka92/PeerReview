@@ -8,7 +8,7 @@ and open the template in the editor.
 <html>
     <head>
         <title>Update Assessments</title>
-        <?php include 'templates/header imports.php';?>
+        <?php include 'templates/imports.php';?>
     </head>
 
     <body role='document'>

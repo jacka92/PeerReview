@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
+<?php
+    //Creating the db connection
+    $dbhost = 'localhost';
+    $dbuser = 'root';
+    $dbpassword = '';
+    $dbname = 'peer_assessment';
+    
+    $connection = mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
+    
+    //error handling
+    if (mysqli_connect_errno()){
+           die("Database connection failed: "
+               .mysqli_connect_error()
+               ." (" .mysqli_connect_errno(). ")"
+              );
+    }
+    
+?>
+
+
 
 <html>
-    
     <head>
         
-        <title>Peer Assessment</title>
-        <?php include 'templates/header imports.php';?>
+        <title>Dashboard</title>
+        <?php include 'templates/imports.php';?>
 
     </head>
 
@@ -18,12 +33,12 @@ and open the template in the editor.
 
         <?php include 'templates/template header.php';?>
 
-        <h1>Dashboard</h1>
-        <h2></h2>
-        <p></p>
-        <p></p>
-        <p></p>
-       
+        <h1>Dat home page though</h1>
+
+        <form action="reports.php"><input type = "submit" value = "Go to Reports"></form>
+        <form action="users.php"><input type = "submit" value = "Go to Users"></form>
+        <form action="assessments/insert_assessment.php"><input type = "submit" value = "Insert an Ass"></form>
+        
 
         <?php include 'templates/template footer.php';?>
     </body>
