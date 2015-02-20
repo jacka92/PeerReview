@@ -8,15 +8,15 @@ and open the template in the editor.
 <html>
     <head>
         <title>Update Reports</title>
-        <?php include 'templates/header imports.php';?>
+        <?php include '../templates/header imports.php';?>
     </head>
 
     <body role='document'>
-        <?php include 'templates/template header.php';?>
+        <?php include '../templates/template header.php';?>
 
-        <form action="reports.php"><input type = "submit" value = "Return"></form>
+        <form action="../reports.php"><input type = "submit" value = "Return"></form>
 
-        <?php include 'templates/template footer.php';?>
+        <?php include '../templates/template footer.php';?>
     </body>
 </html>
 

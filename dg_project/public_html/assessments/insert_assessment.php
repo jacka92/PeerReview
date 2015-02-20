@@ -9,16 +9,16 @@ and open the template in the editor.
     <head>
         
         <title>Insert Assessments</title>
-        <?php include 'templates/imports.php';?>
+        <?php include '../templates/imports.php';?>
 
     </head>
 
     <body role='document'>
-        <?php include 'templates/template header.php';?>
+        <?php include '../templates/template header.php';?>
 
-        <form action="assessments.php"><input type = "submit" value = "Return"></form>
+        <form action="../assessments.php"><input type = "submit" value = "Return"></form>
 
-        <?php include 'templates/template footer.php';?>
+        <?php include '../templates/template footer.php';?>
     </body>
 </html>
 
