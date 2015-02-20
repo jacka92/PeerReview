@@ -55,7 +55,7 @@ and open the template in the editor.
         <?php include 'templates/template header.php';?>
 
 
-        <h1>Reports</h1>
+        <h1>View Your Reports</h1>
         
         <ul>
             <?php
@@ -64,13 +64,21 @@ and open the template in the editor.
                     echo "<li>"."Report ID : ". $row["report_id"]. "</li>"; 
                     echo "<li>"."Group ID: ". $row["group_id"]. "</li>";
                     echo "<li>"."Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
-                    echo "<hr />";
                 }else{
                     echo "No report found for your Group ID: ". $group_id;
                     }
+                    echo "<hr />";
             ?>
         </ul>
-
+        <h2>Create New Report</h2>
+        
+        <input id = "mark" size="30" type="number" min="0" max="100" step="1" placeholder = "Mark">
+        <br/><br/>
+        
+        <textarea id="body" rows="20" cols="100" placeholder="Place your repory body here"></textarea>
+        <br/><br/>
+        <form action="dashboard.php"><input type = "submit" value = "Submit Report"></form>
+        
         <?php include 'templates/template footer.php';?>
     </body>
 </html>
