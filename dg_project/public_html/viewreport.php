@@ -28,7 +28,6 @@ and open the template in the editor.
     //query handling
     $query = "SELECT * "; 
     $query .= "FROM reports ";
-    $query .= "WHERE group_id = '{$group_id}'";
     
     $result = mysqli_query($connection, $query);
 
@@ -55,21 +54,42 @@ and open the template in the editor.
         <?php include 'templates/template header.php';?>
 
 
-        <h1>View Your Reports</h1>
+        <h1>View Reports</h1>
         
-        <ul>
+   
             <?php
-            //PHP insertion
-                if($row = mysqli_fetch_assoc($result)){
+            //run through all rows
+                while($row = mysqli_fetch_assoc($result)){
+                    
+                    echo "<a href = javascript:select()>";
+                    
+                    //set the current row to this php var. Needed for id use
+                    $currentrowgroupid = $row["group_id"];
+                    
+                    //if the current row is your user's group id
+                    //set the div to a different colour and tell the user it's related to them
+                    if ($currentrowgroupid==$group_id){
+                        echo "<div style = color:#A00000 ";
+                        echo "Report regarding your group work";
+                        
+                    //else just close the div
+                    }else{
+                        echo "<div ";   
+                    }
+                    
+                    //set the div's id to the current row's group id
+                    echo "id = $currentrowgroupid   >"; 
+                    
+                    
                     echo "<li>"."Report ID : ". $row["report_id"]. "</li>"; 
                     echo "<li>"."Group ID: ". $row["group_id"]. "</li>";
                     echo "<li>"."Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
-                }else{
-                    echo "No report found for your Group ID: ". $group_id;
-                    }
-                    echo "<hr />";
+                    echo "</div>";
+                    echo "</a>";
+                    echo "<br/>";
+                }
             ?>
-        </ul>
+        
         <h2>Create New Report</h2>
         
         <input id = "mark" size="30" type="number" min="0" max="100" step="1" placeholder = "Mark">
@@ -82,6 +102,14 @@ and open the template in the editor.
         <?php include 'templates/template footer.php';?>
     </body>
 </html>
+
+<script type="text/javascript">
+    function select(){
+        alert("hello");
+    }
+</script>
+
+
 
 <?php
     mysqli_close($connection);
