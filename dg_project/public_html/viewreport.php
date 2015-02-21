@@ -91,11 +91,10 @@ and open the template in the editor.
 
         
         
-        <h2 id = "edittitle"></h2>
-        <input id = "mark" size="30" type="number" min="0" max="100" step="1" placeholder = "Mark">
+        <h2 id = "title"></h2>
+        <input id = "mark" type = "hidden">
         <br/><br/>
-        
-        <textarea id="body" rows="20" cols="100" placeholder="Place your repory body here"></textarea>
+        <textarea id="body" style="display:none;" rows="20" cols="100" placeholder="Place your repory body here"></textarea>
         <br/><br/>
         <form action="dashboard.php"><input type = "submit" value = "Submit Report"></form>
 
@@ -108,8 +107,18 @@ and open the template in the editor.
         <script type="text/javascript">
         
             function select(currentgroupid){
-                document.getElementById("edittitle").innerHTML = "Edit Report for Group "+currentgroupid+"";
-                var input = 11;
+                var title = document.getElementById("title");
+                var mark = document.getElementById("mark");
+                var body = document.getElementsById("body");
+                
+                title.innerHTML = "Edit Report for Group "+currentgroupid+"";
+                mark.type = "number";
+                mark.min = "0";
+                mark.max = "100";
+                mark.step = "1";
+                mark.placeholder = "Mark";
+
+                
                 }   
         
         </script>
