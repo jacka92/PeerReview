@@ -61,16 +61,15 @@ and open the template in the editor.
             //run through all rows
                 while($row = mysqli_fetch_assoc($result)){
                     
-                    echo "<a href = javascript:select()>";
-                    
                     //set the current row to this php var. Needed for id use
                     $currentrowgroupid = $row["group_id"];
                     
-                    //if the current row is your user's group id
-                    //set the div to a different colour and tell the user it's related to them
+                    //giving all 
+                    echo "<a href = javascript:select('$currentrowgroupid')>";
+                    
+                    //if the current row is your user'
                     if ($currentrowgroupid==$group_id){
                         echo "<div style = color:#A00000 ";
-                        echo "Report regarding your group work";
                         
                     //else just close the div
                     }else{
@@ -79,7 +78,6 @@ and open the template in the editor.
                     
                     //set the div's id to the current row's group id
                     echo "id = $currentrowgroupid   >"; 
-                    
                     
                     echo "<li>"."Report ID : ". $row["report_id"]. "</li>"; 
                     echo "<li>"."Group ID: ". $row["group_id"]. "</li>";
@@ -90,24 +88,33 @@ and open the template in the editor.
                 }
             ?>
         
-        <h2>Create New Report</h2>
+
         
+        
+        <h2 id = "edittitle"></h2>
         <input id = "mark" size="30" type="number" min="0" max="100" step="1" placeholder = "Mark">
         <br/><br/>
         
         <textarea id="body" rows="20" cols="100" placeholder="Place your repory body here"></textarea>
         <br/><br/>
         <form action="dashboard.php"><input type = "submit" value = "Submit Report"></form>
+
         
         <?php include 'templates/template footer.php';?>
     </body>
 </html>
 
-<script type="text/javascript">
-    function select(){
-        alert("hello");
-    }
-</script>
+        <!-- Function for creating edit page -->
+        <script type="text/javascript">
+        
+            function select(currentgroupid){
+                document.getElementById("edittitle").innerHTML = "Edit Report for Group "+currentgroupid+"";
+                var input = 11;
+                }   
+        
+        </script>
+
+
 
 
 
