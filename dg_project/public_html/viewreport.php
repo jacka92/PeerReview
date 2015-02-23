@@ -6,22 +6,8 @@ and open the template in the editor.
 -->
 
 <?php
-    //Creating the db connection
-    $dbhost = 'localhost';
-    $dbuser = 'root';
-    $dbpassword = '';
-    $dbname = 'peer_assessment';
+require_once 'db_connection.php';
     
-    $connection = mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-    
-    //error handling
-    if (mysqli_connect_errno()){
-           die("Database connection failed: "
-               .mysqli_connect_error()
-               ." (" .mysqli_connect_errno(). ")"
-              );
-    }
-
     //TODO change this for a dynamic update
     $group_id = 2;
     

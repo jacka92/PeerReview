@@ -1,26 +1,10 @@
 <!DOCTYPE html>
-
 <?php
-// Creating the db connection
-$dbhost = 'localhost';
-$dbuser = 'root';
-$dbpassword = '';
-$dbname = 'peer_assessment';
+require_once 'db_connection.php';
 session_start();
-
-$connection = mysqli_connect ( $dbhost, $dbuser, $dbpassword, $dbname );
-
-// error handling
-if (mysqli_connect_errno ()) {
-	die ( "Database connection failed: " . mysqli_connect_error () . " (" . mysqli_connect_errno () . ")" );
-}
-
 $Welcome = "Hello " . $_SESSION ['Name'] . ", your Group ID is " . $_SESSION ['GroupID'];
-
 echo $Welcome;
 ?>
-
-
 
 <html>
 <head>

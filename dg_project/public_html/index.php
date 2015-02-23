@@ -1,12 +1,11 @@
 <?php
-$connection = mysqli_connect ( 'localhost', 'root', '', 'peer_assessment' ) or die ( 'Error: top' . mysql_error () );
-
-$Message = "";
+require_once 'db_connection.php';
 session_start();
 ?>
 
 <?php
 ///No blank fields	
+$Message = "";
 require_once 'included_functions.php';
 	if (isset ( $_POST ['submit'] )) {
 		$User = $_POST['username'];

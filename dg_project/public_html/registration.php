@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<?php
-$connection = mysqli_connect ( 'localhost', 'root', '', 'peer_assessment' ) or die ( 'Error: ' . mysql_error () );
 
+<?php
 $Message = "";
-?>
-<?php
-
+require_once 'db_connection.php';
 require_once 'included_functions.php';
 if (isset ( $_POST ['submit'] )) {
 	$First_Name = $_POST ['name'];
