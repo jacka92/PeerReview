@@ -17,9 +17,29 @@ if (isset ( $_POST ['submit'] )) {
 	
 	$Num = 0;
 	
+	/*$email = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
+	 * if(filter_var($email,FILTER_SANITIZE_EMAIL)){
+	 * echo 'valid email address'.
+	 * 
+	 * 
+	 * SHA - secure hash algorithm in MySQL - stores hash in database. Make sure to override e.g:
+	 * INSERT INTO users (username, password) VALUES ('user', SHA('password'));	
+	 * 
+	 * Or php hashing can also be used: $password = md5($_POST['pass']);
+	 * Additional config needed for https connection
+	 * 
+	 * Stored procedures are immune from SQL attack
+	 * htmlspecialchars method can be used on php to protect against html/JS injection
+	 * */
+	
+	
+	
+	if($Pass!=$CPass){
+		$Num++;
+	}
 	
 	foreach ( $_POST as $Value ) {
-		if ($Value=='' ) {
+		if ($Value=='' ) { /////////Use empty here?
 			$Num ++;
 		}
 	}
@@ -34,7 +54,7 @@ if (isset ( $_POST ['submit'] )) {
 		redirect_to('index.php');
 		
 	} else{
-		$Message = "Please fill in all fields.";
+		$Message = "Please fill in all fields!";
 	}
 } else {
 	$First_Name = "";
