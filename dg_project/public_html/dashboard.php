@@ -15,7 +15,9 @@ if (mysqli_connect_errno ()) {
 	die ( "Database connection failed: " . mysqli_connect_error () . " (" . mysqli_connect_errno () . ")" );
 }
 
-echo "Hello " + $_SESSION ["Name"] + ", your Group ID is " + $_SESSION ['GroupID'];
+$Welcome = "Hello " . $_SESSION ['Name'] . ", your Group ID is " . $_SESSION ['GroupID'];
+
+echo $Welcome;
 ?>
 
 
