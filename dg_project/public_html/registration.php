@@ -2,7 +2,7 @@
 
 <?php
 $Message = "";
-require_once 'db_connection.php';
+	require_once 'db_connection.php';
 require_once 'included_functions.php';
 if (isset ( $_POST ['submit'] )) {
 	$First_Name = $_POST ['name'];
@@ -11,6 +11,13 @@ if (isset ( $_POST ['submit'] )) {
 	$User = $_POST ['user'];
 	$Pass = $_POST ['pass'];
 	$CPass = $_POST ['cpass'];
+	
+	////Hash and salt inpuy password then store in DB.
+	$hash_format = "$2y$10$"; //2y means use blowfish. 10 is cost parameter - number of times to run the blowfish hash.
+	$salt = "Salt22CharactersOrMore";
+	$format_and_salt = 	$hash_format . $salt;
+	
+	$hash = crypt($password, $format_and_salt);
 	
 	$Num = 0;
 	

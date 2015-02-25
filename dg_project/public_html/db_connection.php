@@ -1,4 +1,5 @@
 <?php
+////Use constants here instead of variables
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpassword = '';

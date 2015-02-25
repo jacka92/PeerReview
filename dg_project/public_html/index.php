@@ -13,17 +13,19 @@ require_once 'included_functions.php';
 		
 		
 		//If neither field is blank
-		if(!empty($User)& !empty($Pass)){
+		if(!empty($User)&& !empty($Pass)){
+			//Hash and salt the input password here to match to encrypted string in DB
 			$query = "SELECT * FROM users WHERE '$User' = login AND '$Pass' = password";
 			$result = mysqli_query($connection, $query)
 			or die ('Error: '.mysql_error());
 			
 			//If query produces nothing
 			if(!$query){
-				$Message = "Username and password do not match";
+				$Message = "Incorrect username and password.";
 			}else{
 
 				while($row = mysqli_fetch_assoc($result)){
+					///Store user id in session as well
 					$_SESSION['Name'] = $row["first_name"];
 					$_SESSION['GroupID'] = $row["group_id"];
 				}
