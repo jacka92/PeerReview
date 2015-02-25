@@ -12,7 +12,7 @@ if (isset ( $_POST ['submit'] )) {
 	$Pass = $_POST ['pass'];
 	$CPass = $_POST ['cpass'];
 	
-	////Hash and salt inpuy password then store in DB.
+	////TODO Hash and salt inpuy password then store in DB.
 	$hash_format = "$2y$10$"; //2y means use blowfish. 10 is cost parameter - number of times to run the blowfish hash.
 	$salt = "Salt22CharactersOrMore";
 	$format_and_salt = 	$hash_format . $salt;
