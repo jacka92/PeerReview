@@ -18,6 +18,28 @@ session_start();
 		</div>
 		<div id='navbar' class='navbar-collapse collapse'>
 			<ul class='nav navbar-nav'>
+				<?php
+					$query  = "SELECT * ";
+					$query .= "FROM header_pages ";
+					$query .= "WHERE visible = 1 ";
+					$query .= "ORDER BY id ASC";
+
+					$result = sqlsrv_query($conn, $query);
+					confirm_query($result);
+				?>
+				<?php
+					while($page = sqlsrv_fetch_array($result)) {
+				?>
+						<li>
+							<?php
+								echo '<a href="' . $page["page"] . '">' . $page["page_title"] . '</a>'; 
+							?>
+						</li>
+				<?php
+					}
+				?>
+				<?php sqlsrv_free_stmt($result); ?>
+				
 				<li class='active'><a href='dashboard.php'>Dashboard</a></li>
 				<li><a href='assessments.php'>Assessments</a></li>
 				<li><a href='reports.php'>Reports</a></li>
