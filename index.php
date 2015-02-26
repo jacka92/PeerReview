@@ -3,7 +3,6 @@ require_once 'db_connection.php';
 session_start();
 /////Check if user already logged in
 ?>
-<?php require_once 'templates/template_header.php'; ?>
 <?php
 /*
 ///No blank fields	
@@ -54,16 +53,17 @@ require_once 'included_functions.php';
 	<head>
 
 		<title>Peer Assessment</title>
-        <?php include 'templates/imports.php';
-        $html_string = header();
-        echo html_string;
-        ?>
+        <?php include 'templates/imports.php'; ?>
 
     </head>
 
 <body role='document'>
 
-        <?php header($conn);?>
+        <?php
+        	require_once 'templates/template_header.php';
+	        $html_string = header();
+	        echo html_string;
+        ?>
         <?php 
         $Message = $User;
         echo $Message?>
