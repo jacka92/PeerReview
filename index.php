@@ -1,10 +1,9 @@
 <?php
 require_once 'db_connection.php';
-require_once 'templates/template_header.php';
 session_start();
 /////Check if user already logged in
 ?>
-
+<?php require_once 'templates/template_header.php'; ?>
 <?php
 ///No blank fields	
 $Message = "";
