@@ -8,12 +8,14 @@
 	    die(print_r($e));
 	}
 
-	$query  = "CREATE TABLE header_pages ";
-	$query .= "( ";
-	$query .= "column_name1 data_type(size), ";
-	$query .= "column_name2 data_type(size), ";
-	$query .= "column_name3 data_type(size) ";
-	$query .= ")";
-	
-	$result = sqlsrv_query( $conn, $query);
+
+	$sql = "INSERT INTO header_pages (id, data) VALUES (?, ?)";
+	$params = array(1, "some data");
+
+	$stmt = sqlsrv_query( $conn, $sql, $params);
+	if( $stmt === false ) {
+	     die( print_r( sqlsrv_errors(), true));
+	}
+
+	echo "string";
 ?>
