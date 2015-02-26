@@ -1,6 +1,6 @@
 <?php
 require_once 'db_connection.php';
-require_once 'template header.php';
+require_once 'template_header.php';
 session_start();
 /////Check if user already logged in
 ?>
