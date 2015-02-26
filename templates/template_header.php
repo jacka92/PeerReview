@@ -1,5 +1,11 @@
 <?php
-	function header(){
+	function confirm_query($result_set) {
+		if (!$result_set) {
+			die("Database query failed");
+		}
+	}
+
+	function header() {
 		global $conn;
 
 		$html_string = "
@@ -30,7 +36,7 @@
 							<li>
 								<a href="' . $page["page"] . '">' . $page["page_title"] . '</a>
 							</li>';
-						};
+						}
 						sqlsrv_free_stmt($result);
 						$html_string .= "
 						<li class='active'><a href='dashboard.php'>Dashboard</a></li>
