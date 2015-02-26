@@ -73,7 +73,7 @@ if (isset ( $_POST ['submit'] )) {
 <html>
 <head>
 <title>Registration</title>
-        <?php include 'templates/header imports.php';?>
+        <?php include 'templates/imports.php';?>
     </head>
 
 <body role='document'>
