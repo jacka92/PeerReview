@@ -1,6 +1,7 @@
 <?php
 require_once 'db_connection.php';
 session_start();
+/////Check if user already logged in
 ?>
 
 <?php
@@ -14,20 +15,22 @@ require_once 'included_functions.php';
 		
 		//If neither field is blank
 		if(!empty($User)&& !empty($Pass)){
-			// TODO Hash and salt the input password here to match to encrypted string in DB
+			
+			//$Pass = password_encrypt($Pass); ///Hash not working - attend to later
+			
 			$query = "SELECT * FROM users WHERE '$User' = login AND '$Pass' = password";
 			$result = mysqli_query($connection, $query)
 			or die ('Error: '.mysql_error());
 			
 			//If query produces nothing
 			if(!$query){
-				$Message = "Incorrect username and password.";
+				$Message = "Incorrect username and/or password.";
 			}else{
-
 				while($row = mysqli_fetch_assoc($result)){
 					///TODO Store user id in session as well
-					$_SESSION['Name'] = $row["first_name"];
-					$_SESSION['GroupID'] = $row["group_id"];
+					$_SESSION['first_name'] = $row["first_name"];
+					$_SESSION['group_id'] = $row["group_id"];
+					$_SESSION['user_id'] = $row["user_id"];
 				}
 			
 			redirect_to('dashboard.php');
@@ -57,7 +60,9 @@ require_once 'included_functions.php';
 <body role='document'>
 
         <?php include 'templates/template header.php';?>
-        <?php echo $Message?>
+        <?php 
+        $Message = $User;
+        echo $Message?>
 
         <h1>Bullshit fucking database</h1>
 	<h2>These are the pieces of shits involved in this stupid application</h2>
