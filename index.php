@@ -74,13 +74,19 @@ require_once 'included_functions.php';
 <body role='document'>
 
         <?php
+        	include 'templates/template header.php';
+        /*
         	require_once 'templates/template_header.php';
 	        $html_string = header();
 	        echo html_string;
+        */
         ?>
         <?php 
+        /*
         $Message = $User;
-        echo $Message?>
+        echo $Message
+		*/
+        ?>
 
         <h1>Bullshit fucking database</h1>
 	<h2>These are the pieces of shits involved in this stupid application</h2>
