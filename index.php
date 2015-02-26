@@ -1,7 +1,8 @@
 <?php
-	/*
 	require_once 'db_connection.php';
-	*/
+	/*
+			Pejh attempting to do something useful. Please keep
+
 	try {
 	   $conn = new PDO ( "sqlsrv:server = tcp:hvjcgi9sw1.database.windows.net,1433; Database = peerreview", "peerdataadmin", "datacunts4L!FE");
 	       $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -10,11 +11,14 @@
 	    print( "Error connecting to SQL Server." );
 	    die(print_r($e));
 	}
+	*/
+
 	session_start();
+	
 	/////Check if user already logged in
 ?>
 <?php
-/*
+
 ///No blank fields	
 $Message = "";
 require_once 'included_functions.php';
@@ -56,7 +60,7 @@ require_once 'included_functions.php';
 	else{
 		$User = "";
 	}
-*/
+
 ?>
 <!DOCTYPE html>
 <html>
