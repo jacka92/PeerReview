@@ -1,5 +1,6 @@
 <?php
 require_once 'db_connection.php';
+require_once 'template header.php';
 session_start();
 /////Check if user already logged in
 ?>
@@ -59,7 +60,7 @@ require_once 'included_functions.php';
 
 <body role='document'>
 
-        <?php include 'templates/template header.php';?>
+        <?php header($conn);?>
         <?php 
         $Message = $User;
         echo $Message?>
