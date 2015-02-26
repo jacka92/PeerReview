@@ -16,6 +16,11 @@
 				  	<a class='navbar-brand' href='#'>Log Out</a>
 				</div>
 			</div>
+			<div id='navbar' class='navbar-collapse collapse'>
+				<ul class='nav navbar-nav'>
+					<li class='active'><a href='tests.php'>PHP tests</a></li>
+				</ul>
+			</div>
 		</nav>
 
 		<!-- Bootstrap core JavaScript -->
