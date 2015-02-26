@@ -1,6 +1,8 @@
 <?php
-	function header($conn){
-		echo "
+	function header(){
+		global $conn;
+
+		$html_string = "
 		<!-- Fixed navbar -->
 		<nav class='navbar navbar-inverse navbar-fixed-top'>
 			<div class='container'>
@@ -14,29 +16,23 @@
 					<a class='navbar-brand' href='index.php'>Peer Review</a>
 				</div>
 				<div id='navbar' class='navbar-collapse collapse'>
-					<ul class='nav navbar-nav'>"; ?>
-						<?php
-							$query  = "SELECT * ";
-							$query .= "FROM header_pages ";
-							$query .= "WHERE visible = 1 ";
-							$query .= "ORDER BY id ASC";
+					<ul class='nav navbar-nav'>";
+					
+						$query  = "SELECT * ";
+						$query .= "FROM header_pages ";
+						$query .= "WHERE visible = 1 ";
+						$query .= "ORDER BY id";
 
-							$result = sqlsrv_query($conn, $query);
-							confirm_query($result);
-						?>
-						<?php
-							while($page = sqlsrv_fetch_array($result)) {
-						?>
-								<li>
-									<?php
-										echo '<a href="' . $page["page"] . '">' . $page["page_title"] . '</a>'; 
-									?>
-								</li>
-						<?php
-							}
-						?>
-						<?php sqlsrv_free_stmt($result); ?>
-						<?php echo "
+						$result = sqlsrv_query($conn, $query);
+						confirm_query($result);
+						while($page = sqlsrv_fetch_array($result)) {
+							$html_string .= '
+							<li>
+								<a href="' . $page["page"] . '">' . $page["page_title"] . '</a>
+							</li>';
+						};
+						sqlsrv_free_stmt($result);
+						$html_string .= "
 						<li class='active'><a href='dashboard.php'>Dashboard</a></li>
 						<li><a href='assessments.php'>Assessments</a></li>
 						<li><a href='reports.php'>Reports</a></li>
@@ -60,5 +56,7 @@
 		<!-- Body text formatting -->
 		<div class='container'>
 		";
+
+		return $html_string;
 	}
 ?>

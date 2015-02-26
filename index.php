@@ -5,6 +5,7 @@ session_start();
 ?>
 <?php require_once 'templates/template_header.php'; ?>
 <?php
+/*
 ///No blank fields	
 $Message = "";
 require_once 'included_functions.php';
@@ -46,14 +47,17 @@ require_once 'included_functions.php';
 	else{
 		$User = "";
 	}
-
+*/
 ?>
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
 
-<title>Peer Assessment</title>
-        <?php include 'templates/imports.php';?>
+		<title>Peer Assessment</title>
+        <?php include 'templates/imports.php';
+        $html_string = header();
+        echo html_string;
+        ?>
 
     </head>
 
