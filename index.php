@@ -79,10 +79,7 @@ require_once 'included_functions.php';
         	require_once 'templates/template_header.php';
 	        $html_string = header();
 	        echo html_string;
-        */
-        ?>
-        <?php 
-        /*
+	        
         $Message = $User;
         echo $Message
 		*/
