@@ -30,17 +30,17 @@ require_once 'included_functions.php';
 		//If neither field is blank
 		if(!empty($User)&& !empty($Pass)){
 			
-			//$Pass = password_encrypt($Pass); ///Hash not working - attend to later
+			$hashed_password = password_encrypt($_POST['password']);
 			
-			$query = "SELECT * FROM users WHERE '$User' = login AND '$Pass' = password";
-			$result = run_query($connection, $query)
+			$query = "SELECT * FROM users WHERE '$User' = login AND '$hashed_password' = password LIMIT 1";
+			$result = mysqli_query($connection, $query)
 			or die ('Error: '.mysql_error());
 			
 			//If query produces nothing
-			if(!$query){
+			if(empty($result)){ 	
 				$Message = "Incorrect username and/or password.";
 			}else{
-				while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){
+				while($row = mysqli_fetch_assoc($result)){
 					///TODO Store user id in session as well
 					$_SESSION['first_name'] = $row["first_name"];
 					$_SESSION['group_id'] = $row["group_id"];
@@ -104,7 +104,7 @@ require_once 'included_functions.php';
 							<td width="78">Username</td>
 							<td width="6">:</td>
 							<td width="294"><input name="username" type="text"
-								id="username" value=<?php echo $User ?>></td>
+								id="username" value=<?php echo htmlentities($User); ?>></td>
 						</tr>
 						<tr>
 							<td>Password</td>

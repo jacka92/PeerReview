@@ -48,7 +48,7 @@ if (isset ( $_POST ['submit'] )) {
 		
 		///Query then redirect
 		$query = "INSERT INTO users (group_id, first_name, surname, login, password) VALUES ({$Group_ID},'{$First_Name}','{$Surname}','{$User}','{$Pass}')";
-                $result = run_query($connection, $query)
+                $result = mysqli_query($connection, $query)
                     or die ('Error: insert failed'.mysql_error());  
 		
 		redirect_to('index.php');
