@@ -39,8 +39,10 @@ function password_check($password, $existing_hash){
 	return ($hash == $existing_hash);
 }
 
-function find_user_by_username($user){
-	
+function run_query($connection,$query){
+	$result = sqlsrv_query($connection, $query);
+	return result;
 }
+
 
 ?>

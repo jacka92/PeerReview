@@ -33,14 +33,14 @@ require_once 'included_functions.php';
 			//$Pass = password_encrypt($Pass); ///Hash not working - attend to later
 			
 			$query = "SELECT * FROM users WHERE '$User' = login AND '$Pass' = password";
-			$result = mysqli_query($connection, $query)
+			$result = run_query($connection, $query)
 			or die ('Error: '.mysql_error());
 			
 			//If query produces nothing
 			if(!$query){
 				$Message = "Incorrect username and/or password.";
 			}else{
-				while($row = mysqli_fetch_assoc($result)){
+				while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){
 					///TODO Store user id in session as well
 					$_SESSION['first_name'] = $row["first_name"];
 					$_SESSION['group_id'] = $row["group_id"];
