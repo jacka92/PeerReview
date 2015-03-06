@@ -16,7 +16,7 @@ echo $Welcome;
 
 <body role='document'>
 
-        <?php include 'templates/template header.php';?>
+        <?php include 'templates/template_header.php';?>
 
         <h1>Dat home page though</h1>
 

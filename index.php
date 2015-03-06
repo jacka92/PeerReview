@@ -32,23 +32,25 @@ require_once 'included_functions.php';
 			
 			$hashed_password = password_encrypt($_POST['password']);
 			
-			$query = "SELECT * FROM users WHERE '$User' = login AND '$hashed_password' = password LIMIT 1";
-			$result = mysqli_query($connection, $query)
-			or die ('Error: '.mysql_error());
+		
 			
-			//If query produces nothing
-			if(empty($result)){ 	
-				$Message = "Incorrect username and/or password.";
-			}else{
-				while($row = mysqli_fetch_assoc($result)){
-					///TODO Store user id in session as well
-					$_SESSION['first_name'] = $row["first_name"];
-					$_SESSION['group_id'] = $row["group_id"];
-					$_SESSION['user_id'] = $row["user_id"];
-				}
+ 			$query = "SELECT * FROM users WHERE '$User' = login AND '$hashed_password' = password LIMIT 1";
+ 			$result = mysqli_query($connection, $query)
+ 			or die ('Error: '.mysql_error());
 			
-			redirect_to('dashboard.php');
-		}
+ 			//If query produces nothing
+ 			if(empty($result)){ 	
+ 				$Message = "Incorrect username and/or password.";
+ 			}else{
+ 				while($row = mysqli_fetch_assoc($result)){
+ 					///TODO Store user id in session as well
+ 					$_SESSION['first_name'] = $row["first_name"];
+ 					$_SESSION['group_id'] = $row["group_id"];
+ 					$_SESSION['user_id'] = $row["user_id"];
+ 				}
+			
+ 			redirect_to('dashboard.php');
+ 		}
 		
 		
 		}else{
@@ -74,15 +76,15 @@ require_once 'included_functions.php';
 <body role='document'>
 
         <?php
-        	include 'templates/template header.php';
-        /*
+        	include 'templates/template_header.php';
+        
         	require_once 'templates/template_header.php';
 	        $html_string = header();
 	        echo html_string;
 	        
         $Message = $User;
         echo $Message
-		*/
+		
         ?>
 
         <h1>Bullshit fucking database</h1>

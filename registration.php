@@ -42,9 +42,9 @@ if (isset ( $_POST ['submit'] )) {
 	if ($Num == 0) {
 		
 		////TODO Hash and salt input password then store in DB.
-		//$Pass = password_encrypt($Pass); - hashing not working with password verification.
+		$Pass = password_encrypt($Pass); 
 			
-		
+	
 		
 		///Query then redirect
 		$query = "INSERT INTO users (group_id, first_name, surname, login, password) VALUES ({$Group_ID},'{$First_Name}','{$Surname}','{$User}','{$Pass}')";
@@ -73,7 +73,7 @@ if (isset ( $_POST ['submit'] )) {
     </head>
 
 <body role='document'>
-        <?php include 'templates/template header.php';?>
+        <?php include 'templates/template_header.php';?>
         <?php echo $Message?>
 
         <div id="Sign-Up">
