@@ -39,9 +39,20 @@ require_once 'db_connection.php';
         
         <script type = text/javascript>
 
-  $(function() {
-    $( "#accordion" ).accordion();
-  });
+          $(function() {
+            
+            $( "#accordion" ).accordion();
+            
+            $( "#accordion" ).accordion({
+                activate: function( event, ui ) {
+                    alert(ui.newPanel.html());
+                    }
+            
+            
+            });
+          });
+          
+
  
 
         
@@ -59,7 +70,7 @@ include 'templates/imports.php';
 
     <body role='document'>
 
-        <?php include 'templates/template header.php';?>
+        <?php include 'templates/template_header.php';?>
         
         <style>
             #accordion {
@@ -110,9 +121,9 @@ include 'templates/imports.php';
                         //set the div's id to the current row's group id
                         echo "id = $currentrowgroupid   >"; 
 
-                        echo "<p>"."Report ID : ". $row["report_id"]. "</li>"; 
-                        echo "<p>"."Group ID: ". $row["group_id"]. "</li>";
-                        echo "<p>"."Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
+                        echo "<p id = reportid> Report ID : ". $row["report_id"]. "</li>"; 
+                        echo "<p> Group ID: ". $row["group_id"]. "</li>";
+                        echo "<p> Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
                         echo "</div>";
 //                        echo "</a>";
                     }
