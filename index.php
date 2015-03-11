@@ -1,5 +1,5 @@
 <?php
-	require_once 'db_connection.php';
+	require_once 'templates/db_connection.php';
 	/*
 			Pejh attempting to do something useful. Please keep
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php
-    require_once 'db_connection.php';
+    require_once 'templates/db_connection.php';
     
     //query handling
     $query = "SELECT * "; 

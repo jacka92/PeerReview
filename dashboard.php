@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once 'db_connection.php';
+require_once 'templates/db_connection.php';
 session_start();
 $Welcome = "Hello " . $_SESSION ['first_name'] . ", your Group ID is " . $_SESSION ['group_id'];
 echo $Welcome;

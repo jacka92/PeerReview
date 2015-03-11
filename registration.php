@@ -2,7 +2,7 @@
 
 <?php
 $Message = "";
-	require_once 'db_connection.php';
+	require_once 'templates/db_connection.php';
 require_once 'included_functions.php';
 
 if (isset ( $_POST ['submit'] )) {
@@ -55,7 +55,10 @@ if (isset ( $_POST ['submit'] )) {
 		redirect_to('index.php');
 		
 	} else{
-		$Message = "Please fill in all fields!"; ////Place properly
+		$Message = "
+		  <div class='alert alert-danger' role='alert'>
+			<strong>Oh snap!</strong> You're missing some fields or have entered some things in incorrectly. Change a few things up and try submitting again.
+		  </div>"; ////Place properly
 	}
 } else {
 	$First_Name = "";
