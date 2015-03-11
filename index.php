@@ -76,8 +76,6 @@ require_once 'included_functions.php';
 <body role='document'>
 
         <?php
-        	include 'templates/template_header.php';
-        
         	require_once 'templates/template_header.php';
 	        $html_string = header();
 	        echo html_string;
