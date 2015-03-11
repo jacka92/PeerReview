@@ -4,6 +4,7 @@
 $Message = "";
 	require_once 'db_connection.php';
 require_once 'included_functions.php';
+
 if (isset ( $_POST ['submit'] )) {
 	$First_Name = $_POST ['name'];
 	$Surname = $_POST ['surname'];

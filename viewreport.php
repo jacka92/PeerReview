@@ -28,64 +28,112 @@ require_once 'db_connection.php';
 
 
 <html>
+    
+    
     <head>
+            <link rel="stylesheet" href="jquery-ui-1.11.3/jquery-ui.css">
+            <script src="jquery-ui-1.11.3/external/jquery/jquery.js"></script>
+            <script src="jquery-ui-1.11.3/jquery-ui.js"></script>
+            
+        
+        
+        <script type = text/javascript>
+
+  $(function() {
+    $( "#accordion" ).accordion();
+  });
+ 
+
+        
+        </script>
+        
+
         
         <title>Peer Assessment</title>
-        <?php include 'templates/imports.php';?>
+        <?php 
+include 'templates/imports.php';
+        
+        ?>
 
     </head>
 
     <body role='document'>
 
         <?php include 'templates/template header.php';?>
+        
+        <style>
+            #accordion {
+                padding: 20px;
+                width: 30%;
+                float: left;
+            }
+            
+            #info {
+              
+                width: 70%;
+                float: right;
+            }
+            
+        </style>            
+            
+            </div>
 
 
         <h1>View Reports</h1>
         
-   
+            
+    
             <?php
             //run through all rows
-                while($row = mysqli_fetch_assoc($result)){
+                echo "<div id ='accordion'>";
                     
-                    //set the current row to this php var. Needed for id use
-                    $currentrowgroupid = $row["group_id"];
-                    
-                    //giving all 
-                    echo "<a href = javascript:select('$currentrowgroupid')>";
-                    
-                    //if the current row is your user'
-                    if ($currentrowgroupid==$group_id){
-                        echo "<div style = color:#A00000 ";
+                    echo "<h3> Create new report </h3>";
+                    echo "<div><p>No report found. Create this report to the right.</p></div>";
+                    while($row = mysqli_fetch_assoc($result)){
+
+                        //set the current row to this php var. Needed for id use
+                        $currentrowgroupid = $row["group_id"];
+
+                        //giving all 
+//                        echo "<a href = javascript:select('$currentrowgroupid')>";
+                        echo "<h3>"."Report ID : ". $row["report_id"]. "</h3>"; 
                         
-                    //else just close the div
-                    }else{
-                        echo "<div ";   
+                        //if the current row is your user'
+                        if ($currentrowgroupid==$group_id){
+                            echo "<div style = color:#A00000 ";
+
+                        //else just close the div
+                        }else{
+                            echo "<div ";    
+                        }
+
+                        //set the div's id to the current row's group id
+                        echo "id = $currentrowgroupid   >"; 
+
+                        echo "<p>"."Report ID : ". $row["report_id"]. "</li>"; 
+                        echo "<p>"."Group ID: ". $row["group_id"]. "</li>";
+                        echo "<p>"."Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
+                        echo "</div>";
+//                        echo "</a>";
                     }
-                    
-                    //set the div's id to the current row's group id
-                    echo "id = $currentrowgroupid   >"; 
-                    
-                    echo "<li>"."Report ID : ". $row["report_id"]. "</li>"; 
-                    echo "<li>"."Group ID: ". $row["group_id"]. "</li>";
-                    echo "<li>"."Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
-                    echo "</div>";
-                    echo "</a>";
-                    echo "<br/>";
-                }
+
+                echo "</div>";
+        
             ?>
         
+        <div id = "info">
+        <h2 id = "title">Report for group</h2>
 
-        
-        
-        <h2 id = "title"></h2>
-        <input id = "mark" type = "hidden">
-        <br/><br/>
-        <textarea id="body" style="display:none;" rows="20" cols="100" placeholder="Place your repory body here"></textarea>
+        <textarea id="body" rows="20" cols="100" placeholder="Place your repory body here"></textarea>
         <br/><br/>
         <form action="dashboard.php"><input type = "submit" value = "Submit Report"></form>
-
+            <input id = "mark" type = "hidden">
+        </div>
         
-        <?php include 'templates/template footer.php';?>
+        <?php 
+//include 'templates/template footer.php';
+        ?>
+        
     </body>
 </html>
 
@@ -95,7 +143,7 @@ require_once 'db_connection.php';
             function select(currentgroupid){
                 var title = document.getElementById("title");
                 var mark = document.getElementById("mark");
-                var body = document.getElementsById("body");
+//                var body = document.getElementsById("body");
                 
                 title.innerHTML = "Edit Report for Group "+currentgroupid+"";
                 mark.type = "number";
@@ -103,8 +151,6 @@ require_once 'db_connection.php';
                 mark.max = "100";
                 mark.step = "1";
                 mark.placeholder = "Mark";
-
-                
                 }   
         
         </script>
