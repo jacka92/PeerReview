@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
 <?php
-require_once 'db_connection.php';
+require_once 'templates/db_connection.php';
     
     //TODO change this for a dynamic update
     $group_id = 2;
@@ -45,7 +38,10 @@ require_once 'db_connection.php';
             
             $( "#accordion" ).accordion({
                 activate: function( event, ui ) {
-                    alert(ui.newPanel.html());
+                    var loader = ui.newPanel.html();
+                    loader = loader.split('<p> Report ID : ');
+                    console.log(loader[0]);
+                    console.log(loader[1]);
                     }
             
             
@@ -121,7 +117,7 @@ include 'templates/imports.php';
                         //set the div's id to the current row's group id
                         echo "id = $currentrowgroupid   >"; 
 
-                        echo "<p id = reportid> Report ID : ". $row["report_id"]. "</li>"; 
+                        echo "<p> Report ID : ". $row["report_id"]. "</li>"; 
                         echo "<p> Group ID: ". $row["group_id"]. "</li>";
                         echo "<p> Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
                         echo "</div>";
