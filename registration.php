@@ -13,13 +13,6 @@ if (isset ( $_POST ['submit'] )) {
 	$Pass = $_POST ['pass'];
 	$CPass = $_POST ['cpass'];
 	
-	////TODO Hash and salt inpuy password then store in DB.
-	$hash_format = "$2y$10$"; //2y means use blowfish. 10 is cost parameter - number of times to run the blowfish hash.
-	$salt = "Salt22CharactersOrMore";
-	$format_and_salt = 	$hash_format . $salt;
-	
-	$hash = crypt($password, $format_and_salt);
-	
 	$Num = 0;
 	
 	/*$email = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
@@ -37,29 +30,32 @@ if (isset ( $_POST ['submit'] )) {
 	 * htmlspecialchars method can be used on php to protect against html/JS injection
 	 * */
 	
-	
-	
 	if($Pass!=$CPass){
 		$Num++;
 	}
 	
 	foreach ( $_POST as $Value ) {
-		if ($Value=='' ) { /////////Use empty here?
+		if (empty($Value)) { 
 			$Num ++;
 		}
 	}
 	
 	if ($Num == 0) {
 		
+		////TODO Hash and salt input password then store in DB.
+		$Pass = password_encrypt($Pass); 
+			
+	
+		
 		///Query then redirect
 		$query = "INSERT INTO users (group_id, first_name, surname, login, password) VALUES ({$Group_ID},'{$First_Name}','{$Surname}','{$User}','{$Pass}')";
                 $result = mysqli_query($connection, $query)
-                    or die ('Error: '.mysql_error());  
+                    or die ('Error: insert failed'.mysql_error());  
 		
 		redirect_to('index.php');
 		
 	} else{
-		$Message = "Please fill in all fields!";
+		$Message = "Please fill in all fields!"; ////Place properly
 	}
 } else {
 	$First_Name = "";
@@ -78,7 +74,7 @@ if (isset ( $_POST ['submit'] )) {
     </head>
 
 <body role='document'>
-        <?php include 'templates/template header.php';?>
+        <?php include 'templates/template_header.php';?>
         <?php echo $Message?>
 
         <div id="Sign-Up">

@@ -2,7 +2,7 @@
 <?php
 require_once 'db_connection.php';
 session_start();
-$Welcome = "Hello " . $_SESSION ['Name'] . ", your Group ID is " . $_SESSION ['GroupID'];
+$Welcome = "Hello " . $_SESSION ['first_name'] . ", your Group ID is " . $_SESSION ['group_id'];
 echo $Welcome;
 ?>
 
@@ -16,7 +16,7 @@ echo $Welcome;
 
 <body role='document'>
 
-        <?php include 'templates/template header.php';?>
+        <?php include 'templates/template_header.php';?>
 
         <h1>Dat home page though</h1>
 

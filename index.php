@@ -1,9 +1,24 @@
 <?php
-require_once 'db_connection.php';
-session_start();
-?>
+	require_once 'db_connection.php';
+	/*
+			Pejh attempting to do something useful. Please keep
 
+	try {
+	   $conn = new PDO ( "sqlsrv:server = tcp:hvjcgi9sw1.database.windows.net,1433; Database = peerreview", "peerdataadmin", "datacunts4L!FE");
+	       $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+	}
+	catch ( PDOException $e ) {
+	    print( "Error connecting to SQL Server." );
+	    die(print_r($e));
+	}
+	*/
+
+	session_start();
+	
+	/////Check if user already logged in
+?>
 <?php
+
 ///No blank fields	
 $Message = "";
 require_once 'included_functions.php';
@@ -14,24 +29,28 @@ require_once 'included_functions.php';
 		
 		//If neither field is blank
 		if(!empty($User)&& !empty($Pass)){
-			// TODO Hash and salt the input password here to match to encrypted string in DB
-			$query = "SELECT * FROM users WHERE '$User' = login AND '$Pass' = password";
-			$result = mysqli_query($connection, $query)
-			or die ('Error: '.mysql_error());
 			
-			//If query produces nothing
-			if(!$query){
-				$Message = "Incorrect username and password.";
-			}else{
-
-				while($row = mysqli_fetch_assoc($result)){
-					///TODO Store user id in session as well
-					$_SESSION['Name'] = $row["first_name"];
-					$_SESSION['GroupID'] = $row["group_id"];
-				}
+			$hashed_password = password_encrypt($_POST['password']);
 			
-			redirect_to('dashboard.php');
-		}
+		
+			
+ 			$query = "SELECT * FROM users WHERE '$User' = login AND '$hashed_password' = password LIMIT 1";
+ 			$result = mysqli_query($connection, $query)
+ 			or die ('Error: '.mysql_error());
+			
+ 			//If query produces nothing
+ 			if(empty($result)){ 	
+ 				$Message = "Incorrect username and/or password.";
+ 			}else{
+ 				while($row = mysqli_fetch_assoc($result)){
+ 					///TODO Store user id in session as well
+ 					$_SESSION['first_name'] = $row["first_name"];
+ 					$_SESSION['group_id'] = $row["group_id"];
+ 					$_SESSION['user_id'] = $row["user_id"];
+ 				}
+			
+ 			redirect_to('dashboard.php');
+ 		}
 		
 		
 		}else{
@@ -47,17 +66,26 @@ require_once 'included_functions.php';
 ?>
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
 
-<title>Peer Assessment</title>
-        <?php include 'templates/imports.php';?>
+		<title>Peer Assessment</title>
+        <?php include 'templates/imports.php'; ?>
 
     </head>
 
 <body role='document'>
 
-        <?php include 'templates/template header.php';?>
-        <?php echo $Message?>
+        <?php
+        	include 'templates/template_header.php';
+        
+        	require_once 'templates/template_header.php';
+	        $html_string = header();
+	        echo html_string;
+	        
+        $Message = $User;
+        echo $Message
+		
+        ?>
 
         <h1>Bullshit fucking database</h1>
 	<h2>These are the pieces of shits involved in this stupid application</h2>
@@ -78,7 +106,7 @@ require_once 'included_functions.php';
 							<td width="78">Username</td>
 							<td width="6">:</td>
 							<td width="294"><input name="username" type="text"
-								id="username" value=<?php echo $User ?>></td>
+								id="username" value=<?php echo htmlentities($User); ?>></td>
 						</tr>
 						<tr>
 							<td>Password</td>

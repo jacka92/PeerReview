@@ -1,12 +1,14 @@
 <?php
-/*
-require_once 'db_connection.php';
-session_start();
-*/
-?>
+	function confirm_query($result_set) {
+		if (!$result_set) {
+			die("Database query failed");
+		}
+	}
 
-<?php
-	echo "
+	function header() {
+		global $connection;
+
+		$html_string = "
 		<!-- Fixed navbar -->
 		<nav class='navbar navbar-inverse navbar-fixed-top'>
 			<div class='container'>
@@ -20,7 +22,24 @@ session_start();
 					<a class='navbar-brand' href='index.php'>Peer Review</a>
 				</div>
 				<div id='navbar' class='navbar-collapse collapse'>
-					<ul class='nav navbar-nav'>
+					<ul class='nav navbar-nav'>";
+					
+						$query  = "SELECT * ";
+						$query .= "FROM header_pages ";
+						$query .= "WHERE visible = 1 ";
+						$query .= "ORDER BY id";
+
+						$result = mysqli_query($connection, $query);
+						confirm_query($result);
+						while($page = mysqli_fetch_assoc($result)) {
+							$html_string .= '
+							<li>
+								<a href="' . $page["page"] . '">' . $page["page_title"] . '</a>
+							</li>';
+						}
+						mysqli_free_result($result);
+						//sqlsrv_free_stmt($result);
+						$html_string .= "
 						<li class='active'><a href='dashboard.php'>Dashboard</a></li>
 						<li><a href='assessments.php'>Assessments</a></li>
 						<li><a href='reports.php'>Reports</a></li>
@@ -43,5 +62,8 @@ session_start();
 
 		<!-- Body text formatting -->
 		<div class='container'>
-	";
+		";
+
+		return $html_string;
+	}
 ?>
