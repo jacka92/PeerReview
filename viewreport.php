@@ -116,8 +116,9 @@ include 'templates/imports.php';
             ?>
         
         <div id = "info">
-        <h2 id = "title">Report for group</h2>
-
+        <h2 id = "title">Select a report from the right</h2>
+        <h3 id = "subtitle">This'll be for group no</h3>
+        <br>
         <textarea id="body" rows="20" cols="100" placeholder="Place your repory body here"></textarea>
         <br/><br/>
         <form action="dashboard.php"><input type = "submit" value = "Submit Report"></form>
@@ -165,11 +166,14 @@ include 'templates/imports.php';
             });
           });
             
-        function load(loader){
+        function load(reportid){
             var title = document.getElementById("title");
+            var subtitle = document.getElementById("subtitle");
             
+            var groupid = 5;
             
-            title.innerHTML = "Report number "+loader+"";
+            subtitle.innerHTML = "Group number "+groupid+"";
+            title.innerHTML = "Report number "+reportid+"";
             
         }
             
