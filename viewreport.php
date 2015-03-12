@@ -147,7 +147,7 @@ include 'templates/imports.php';
                 mark.placeholder = "Mark";
                 }   
             
-        $(function() {
+        $(function accordion() {
             
             $( "#accordion" ).accordion();
             
