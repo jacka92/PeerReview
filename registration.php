@@ -15,21 +15,6 @@ if (isset ( $_POST ['submit'] )) {
 	
 	$Num = 0;
 	
-	/*$email = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
-	 * if(filter_var($email,FILTER_SANITIZE_EMAIL)){
-	 * echo 'valid email address'.
-	 * 
-	 * 
-	 * SHA - secure hash algorithm in MySQL - stores hash in database. Make sure to override e.g:
-	 * INSERT INTO users (username, password) VALUES ('user', SHA('password'));	
-	 * 
-	 * Or php hashing can also be used: $password = md5($_POST['pass']);
-	 * Additional config needed for https connection
-	 * 
-	 * Stored procedures are immune from SQL attack
-	 * htmlspecialchars method can be used on php to protect against html/JS injection
-	 * */
-	
 	if($Pass!=$CPass){
 		$Num++;
 	}
@@ -42,7 +27,7 @@ if (isset ( $_POST ['submit'] )) {
 	
 	if ($Num == 0) {
 		
-		////TODO Hash and salt input password then store in DB.
+		/// Hash and salt input password then store in DB.
 		$Pass = password_encrypt($Pass); 
 			
 	
@@ -84,35 +69,34 @@ if (isset ( $_POST ['submit'] )) {
 		<fieldset style="width: 30%">
 			<legend>Registration Form</legend>
 			<table border="0">
-				<tr>
-					<form method="post" action="registration.php">
+				<form method="post" action="registration.php">
+					<tr>
 						<td>First name</td>
 						<td><input type="text" name="name" value=<?php echo $First_Name ?>></td>
-				
-				</tr>
-				<tr>
-					<td>Surname</td>
-					<td><input type="text" name="surname" value=<?php echo $Surname ?>></td>
-				</tr>
-				<tr>
-					<td>Group ID</td>
-					<td><input type="text" name="group_id" value=<?php echo $Group_ID ?>></td>
-				</tr>
-				<tr>
-					<td>UserName</td>
-					<td><input type="text" name="user" value=<?php echo $User ?>></td>
-				</tr>
-				<tr>
-					<td>Password</td>
-					<td><input type="password" name="pass"></td>
-				</tr>
-				<tr>
-					<td>Confirm Password</td>
-					<td><input type="password" name="cpass"></td>
-				</tr>
-				<tr>
-					<td><input id="button" type="submit" name="submit" value="Sign-Up"></td>
-				</tr>
+					</tr>
+					<tr>
+						<td>Surname</td>
+						<td><input type="text" name="surname" value=<?php echo $Surname ?>></td>
+					</tr>
+					<tr>
+						<td>Group ID</td>
+						<td><input type="text" name="group_id" value=<?php echo $Group_ID ?>></td>
+					</tr>
+					<tr>
+						<td>UserName</td>
+						<td><input type="text" name="user" value=<?php echo $User ?>></td>
+					</tr>
+					<tr>
+						<td>Password</td>
+						<td><input type="password" name="pass"></td>
+					</tr>
+					<tr>
+						<td>Confirm Password</td>
+						<td><input type="password" name="cpass"></td>
+					</tr>
+					<tr>
+						<td><input id="button" type="submit" name="submit" value="Sign-Up"></td>
+					</tr>
 				</form>
 				</tr>
 			</table>
