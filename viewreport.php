@@ -159,11 +159,19 @@ include 'templates/imports.php';
                     temploader = temploader.replace("<p> Report ID : ","");
                     temploader = temploader.split("</p>");
                     var loader = temploader[0];
-                    
+                    load(loader);
                     }
             
             });
           });
+            
+        function load(loader){
+            var title = document.getElementById("title");
+            
+            
+            title.innerHTML = "Report number "+loader+"";
+            
+        }
             
         
             
