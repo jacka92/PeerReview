@@ -125,7 +125,7 @@ require_once 'included_functions.php';
 			</form>
 		</div>
 
-
+<!--
 		<table width="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
 			<tr>
 				<form name="form1" method="post" action="index.php">
@@ -156,7 +156,7 @@ require_once 'included_functions.php';
 				</form>
 			</tr>
 		</table>
-
+-->
 
         <?php include 'templates/template footer.php';?>
     </body>

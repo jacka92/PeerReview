@@ -11,6 +11,10 @@
     <body role='document'>
         <?php include 'templates/template_header.php';?>
 
+        <div class="page-header">
+            <h1>Admin Page</h1>
+        </div>
+
         <div class="row">
             <!--
 administrator-users will have a separate interface through which student registration will be managed and
@@ -20,25 +24,29 @@ groups defined from the student registration list
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        
+                        Make a user an Admin
                     </h3>
                 </div>
                 <div class="panel-body">
                     <table class="table">
+                        <thead>
+                            <tr>
+                                <td>User ID</td>
+                                <td>Username</td>
+                                <td>First Name</td>
+                                <td>Surname</td>
+                                <td>Admin</td>
+                                <td>Remove User</td>
+                            </tr>
+                        </thead>
                         <tbody>
                             <tr>
-                                <td>Username : </td>
-                                <td><input name="username" type="text" id="username" value=<?php echo htmlentities($User); ?>></td>
-                            </tr>
-                            <tr>
-                                <td>Password : </td>
-                                <td><input name="password" type="password" id="password"></td>
-                            </tr>
-                            <tr>
-                                <td colspan = "3"><input type="submit" name="submit" value="Login"></td>
-                            </tr>
-                            <tr>
-                                <td colspan = "3"><a href="registration.php">Register account</a></td>
+                                <td></td>   <!-- To be populated by PHP -->
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         </tbody>
                     </table>
