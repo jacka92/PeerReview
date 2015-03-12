@@ -36,7 +36,9 @@ groups defined from the student registration list
                                 <td>Username</td>
                                 <td>First Name</td>
                                 <td>Surname</td>
-                                <td>Admin</td>
+                                <td>Admin/User</td>
+                                <td>Current Group ID</td>
+                                <td>New Group ID</td>
                                 <td>Remove User</td>
                             </tr>
                         </thead>
@@ -66,7 +68,18 @@ groups defined from the student registration list
                                         <?php echo $users["surname"]; ?>
                                     </td>
                                     <td>
-                                        <?php echo $users["admin"]; ?>
+                                        <?php if ($users["admin"] == 0) {
+                                            echo "User";
+                                        } else {
+                                            echo "Admin";
+                                        }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $users["group_id"]; ?>
+                                    </td>
+                                    <td>
+                                        
                                     </td>
                                     <td>
                                         To be inputted
