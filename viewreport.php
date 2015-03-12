@@ -9,7 +9,6 @@ require_once 'templates/db_connection.php';
     $query .= "FROM reports ";
     
     $result = mysqli_query($connection, $query);
-
     //query error handling
     if (!$result){
         die("Database query failed.");
@@ -31,26 +30,8 @@ require_once 'templates/db_connection.php';
         
         
         <script type = text/javascript>
-
-          $(function() {
-            
-            $( "#accordion" ).accordion();
-            
-            $( "#accordion" ).accordion({
-                activate: function( event, ui ) {
-                    var loader = ui.newPanel.html();
-                    loader = loader.split('<p> Report ID : ');
-                    console.log(loader[0]);
-                    console.log(loader[1]);
-                    }
-            
-            
-            });
-          });
           
-
  
-
         
         </script>
         
@@ -97,10 +78,8 @@ include 'templates/imports.php';
                     echo "<h3> Create new report </h3>";
                     echo "<div><p>No report found. Create this report to the right.</p></div>";
                     while($row = mysqli_fetch_assoc($result)){
-
                         //set the current row to this php var. Needed for id use
                         $currentrowgroupid = $row["group_id"];
-
                         //giving all 
 //                        echo "<a href = javascript:select('$currentrowgroupid')>";
                         echo "<h3>"."Report ID : ". $row["report_id"]. "</h3>"; 
@@ -108,29 +87,26 @@ include 'templates/imports.php';
                         //if the current row is your user'
                         if ($currentrowgroupid==$group_id){
                             echo "<div style = color:#A00000 ";
-
                         //else just close the div
                         }else{
                             echo "<div ";    
                         }
-
                         //set the div's id to the current row's group id
                         echo "id = $currentrowgroupid   >"; 
-
                         echo "<p> Report ID : ". $row["report_id"]. "</li>"; 
                         echo "<p> Group ID: ". $row["group_id"]. "</li>";
                         echo "<p> Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
                         echo "</div>";
 //                        echo "</a>";
                     }
-
                 echo "</div>";
         
             ?>
         
         <div id = "info">
-        <h2 id = "title">Report for group</h2>
-
+        <h2 id = "title">Select a report from the right</h2>
+        <h3 id = "subtitle">This'll be for group no</h3>
+        <br>
         <textarea id="body" rows="20" cols="100" placeholder="Place your repory body here"></textarea>
         <br/><br/>
         <form action="dashboard.php"><input type = "submit" value = "Submit Report"></form>
@@ -144,23 +120,59 @@ include 'templates/imports.php';
     </body>
 </html>
 
-        <!-- Function for creating edit page -->
-        <script type="text/javascript">
         
-            function select(currentgroupid){
-                var title = document.getElementById("title");
-                var mark = document.getElementById("mark");
-//                var body = document.getElementsById("body");
-                
-                title.innerHTML = "Edit Report for Group "+currentgroupid+"";
-                mark.type = "number";
-                mark.min = "0";
-                mark.max = "100";
-                mark.step = "1";
-                mark.placeholder = "Mark";
-                }   
+        <script type="text/javascript">
+            
+////            Function for creating edit page
+//            function select(){
+//                var title = document.getElementById("title");
+//                var mark = document.getElementById("mark");
+////                var body = document.getElementsById("body");
+//                
+//                title.innerHTML = "Edit Report for Group "+currentgroupid+"";
+//                mark.type = "number";
+//                mark.min = "0";
+//                mark.max = "100";
+//                mark.step = "1";
+//                mark.placeholder = "Mark";
+//                }   
+        
+//      Function for creating accordion
+        $(function accordion() {
+            
+            $( "#accordion" ).accordion();
+            
+            $( "#accordion" ).accordion({
+                activate: function( event, ui ) {
+                    var temploader = ui.newPanel.html();                    
+                    temploader = temploader.replace("<p> Report ID : ","");
+                    temploader = temploader.split("</p>");
+                    var loader = temploader[0];
+                    load(loader);
+                    }
+            
+            });
+          });
+            
+        function load(reportid){
+            var title = document.getElementById("title");
+            var subtitle = document.getElementById("subtitle");
+            
+            var groupid = 5;
+            
+            subtitle.innerHTML = "Group number "+groupid+"";
+            title.innerHTML = "Report number "+reportid+"";
+            
+        }
+            
+        
+            
+        
+          
         
         </script>
+
+    
 
 
 
