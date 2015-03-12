@@ -18,36 +18,11 @@ require_once 'templates/db_connection.php';
 ?>
 
 
-
-
 <html>
-    
-    
     <head>
-            <link rel="stylesheet" href="jquery-ui-1.11.3/jquery-ui.css">
-            <script src="jquery-ui-1.11.3/external/jquery/jquery.js"></script>
-            <script src="jquery-ui-1.11.3/jquery-ui.js"></script>
-            
-        
-        
-        <script type = text/javascript>
-
-
-
-          
-
- 
-
-        
-        </script>
-        
-
-        
+        <link rel="stylesheet" href="jquery-ui-1.11.3/jquery-ui.css">
         <title>Peer Assessment</title>
-        <?php 
-include 'templates/imports.php';
-        
-        ?>
+        <?php include 'templates/imports.php';?>
 
     </head>
 
@@ -63,58 +38,55 @@ include 'templates/imports.php';
             }
             
             #info {
-              
                 width: 70%;
                 float: right;
             }
             
         </style>            
-            
-            </div>
-
 
         <h1>View Reports</h1>
         
-            
-    
+
             <?php
-            //run through all rows
                 echo "<div id ='accordion'>";
                     
+                    //First div
                     echo "<h3> Create new report </h3>";
                     echo "<div><p>No report found. Create this report to the right.</p></div>";
+
+                    //Loop to run through all results
                     while($row = mysqli_fetch_assoc($result)){
 
-                        //set the current row to this php var. Needed for id use
+                        //setting current row as var
                         $currentrowgroupid = $row["group_id"];
 
-                        //giving all 
-//                        echo "<a href = javascript:select('$currentrowgroupid')>";
+                        //creating the header for each div
                         echo "<h3>"."Report ID : ". $row["report_id"]. "</h3>"; 
                         
-                        //if the current row is your user'
+                        //if the current row is your user's id
                         if ($currentrowgroupid==$group_id){
                             echo "<div style = color:#A00000 ";
 
-                        //else just close the div
+                        //else close as normal
                         }else{
                             echo "<div ";    
                         }
 
                         //set the div's id to the current row's group id
                         echo "id = $currentrowgroupid   >"; 
-
+                        
+                        //set out data in each row
                         echo "<p> Report ID : ". $row["report_id"]. "</li>"; 
                         echo "<p> Group ID: ". $row["group_id"]. "</li>";
                         echo "<p> Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
                         echo "</div>";
-//                        echo "</a>";
                     }
 
                 echo "</div>";
         
             ?>
         
+        <!-- The central menu-->
         <div id = "info">
         <h2 id = "title">Select a report from the right</h2>
         <h3 id = "subtitle">This'll be for group no</h3>
@@ -125,9 +97,14 @@ include 'templates/imports.php';
             <input id = "mark" type = "hidden">
         </div>
         
+        <!-- footer -->
         <?php 
-//include 'templates/template footer.php';
+            include 'templates/template footer.php';
         ?>
+        
+        <!-- Script calls for jquery. Do not move! -->
+        <script src="jquery-ui-1.11.3/external/jquery/jquery.js"></script>
+        <script src="jquery-ui-1.11.3/jquery-ui.js"></script>
         
     </body>
 </html>
@@ -135,11 +112,11 @@ include 'templates/imports.php';
         
         <script type="text/javascript">
             
-////            Function for creating edit page
+//      Dont remove - old select, needed to be used
 //            function select(){
 //                var title = document.getElementById("title");
 //                var mark = document.getElementById("mark");
-////                var body = document.getElementsById("body");
+//                var body = document.getElementsById("body");
 //                
 //                title.innerHTML = "Edit Report for Group "+currentgroupid+"";
 //                mark.type = "number";
@@ -149,7 +126,7 @@ include 'templates/imports.php';
 //                mark.placeholder = "Mark";
 //                }   
         
-//      Function for creating accordion
+        // Function for creating accordion
         $(function accordion() {
             
             $( "#accordion" ).accordion();
@@ -165,39 +142,23 @@ include 'templates/imports.php';
             
             });
           });
-            
+        
+        // Function for changing ui elements 
         function load(reportid){
             var title = document.getElementById("title");
             var subtitle = document.getElementById("subtitle");
             
             var groupid = 5;
             
-            console.log(
-            <?php
-               echo ;
-                
-            ?>
-            
-            );
+            console.log(   );
             
             
             subtitle.innerHTML = "Group number "+groupid+"";
             title.innerHTML = "Report number "+reportid+"";
             
         }
-            
-        
-            
-        
-          
         
         </script>
-
-    
-
-
-
-
 
 <?php
     mysqli_close($connection);
