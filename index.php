@@ -22,59 +22,55 @@
 ///No blank fields	
 $Message = "";
 require_once 'included_functions.php';
-	if (isset ( $_POST ['submit'] )) {
-		$User = $_POST['username'];
-		$Pass = $_POST['password'];
+if (isset ( $_POST ['submit'] )) {
+	$User = $_POST['username'];
+	$Pass = $_POST['password'];
+	
+	
+	//If neither field is blank
+	if(!empty($User)&& !empty($Pass)){
 		
+		$hashed_password = password_encrypt($_POST['password']);
 		
-		//If neither field is blank
-		if(!empty($User)&& !empty($Pass)){
-			
-			$hashed_password = password_encrypt($_POST['password']);
-			
+	
 		
-			
- 			$query = "SELECT * FROM users WHERE '$User' = login AND '$hashed_password' = password LIMIT 1";
- 			$result = mysqli_query($connection, $query)
- 			or die ('Error: '.mysql_error());
-			
- 			//If query produces nothing
- 			if(empty($result)){ 	
- 				$Message = "Incorrect username and/or password.";
- 			}else{
- 				while($row = mysqli_fetch_assoc($result)){
- 					///TODO Store user id in session as well
- 					$_SESSION['first_name'] = $row["first_name"];
- 					$_SESSION['group_id'] = $row["group_id"];
- 					$_SESSION['user_id'] = $row["user_id"];
- 				}
-			
- 			redirect_to('dashboard.php');
- 		}
+			$query = "SELECT * FROM users WHERE '$User' = login AND '$hashed_password' = password LIMIT 1";
+			$result = mysqli_query($connection, $query)
+			or die ('Error: '.mysql_error());
 		
+			//If query produces nothing
+			if(empty($result)){ 	
+				$Message = "Incorrect username and/or password.";
+			}else{
+				while($row = mysqli_fetch_assoc($result)){
+					///TODO Store user id in session as well
+					$_SESSION['first_name'] = $row["first_name"];
+					$_SESSION['group_id'] = $row["group_id"];
+					$_SESSION['user_id'] = $row["user_id"];
+				}
 		
-		}else{
-			$Message = "Fill in all fields";
+			redirect_to('dashboard.php');
 		}
-		
+	
+	
+	}else{
+		$Message = "Fill in all fields";
 	}
 	
-	else{
-		$User = "";
-	}
+}
+
+else{
+	$User = "";
+}
 
 ?>
-<!DOCTYPE html>
 <html>
 	<head>
-
 		<title>Peer Assessment</title>
         <?php include 'templates/imports.php'; ?>
-
     </head>
 
 	<body role='document'>
-
         <?php
         	require_once 'templates/template_header.php';
 	        /*

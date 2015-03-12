@@ -79,7 +79,22 @@ groups defined from the student registration list
                                         <?php echo $users["group_id"]; ?>
                                     </td>
                                     <td>
-                                        
+                                        <select>
+                                            <?php
+                                                $query  = "SELECT group_id ";
+                                                $query .= "FROM users ";
+                                                $query .= "ORDER BY group_id ASC ";
+                                                $result2 = mysqli_query($connection, $query);
+                                                confirm_query($result2);
+                                            ?>
+                                            <?php
+                                                while($groups = mysqli_fetch_assoc($result2)){
+                                            ?>
+                                                <option value=<?php echo $groups["group_id"] ?>><?php echo $groups["group_id"] ?></option>
+                                            <?php
+                                                }
+                                            ?>
+                                        </select>
                                     </td>
                                     <td>
                                         To be inputted
