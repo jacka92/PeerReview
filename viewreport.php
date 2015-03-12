@@ -32,8 +32,21 @@ require_once 'templates/db_connection.php';
         
         <script type = text/javascript>
 
-
-
+          $(function() {
+            
+            $( "#accordion" ).accordion();
+            
+            $( "#accordion" ).accordion({
+                activate: function( event, ui ) {
+                    var loader = ui.newPanel.html();
+                    loader = loader.split('<p> Report ID : ');
+                    console.log(loader[0]);
+                    console.log(loader[1]);
+                    }
+            
+            
+            });
+          });
           
 
  
@@ -131,56 +144,23 @@ include 'templates/imports.php';
     </body>
 </html>
 
-        
+        <!-- Function for creating edit page -->
         <script type="text/javascript">
-            
-////            Function for creating edit page
-//            function select(){
-//                var title = document.getElementById("title");
-//                var mark = document.getElementById("mark");
-////                var body = document.getElementsById("body");
-//                
-//                title.innerHTML = "Edit Report for Group "+currentgroupid+"";
-//                mark.type = "number";
-//                mark.min = "0";
-//                mark.max = "100";
-//                mark.step = "1";
-//                mark.placeholder = "Mark";
-//                }   
         
-//      Function for creating accordion
-        $(function accordion() {
-            
-            $( "#accordion" ).accordion();
-            
-            $( "#accordion" ).accordion({
-                activate: function( event, ui ) {
-                    var temploader = ui.newPanel.html();                    
-                    temploader = temploader.replace("<p> Report ID : ","");
-                    temploader = temploader.split("</p>");
-                    var loader = temploader[0];
-                    load(loader);
-                    }
-            
-            });
-          });
-            
-        function load(loader){
-            var title = document.getElementById("title");
-            
-            
-            title.innerHTML = "Report number "+loader+"";
-            
-        }
-            
-        
-            
-        
-          
+            function select(currentgroupid){
+                var title = document.getElementById("title");
+                var mark = document.getElementById("mark");
+//                var body = document.getElementsById("body");
+                
+                title.innerHTML = "Edit Report for Group "+currentgroupid+"";
+                mark.type = "number";
+                mark.min = "0";
+                mark.max = "100";
+                mark.step = "1";
+                mark.placeholder = "Mark";
+                }   
         
         </script>
-
-    
 
 
 
