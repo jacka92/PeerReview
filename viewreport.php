@@ -80,6 +80,8 @@ require_once 'templates/db_connection.php';
                         echo "<p> Group ID: ". $row["group_id"]. "</li>";
                         echo "<p> Mark Aggregate: ". $row["mark_aggregate"]. "</li>";
                         echo "</div>";
+                        
+                        echo $row['report_text'];
                     }
 
                 echo "</div>";
@@ -147,14 +149,16 @@ require_once 'templates/db_connection.php';
         function load(reportid){
             var title = document.getElementById("title");
             var subtitle = document.getElementById("subtitle");
+            var body = document.getElementById("body");
             
-            var groupid = 5;
+            var groupid = 1;
             
-            console.log(   );
+        
             
             
             subtitle.innerHTML = "Group number "+groupid+"";
             title.innerHTML = "Report number "+reportid+"";
+            body.innerHTML = "hey";
             
         }
         
