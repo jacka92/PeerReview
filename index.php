@@ -93,6 +93,7 @@ require_once 'included_functions.php';
 
 		<div class="row">
 			<form name="form1" method="post" action="index.php">
+				<div class="col-sm-4"></div>
 				<div class="col-sm-4">
 					<div class="panel panel-default">
 						<div class="panel-heading">

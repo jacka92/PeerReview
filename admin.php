@@ -60,6 +60,8 @@ groups defined from the student registration list
 the administrator-user interface will support searching for details of a particular student and browsing of
 student details
             -->
+
+            
             
         </div>
 
