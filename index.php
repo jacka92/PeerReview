@@ -92,38 +92,40 @@ require_once 'included_functions.php';
 		</div>
 
 		<div class="row">
-			<div class="col-sm-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-							Member login
-						</h3>
-					</div>
-					<div class="panel-body">
-						<table class="table">
-							<tbody>
-								<tr>
-									<td>Username : </td>
-									<td><input name="username" type="text" id="username" value=<?php echo htmlentities($User); ?>></td>
-								</tr>
-								<tr>
-									<td>Password : </td>
-									<td><input name="password" type="password" id="password"></td>
-								</tr>
-								<tr>
-									<td colspan = "3"><input type="submit" name="submit" value="Login"></td>
-								</tr>
-								<tr>
-									<td colspan = "3"><a href="registration.php">Register account</a></td>
-								</tr>
-							</tbody>
-						</table>
+			<form name="form1" method="post" action="index.php">
+				<div class="col-sm-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								Member login
+							</h3>
+						</div>
+						<div class="panel-body">
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>Username : </td>
+										<td><input name="username" type="text" id="username" value=<?php echo htmlentities($User); ?>></td>
+									</tr>
+									<tr>
+										<td>Password : </td>
+										<td><input name="password" type="password" id="password"></td>
+									</tr>
+									<tr>
+										<td colspan = "3"><input type="submit" name="submit" value="Login"></td>
+									</tr>
+									<tr>
+										<td colspan = "3"><a href="registration.php">Register account</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 
-<!--
+
 		<table width="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
 			<tr>
 				<form name="form1" method="post" action="index.php">
@@ -154,7 +156,7 @@ require_once 'included_functions.php';
 				</form>
 			</tr>
 		</table>
- -->       
+
 
         <?php include 'templates/template footer.php';?>
     </body>
