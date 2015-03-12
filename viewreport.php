@@ -131,22 +131,24 @@ include 'templates/imports.php';
     </body>
 </html>
 
-        <!-- Function for creating edit page -->
-        <script type="text/javascript">
         
-            function select(currentgroupid){
-                var title = document.getElementById("title");
-                var mark = document.getElementById("mark");
-//                var body = document.getElementsById("body");
-                
-                title.innerHTML = "Edit Report for Group "+currentgroupid+"";
-                mark.type = "number";
-                mark.min = "0";
-                mark.max = "100";
-                mark.step = "1";
-                mark.placeholder = "Mark";
-                }   
+        <script type="text/javascript">
             
+////            Function for creating edit page
+//            function select(){
+//                var title = document.getElementById("title");
+//                var mark = document.getElementById("mark");
+////                var body = document.getElementsById("body");
+//                
+//                title.innerHTML = "Edit Report for Group "+currentgroupid+"";
+//                mark.type = "number";
+//                mark.min = "0";
+//                mark.max = "100";
+//                mark.step = "1";
+//                mark.placeholder = "Mark";
+//                }   
+        
+//      Function for creating accordion
         $(function accordion() {
             
             $( "#accordion" ).accordion();
@@ -162,6 +164,10 @@ include 'templates/imports.php';
             
             });
           });
+            
+        
+            
+        
           
         
         </script>
