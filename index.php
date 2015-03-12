@@ -82,7 +82,7 @@ require_once 'included_functions.php';
 	        echo html_string;
 	        */
 	        
-	        $Message = $User;
+	       // $Message = $User;
 	        echo $Message
         ?>
 

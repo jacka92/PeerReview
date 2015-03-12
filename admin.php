@@ -1,5 +1,6 @@
 <?php
     require_once 'templates/db_connection.php';
+    include 'admin/functions.php';
 ?>
 
 <html>
@@ -40,14 +41,40 @@ groups defined from the student registration list
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>   <!-- To be populated by PHP -->
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            <?php
+                                $query  = "SELECT * ";
+                                $query .= "FROM users ";
+                                $query .= "WHERE admin = 0 ";
+                                $query .= "ORDER BY user_id ASC ";
+                                $result = mysqli_query($connection, $query);
+                                confirm_query($result);
+                            ?>
+                            <?php
+                                while($users = mysqli_fetch_assoc($result)){
+                            ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $users["user_id"]; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $users["login"]; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $users["first_name"]; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $users["surname"]; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $users["admin"]; ?>
+                                    </td>
+                                    <td>
+                                        To be inputted
+                                    </td>
+                                </tr>
+                            <?php
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -61,7 +88,7 @@ the administrator-user interface will support searching for details of a particu
 student details
             -->
 
-            
+
             
         </div>
 

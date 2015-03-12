@@ -15,7 +15,7 @@
 				<li class='active'><a href='dashboard.php'>Dashboard</a></li>
 				<li><a href='assessments.php'>Assessments</a></li>
 				<li><a href='reports.php'>Reports</a></li>
-				<li><a href='admin.php'>Admin page</a></li>
+				4<li><a href='admin.php'>Admin page</a></li>
 				<li class='dropdown'>
 					<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Dropdown <span class='caret'></span></a>
 					<ul class='dropdown-menu' role='menu'>
