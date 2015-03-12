@@ -38,10 +38,10 @@ require_once 'templates/db_connection.php';
             
             $( "#accordion" ).accordion({
                 activate: function( event, ui ) {
-                    var loader = ui.newPanel.html();
-                    loader = loader.split('<p> Report ID : ');
-                    console.log(loader[0]);
-                    console.log(loader[1]);
+                    var temploader = ui.newPanel.html();                    
+                    temploader = temploader.replace("<p> Report ID : ","");
+                    temploader = temploader.split("</p>");
+                    var loader = temploader[0];
                     }
             
             
