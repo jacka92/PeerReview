@@ -32,21 +32,8 @@ require_once 'templates/db_connection.php';
         
         <script type = text/javascript>
 
-          $(function() {
-            
-            $( "#accordion" ).accordion();
-            
-            $( "#accordion" ).accordion({
-                activate: function( event, ui ) {
-                    var temploader = ui.newPanel.html();                    
-                    temploader = temploader.replace("<p> Report ID : ","");
-                    temploader = temploader.split("</p>");
-                    var loader = temploader[0];
-                    }
-            
-            
-            });
-          });
+
+
           
 
  
@@ -159,8 +146,27 @@ include 'templates/imports.php';
                 mark.step = "1";
                 mark.placeholder = "Mark";
                 }   
+            
+        $(function() {
+            
+            $( "#accordion" ).accordion();
+            
+            $( "#accordion" ).accordion({
+                activate: function( event, ui ) {
+                    var temploader = ui.newPanel.html();                    
+                    temploader = temploader.replace("<p> Report ID : ","");
+                    temploader = temploader.split("</p>");
+                    var loader = temploader[0];
+                    
+                    }
+            
+            });
+          });
+          
         
         </script>
+
+    
 
 
 
