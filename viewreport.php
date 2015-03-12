@@ -9,7 +9,7 @@ require_once 'templates/db_connection.php';
     $query .= "FROM reports ";
     
     $result = mysqli_query($connection, $query);
-
+    
     //query error handling
     if (!$result){
         die("Database query failed.");
@@ -171,6 +171,15 @@ include 'templates/imports.php';
             var subtitle = document.getElementById("subtitle");
             
             var groupid = 5;
+            
+            console.log(
+            <?php
+               echo ;
+                
+            ?>
+            
+            );
+            
             
             subtitle.innerHTML = "Group number "+groupid+"";
             title.innerHTML = "Report number "+reportid+"";
