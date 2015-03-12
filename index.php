@@ -77,12 +77,13 @@ require_once 'included_functions.php';
 
         <?php
         	require_once 'templates/template_header.php';
+	        /*
 	        $html_string = header();
 	        echo html_string;
+	        */
 	        
-        $Message = $User;
-        echo $Message
-		
+	        $Message = $User;
+	        echo $Message
         ?>
 
         <div class="jumbotron">
