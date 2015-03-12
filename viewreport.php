@@ -3,9 +3,9 @@ require_once 'templates/db_connection.php';
 
 session_start ();
 // TODO change this for a dynamic update
-$Group_ID = $_SESSION ['group_id'];
-$User = $_SESSION ['user_id'];
-// //Escape the string!!!!!!!!
+    $Group_ID = $_SESSION ['group_id'];
+    $User = $_SESSION ['user_id'];
+
 $Warning = "";
 if (isset($_POST) && !empty($_POST['submit'])) {
 	$ReportText = $_POST ['body'];
@@ -25,7 +25,6 @@ $result = mysqli_query ( $connection, $query );
 if (! $result) {
 	die ( "Database query failed." );
 }
-
 
 ?>
 
@@ -57,14 +56,14 @@ if (! $result) {
 }
 </style>
 
-	</div>
 
 
 
 	<h1>View Reports</h1>
 	<h2><?php
         echo $Warning;
-        ?></h2>
+        ?>
+    </h2>
         
 
             <?php
@@ -78,7 +77,6 @@ if (! $result) {
                     // set the current row to this php var. Needed for id use
                     $currentrowgroupid = $row ["group_id"];
                     // giving all
-                    // echo "<a href = javascript:select('$currentrowgroupid')>";
                     echo "<h3>" . "Report ID : " . $row ["report_id"] . "</h3>";
 
                     // if the current row is your user'
@@ -94,18 +92,18 @@ if (! $result) {
                     echo "<p> Group ID: " . $row ["group_id"] . "</li>";
                     echo "<p> Mark Aggregate: " . $row ["mark_aggregate"] . "</li>";
                     echo "</div>";
-                    // echo "</a>";
                 }
                 echo "</div>";
 
                 ?>
 		<div id="info">
+        <h2 id = "title">This</h3>
+        <h3 id = "subtitle">That</h2>
         <form method="post" id="report" action="viewreport.php">
 		<textarea name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
 		</textarea>
 		<br />
 		<input type="submit" name = "submit" value="submit"/>
-			
 		</form>
 		<input id="mark" type="hidden">
 	</div>
@@ -163,11 +161,8 @@ if (! $result) {
             
             var groupid = 1;
             
-        
-            
-            
-            subtitle.innerHTML = "Group number "+groupid+"";
             title.innerHTML = "Report number "+reportid+"";
+            subtitle.innerHTML = "Group number "+groupid+"";
             body.innerHTML = "hey";
             
         }
