@@ -29,8 +29,6 @@ if (isset ( $_POST ['submit'] )) {
 		
 		/// Hash and salt input password then store in DB.
 		$Pass = password_encrypt($Pass); 
-			
-	
 		
 		///Query then redirect
 		$query = "INSERT INTO users (group_id, first_name, surname, login, password) VALUES ({$Group_ID},'{$First_Name}','{$Surname}','{$User}','{$Pass}')";
@@ -56,52 +54,70 @@ if (isset ( $_POST ['submit'] )) {
 
 ?>
 <html>
-<head>
-<title>Registration</title>
+	<head>
+		<title>Registration</title>
         <?php include 'templates/imports.php';?>
     </head>
 
-<body role='document'>
+	<body role='document'>
         <?php include 'templates/template_header.php';?>
         <?php echo $Message?>
 
-        <div id="Sign-Up">
-		<fieldset style="width: 30%">
-			<legend>Registration Form</legend>
-			<table border="0">
+        <div class="row">
+        	<div class="page-header">
+	            <h1>Registration</h1>
+	        </div>
+        </div>
+
+        <div class="row">
+        	<div id="Sign-Up">
 				<form method="post" action="registration.php">
-					<tr>
-						<td>First name</td>
-						<td><input type="text" name="name" value=<?php echo $First_Name ?>></td>
-					</tr>
-					<tr>
-						<td>Surname</td>
-						<td><input type="text" name="surname" value=<?php echo $Surname ?>></td>
-					</tr>
-					<tr>
-						<td>Group ID</td>
-						<td><input type="text" name="group_id" value=<?php echo $Group_ID ?>></td>
-					</tr>
-					<tr>
-						<td>UserName</td>
-						<td><input type="text" name="user" value=<?php echo $User ?>></td>
-					</tr>
-					<tr>
-						<td>Password</td>
-						<td><input type="password" name="pass"></td>
-					</tr>
-					<tr>
-						<td>Confirm Password</td>
-						<td><input type="password" name="cpass"></td>
-					</tr>
-					<tr>
-						<td><input id="button" type="submit" name="submit" value="Sign-Up"></td>
-					</tr>
+					<div class="col-sm-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">
+									Please enter your registration details
+								</h3>
+							</div>
+							<div class="panel-body">
+								<table class="table">
+									<tbody>
+										<tr>
+											<td>First name</td>
+											<td><input type="text" name="name" value=<?php echo $First_Name ?>></td>
+										</tr>
+										<tr>
+											<td>Surname</td>
+											<td><input type="text" name="surname" value=<?php echo $Surname ?>></td>
+										</tr>
+										<tr>
+											<td>Group ID</td>
+											<td><input type="text" name="group_id" value=<?php echo $Group_ID ?>></td>
+										</tr>
+										<tr>
+											<td>Username</td>
+											<td><input type="text" name="user" value=<?php echo $User ?>></td>
+										</tr>
+										<tr>
+											<td>Password</td>
+											<td><input type="password" name="pass"></td>
+										</tr>
+										<tr>
+											<td>Confirm Password</td>
+											<td><input type="password" name="cpass"></td>
+										</tr>
+										<tr>
+											<td><input id="button" type="submit" name="submit" value="Sign-Up"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
 				</form>
-				</tr>
-			</table>
-		</fieldset>
-	</div>
+			</div>
+		</div>
+
 
         <?php include 'templates/template footer.php';?>
     </body>
