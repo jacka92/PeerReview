@@ -28,6 +28,14 @@
     }
     ///student-users will submit grading assessments and comments on the reports assigned to them - check user from session and display only the reports
     //assigned to them
+
+    $query2 = "SELECT * FROM assessments ";
+    $result2 = mysqli_query ($connection, $query2);
+
+    if (! $result2){
+        die ("Database query failed.");   
+    }
+
 ?>
 
 
@@ -75,9 +83,7 @@
                 <?php   
                     // run through all rows
                     echo "<div id ='accordion'>";
-
-                    echo "<h3> Create new report </h3>";
-                    echo "<div><p>No report found. Create this report to the right.</p></div>";
+    
                     while ( $row = mysqli_fetch_assoc ( $result ) ) {
                         // set the current row to this php var. Needed for id use
                         $currentrowgroupid = $row ["group_id"];
@@ -99,11 +105,14 @@
 
                         echo "<p class = 'data' id = " . $row["report_id"] . "> Report col : ". $row["report_text"] . "</p>";   
 
-
                         echo "</div>";
 
                     }
                     echo "</div>";
+
+                    while ( $row2 = mysqli_fetch_assoc ( $result2 ) ){
+                        echo "<p> Testing " . $row2["report_id"] . " </p>";
+                    }
 
                 ?>
 
