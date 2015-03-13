@@ -1,6 +1,6 @@
 <?php
     require_once 'templates/db_connection.php';
-    include 'admin/functions.php';
+    //require_once 'templates/template_header.php';
 ?>
 
 <html>
@@ -10,7 +10,8 @@
     </head>
 
     <body role='document'>
-        <?php include 'templates/template_header.php';?>
+
+        <?php include 'templates/template_header.php' ?>
 
         <div class="page-header">
             <h1>Admin Page</h1>
