@@ -40,93 +40,93 @@
 
     </head>
 
-<body role='document'>
+    <body role='document'>
 
-        <?php include 'templates/template_header.php';?>
-        
-        <style>
+            <?php include 'templates/template_header.php';?>
 
-#accordion {
-	padding: 20px;
-	width: 30%;
-	float: left;
-}
+            <style>
 
-#info {
-	width: 70%;
-	float: right;
-}
-            
+    #accordion {
+        padding: 20px;
+        width: 30%;
+        float: left;
+    }
 
-.data{
-    display: none;   
-}
-
-</style>
+    #info {
+        width: 70%;
+        float: right;
+    }
 
 
-	<h1>View Reports</h1>
-	<h2><?php
-        echo $Warning;
-        ?>
-    </h2>
-        
+    .data{
+        display: none;   
+    }
 
-            <?php   
-                // run through all rows
-                echo "<div id ='accordion'>";
+    </style>
 
-                echo "<h3> Create new report </h3>";
-                echo "<div><p>No report found. Create this report to the right.</p></div>";
-                while ( $row = mysqli_fetch_assoc ( $result ) ) {
-                    // set the current row to this php var. Needed for id use
-                    $currentrowgroupid = $row ["group_id"];
-                    // giving all
-                    echo "<h3>" . "Report ID : " . $row ["report_id"] . "</h3>";
 
-                    // if the current row is your user'
-                    if ($currentrowgroupid == $Group_ID) {
-                        echo "<div style = color:#A00000 ";
-                        // else just close the div
-                    } else {
-                        echo "<div ";
-                    }
-                    // set the div's id to the current row's group id
-                    echo "id = $currentrowgroupid   >";
-                    echo "<p> Report ID : " . $row ["report_id"] . "</li>";
-                    echo "<p> Group ID: " . $row ["group_id"] . "</li>";
-                    echo "<p> Mark Aggregate: " . $row ["mark_aggregate"] . "</li>";
-                    
-                    echo "<p class = 'data' id = 'yo'> Report col : ". $row["report_text"] . "</p>";   
-                    
-                    
-                    echo "</div>";
-                    
-                }
-                echo "</div>";
-
+        <h1>View Reports</h1>
+        <h2><?php
+            echo $Warning;
             ?>
-    
-    
-		<div id="info">
-        <h2 id = "title">This</h3>
-        <h3 id = "subtitle">That</h2>
-        <form method="post" id="report" action="viewreport.php">
-		<textarea name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
-		</textarea>
-		<br />
-		<input type="submit" name = "submit" value="submit"/>
-		</form>
-		<input id="mark" type="hidden">
-	</div>
-    
-    <?php
-        include 'templates/template footer.php';
-    ?>
-    
-    <script src="jquery-ui-1.11.3/external/jquery/jquery.js"></script>
-    <script src="jquery-ui-1.11.3/jquery-ui.js"></script>
-              
+        </h2>
+
+
+                <?php   
+                    // run through all rows
+                    echo "<div id ='accordion'>";
+
+                    echo "<h3> Create new report </h3>";
+                    echo "<div><p>No report found. Create this report to the right.</p></div>";
+                    while ( $row = mysqli_fetch_assoc ( $result ) ) {
+                        // set the current row to this php var. Needed for id use
+                        $currentrowgroupid = $row ["group_id"];
+                        // giving all
+                        echo "<h3>" . "Report ID : " . $row ["report_id"] . "</h3>";
+
+                        // if the current row is your user'
+                        if ($currentrowgroupid == $Group_ID) {
+                            echo "<div style = color:#A00000 ";
+                            // else just close the div
+                        } else {
+                            echo "<div ";
+                        }
+                        // set the div's id to the current row's group id
+                        echo "id = $currentrowgroupid   >";
+                        echo "<p> Report ID : " . $row ["report_id"] . "</li>";
+                        echo "<p> Group ID: " . $row ["group_id"] . "</li>";
+                        echo "<p> Mark Aggregate: " . $row ["mark_aggregate"] . "</li>";
+
+                        echo "<p class = 'data' id = " . $row["report_id"] . "> Report col : ". $row["report_text"] . "</p>";   
+
+
+                        echo "</div>";
+
+                    }
+                    echo "</div>";
+
+                ?>
+
+
+            <div id="info">
+            <h2 id = "title">This</h3>
+            <h3 id = "subtitle">That</h2>
+            <form method="post" id="report" action="viewreport.php">
+            <textarea name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
+            </textarea>
+            <br />
+            <input type="submit" name = "submit" value="submit"/>
+            </form>
+            <input id="mark" type="hidden">
+        </div>
+
+        <?php
+            include 'templates/template footer.php';
+        ?>
+
+        <script src="jquery-ui-1.11.3/external/jquery/jquery.js"></script>
+        <script src="jquery-ui-1.11.3/jquery-ui.js"></script>
+
 
     </body>
 </html>
@@ -174,12 +174,15 @@
 
         var groupid = 1;
         
-        var data = document.getElementById("yo");
-        console.log(data);
+        var tempdata = document.getElementById(reportid).innerHTML;  
+        tempdata = tempdata.split("Report col : ");
+        tempdata = tempdata[1];
+        tempdata = tempdata.replace("</p>","");
+        console.log(tempdata);
 
         title.innerHTML = "Report number "+reportid+"";
         subtitle.innerHTML = "Group number "+groupid+"";
-        body.innerHTML = "hey";
+        body.innerHTML = tempdata;
 
     }
 
