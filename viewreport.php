@@ -110,8 +110,10 @@
                     }
                     echo "</div>";
 
+                    $i = 0;
                     while ( $row2 = mysqli_fetch_assoc ( $result2 ) ){
-                        echo "<p> Testing " . $row2["report_id"] . " </p>";
+                        echo "<p class = 'data' no = " . $i ." id = ass" . $row2["report_id"] . "> Testing " . $row2["comments"] . " </p>";
+                        $i++;
                     }
 
                 ?>
@@ -180,19 +182,24 @@
         var subtitle = document.getElementById("subtitle");
         var body = document.getElementById("body");
 
-
         var groupid = 1;
         
         var tempdata = document.getElementById(reportid).innerHTML;  
         tempdata = tempdata.split("Report col : ");
         tempdata = tempdata[1];
         tempdata = tempdata.replace("</p>","");
-        console.log(tempdata);
 
         title.innerHTML = "Report number "+reportid+"";
         subtitle.innerHTML = "Group number "+groupid+"";
         body.innerHTML = tempdata;
+        
+        loadass(reportid);
 
+    }
+    
+    function loadass(reportid){
+        var tempdata = document.getElementById("ass"+reportid).innerHTML;
+        console.log(tempdata);
     }
 
 </script>
