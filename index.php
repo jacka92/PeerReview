@@ -32,13 +32,19 @@ if (isset ( $_POST ['submit'] )) {
 			}
 			
 			if (! isset ( $_SESSION ) || empty ( $_SESSION ['first_name'] )) {
-				die ( "Incorrect username/password" );
+				$Message = 
+				"<div class='alert alert-danger' role='alert'>
+					<strong>Oh snap!</strong> The username/password combination you've entered is incorrect. Try again.
+				</div>";
 			} else {
 				redirect_to ( 'dashboard.php' );
 			}
 		}
 	} else {
-		$Message = "Fill in all fields";
+		$Message = "
+		  <div class='alert alert-danger' role='alert'>
+			<strong>Oh snap!</strong> You're missing some fields or have entered some things in incorrectly. Change a few things up and try submitting again.
+		  </div>";
 	}
 } 
 
