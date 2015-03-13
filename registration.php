@@ -41,7 +41,7 @@ if (isset ( $_POST ['submit'] )) {
 		$Message = "
 		  <div class='alert alert-danger' role='alert'>
 			<strong>Oh snap!</strong> You're missing some fields or have entered some things in incorrectly. Change a few things up and try submitting again.
-		  </div>"; ////Place properly
+		  </div>";
 	}
 } else {
 	$First_Name = "";

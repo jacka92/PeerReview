@@ -1,6 +1,7 @@
 <?php
 	echo "
 		<!-- Close body text formatting -->
+			<div class='row'> </div>
 		</div>
 
 		<!-- Fixed footer -->
