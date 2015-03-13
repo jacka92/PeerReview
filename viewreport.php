@@ -1,32 +1,33 @@
 <?php
-require_once 'templates/db_connection.php';
+    require_once 'templates/db_connection.php';
 
-session_start ();
-// TODO change this for a dynamic update
-    $Group_ID = $_SESSION ['group_id'];
-    $User = $_SESSION ['user_id'];
+    session_start ();
+    // TODO change this for a dynamic update
+        $Group_ID = $_SESSION ['group_id'];
+        $User = $_SESSION ['user_id'];
 
-$Warning = "";
-if (isset($_POST) && !empty($_POST['submit'])) {
-	$ReportText = $_POST ['body'];
-	$query = "INSERT INTO reports (group_id, report_text ) VALUES ({$Group_ID}, '{$ReportText}')";
-	$result = mysqli_query ( $connection, $query ) or die ( 'Error: insert failed' . mysql_error () );
-	$_POST['submit'] = "";
-} else {
-	$Warning = "Please enter some text to create a report";
-}
+    $Warning = "";
+    if (isset($_POST) && !empty($_POST['submit'])) {
+        $ReportText = $_POST ['body'];
+        $query = "INSERT INTO reports (group_id, report_text ) VALUES ({$Group_ID}, '{$ReportText}')";
+        $result = mysqli_query ( $connection, $query ) or die ( 'Error: insert failed' . mysql_error () );
+        $_POST['submit'] = "";
+    } else {
+        $Warning = "Please enter some text to create a report";
+    }
 
-// query handling
-$query = "SELECT * ";
-$query .= "FROM reports ";
+    // query handling
+    $query = "SELECT * ";
+    $query .= "FROM reports ";
 
-$result = mysqli_query ( $connection, $query );
-// query error handling
-if (! $result) {
-	die ( "Database query failed." );
-}
-///student-users will submit grading assessments and comments on the reports assigned to them - check user from session and display only the reports
-//assigned to them
+    $result = mysqli_query ( $connection, $query );
+
+    // query error handling
+    if (! $result) {
+        die ( "Database query failed." );
+    }
+    ///student-users will submit grading assessments and comments on the reports assigned to them - check user from session and display only the reports
+    //assigned to them
 ?>
 
 
@@ -55,9 +56,13 @@ if (! $result) {
 	width: 70%;
 	float: right;
 }
+            
+
+.data{
+    display: none;   
+}
+
 </style>
-
-
 
 
 	<h1>View Reports</h1>
@@ -67,8 +72,7 @@ if (! $result) {
     </h2>
         
 
-            <?php
-
+            <?php   
                 // run through all rows
                 echo "<div id ='accordion'>";
 
@@ -92,11 +96,18 @@ if (! $result) {
                     echo "<p> Report ID : " . $row ["report_id"] . "</li>";
                     echo "<p> Group ID: " . $row ["group_id"] . "</li>";
                     echo "<p> Mark Aggregate: " . $row ["mark_aggregate"] . "</li>";
+                    
+                    echo "<p class = 'data' id = 'yo'> Report col : ". $row["report_text"] . "</p>";   
+                    
+                    
                     echo "</div>";
+                    
                 }
                 echo "</div>";
 
-                ?>
+            ?>
+    
+    
 		<div id="info">
         <h2 id = "title">This</h3>
         <h3 id = "subtitle">That</h2>
@@ -137,43 +148,43 @@ if (! $result) {
 //                mark.placeholder = "Mark";
 //                }   
         
-        // Function for creating accordion
-        $(function accordion() {
-            
-            $( "#accordion" ).accordion();
-            
-            $( "#accordion" ).accordion({
-                activate: function( event, ui ) {
-                    var temploader = ui.newPanel.html();                    
-                    temploader = temploader.replace("<p> Report ID : ","");
-                    temploader = temploader.split("</p>");
-                    var loader = temploader[0];
-                    load(loader);
-                    }
-            
-            });
-          });
-        
-        // Function for changing ui elements 
-        function load(reportid){
-            var title = document.getElementById("title");
-            var subtitle = document.getElementById("subtitle");
-            var body = document.getElementById("body");
-            
-            var groupid = 1;
-            
-            
-            
-            title.innerHTML = "Report number "+reportid+"";
-            subtitle.innerHTML = "Group number "+groupid+"";
-            body.innerHTML = "hey";
-            
-        }
-        
-        </script>
+    // Function for creating accordion
+    $(function accordion() {
 
+        $( "#accordion" ).accordion();
+
+        $( "#accordion" ).accordion({
+            activate: function( event, ui ) {
+                var temploader = ui.newPanel.html();                    
+                temploader = temploader.replace("<p> Report ID : ","");
+                temploader = temploader.split("</p>");
+                var loader = temploader[0];
+                load(loader);
+                }
+
+        });
+      });
+
+    // Function for changing ui elements 
+    function load(reportid){
+        var title = document.getElementById("title");
+        var subtitle = document.getElementById("subtitle");
+        var body = document.getElementById("body");
+
+
+        var groupid = 1;
+        
+        var data = document.getElementById("yo");
+        console.log(data);
+
+        title.innerHTML = "Report number "+reportid+"";
+        subtitle.innerHTML = "Group number "+groupid+"";
+        body.innerHTML = "hey";
+
+    }
+
+</script>
 
 <?php
-
-mysqli_close ( $connection );
+    mysqli_close ( $connection );
 ?>
