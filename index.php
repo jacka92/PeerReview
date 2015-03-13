@@ -15,10 +15,11 @@
 
 	session_start();
 	
-	/////Check if user already logged in
+	
+	
+	/////Check if user already logged in to redirect
 ?>
 <?php
-
 ///No blank fields	
 $Message = "";
 require_once 'included_functions.php';
@@ -26,13 +27,10 @@ require_once 'included_functions.php';
 		$User = $_POST['username'];
 		$Pass = $_POST['password'];
 		
-		
 		//If neither field is blank
 		if(!empty($User)&& !empty($Pass)){
 			
 			$hashed_password = password_encrypt($_POST['password']);
-			
-		
 			
  			$query = "SELECT * FROM users WHERE '$User' = login AND '$hashed_password' = password LIMIT 1";
  			$result = mysqli_query($connection, $query)
@@ -41,6 +39,7 @@ require_once 'included_functions.php';
  			//If query produces nothing
  			if(empty($result)){ 	
  				$Message = "Incorrect username and/or password.";
+ 				redirect_to('index.php');
  			}else{
  				while($row = mysqli_fetch_assoc($result)){
  					///TODO Store user id in session as well
@@ -48,11 +47,14 @@ require_once 'included_functions.php';
  					$_SESSION['group_id'] = $row["group_id"];
  					$_SESSION['user_id'] = $row["user_id"];
  				}
-			
- 			redirect_to('dashboard.php');
+			if(!isset($_SESSION) || empty($_SESSION['first_name'])){
+				die("Incorrect username/password");
+			}else{
+				redirect_to('dashboard.php');
+			}
+ 			
  		}
-		
-		
+			
 		}else{
 			$Message = "Fill in all fields";
 		}
