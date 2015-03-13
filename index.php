@@ -1,13 +1,16 @@
 <?php
 require_once 'templates/db_connection.php';
+require_once 'included_functions.php';
 session_start ();
-
+if(isset($_SESSION)&&!empty($_SESSION['user_id'])){
+	redirect_to('dashboard.php');
+}
 // ///Check if user already logged in to redirect
 ?>
 <?php
 // /No blank fields
 $Message = "";
-require_once 'included_functions.php';
+
 if (isset ( $_POST ['submit'] )) {
 	$User = $_POST ['username'];
 	$Pass = $_POST ['password'];
@@ -32,19 +35,13 @@ if (isset ( $_POST ['submit'] )) {
 			}
 			
 			if (! isset ( $_SESSION ) || empty ( $_SESSION ['first_name'] )) {
-				$Message = 
-				"<div class='alert alert-danger' role='alert'>
-					<strong>Oh snap!</strong> The username/password combination you've entered is incorrect. Try again.
-				</div>";
+				die ( "Incorrect username/password" );
 			} else {
 				redirect_to ( 'dashboard.php' );
 			}
 		}
 	} else {
-		$Message = "
-		  <div class='alert alert-danger' role='alert'>
-			<strong>Oh snap!</strong> You're missing some fields or have entered some things in incorrectly. Change a few things up and try submitting again.
-		  </div>";
+		$Message = "Fill in all fields";
 	}
 } 
 
