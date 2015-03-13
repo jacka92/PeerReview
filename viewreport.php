@@ -161,6 +161,8 @@ if (! $result) {
             
             var groupid = 1;
             
+            
+            
             title.innerHTML = "Report number "+reportid+"";
             subtitle.innerHTML = "Group number "+groupid+"";
             body.innerHTML = "hey";
