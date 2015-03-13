@@ -5,6 +5,7 @@
 
 		<!-- Fixed footer -->
 		<nav class='navbar navbar-inverse navbar-fixed-bottom'>
+		<div class='row'> </div>
 			<div class='container'>
 				<div class='navbar-footer'>
 				  	<button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>

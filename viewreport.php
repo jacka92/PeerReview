@@ -25,7 +25,8 @@ $result = mysqli_query ( $connection, $query );
 if (! $result) {
 	die ( "Database query failed." );
 }
-
+///student-users will submit grading assessments and comments on the reports assigned to them - check user from session and display only the reports
+//assigned to them
 ?>
 
 

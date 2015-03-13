@@ -25,7 +25,7 @@ groups defined from the student registration list
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        Make a user an Admin
+                        Change user details
                     </h3>
                 </div>
                 <div class="panel-body">
@@ -79,7 +79,23 @@ groups defined from the student registration list
                                         <?php echo $users["group_id"]; ?>
                                     </td>
                                     <td>
-                                        
+                                        <select>
+                                                <option value=""> </option>
+                                            <?php
+                                                $query  = "SELECT DISTINCT group_id ";
+                                                $query .= "FROM users ";
+                                                $query .= "ORDER BY group_id ASC ";
+                                                $result2 = mysqli_query($connection, $query);
+                                                confirm_query($result2);
+                                            ?>
+                                            <?php
+                                                while($groups = mysqli_fetch_assoc($result2)){
+                                            ?>
+                                                <option value=<?php echo $groups["group_id"] ?>><?php echo $groups["group_id"] ?></option>
+                                            <?php
+                                                }
+                                            ?>
+                                        </select>
                                     </td>
                                     <td>
                                         To be inputted
@@ -101,7 +117,56 @@ the administrator-user interface will support searching for details of a particu
 student details
             -->
 
-
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Assign groups to reports
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>Group ID</td>
+                                <td>Currently Assigned Reports</td>
+                                <td>Reports to be assigned</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $query  = "SELECT * ";
+                                $query .= "FROM users ";
+                                $query .= "WHERE admin = 0 ";
+                                $query .= "ORDER BY user_id ASC ";
+                                $result = mysqli_query($connection, $query);
+                                confirm_query($result);
+                            ?>
+                            <?php
+                                while($users = mysqli_fetch_assoc($result)){
+                            ?>
+                                <tr>
+                                    <td>
+                                        To be inputted
+                                    </td>
+                                    <td>
+                                        To be inputted
+                                    </td>
+                                    <td>
+                                        <select multiple>
+                                            <option value="volvo">Volvo</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="opel">Opel</option>
+                                            <option value="audi">Audi</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            <?php
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             
         </div>
 
