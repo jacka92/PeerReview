@@ -1,14 +1,9 @@
 <?php
-	function confirm_query($result_set) {
-		if (!$result_set) {
-			die("Database query failed");
-		}
-	}
-
-	function header() {
+	function page_header() {
 		global $connection;
 
 		$html_string = "
+
 		<!-- Fixed navbar -->
 		<nav class='navbar navbar-inverse navbar-fixed-top'>
 			<div class='container'>
@@ -25,24 +20,23 @@
 					<ul class='nav navbar-nav'>";
 					
 						$query  = "SELECT * ";
-						$query .= "FROM header_pages ";
-						$query .= "WHERE visible = 1 ";
-						$query .= "ORDER BY id";
+						$query .= "FROM pages ";
+						$query .= "ORDER BY page_id";
+						$query_result = mysqli_query($connection, $query);
+						confirm_query($query_result);
 
-						$result = mysqli_query($connection, $query);
-						confirm_query($result);
-						while($page = mysqli_fetch_assoc($result)) {
+						while($page = mysqli_fetch_assoc($query_result)) {
 							$html_string .= '
-							<li>
-								<a href="' . $page["page"] . '">' . $page["page_title"] . '</a>
+							<li ';/*
+							if () {
+								$html_string .= 'class="active"'
+							}*/
+							$html_string .= '>
+								<a href="' . $page["page_name"] . '">' . $page["page_title"] . '</a>
 							</li>';
 						}
-						mysqli_free_result($result);
-						//sqlsrv_free_stmt($result);
+						mysqli_free_result($query_result);
 						$html_string .= "
-						<li class='active'><a href='dashboard.php'>Dashboard</a></li>
-						<li><a href='assessments.php'>Assessments</a></li>
-						<li><a href='reports.php'>Reports</a></li>
 						<li class='dropdown'>
 							<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Dropdown <span class='caret'></span></a>
 							<ul class='dropdown-menu' role='menu'>
@@ -67,3 +61,4 @@
 		return $html_string;
 	}
 ?>
+
