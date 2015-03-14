@@ -15,17 +15,12 @@
 
     while($users = mysqli_fetch_assoc($check)){
         if (isset($_POST['update']) == $users["user_id"]) {
-            $First_Name = isset($_POST ['name'.$users["user_id"]]) ? $_POST ['name'.$users["user_id"]] : $users["first_name"];
-            $Surname = isset($_POST ['surname'.$users["user_id"]]) ? $_POST ['surname'.$users["user_id"]] : $users["surname"];
+            $First_Name = isset($_POST ['name'.$users["user_id"]]) ? $_POST ['name'.$users["user_id"]] : "";
+            $Surname = isset($_POST ['surname'.$users["user_id"]]) ? $_POST ['surname'.$users["user_id"]] : "";
 
-            $First_Name= ($First_Name == "") ? $users["first_name"] : $First_Name;
-            $Surname= ($Surname == "") ? $users["surname"] : $Surname;
-            /*
-            $First_Name = (isset($_POST ['name'.$users["user_id"]]) != null ? $_POST ['name'.$users["user_id"]] : select_query("first_name","users","user_id={$users['user_id']}"));
-            $Surname = (isset($_POST ['surname'.$users["user_id"]]) != null ? $_POST ['surname'.$users["user_id"]] : select_query("surname","users","user_id={$users['user_id']}"));*/
-            //$group_iD = $_POST ['group_id'.$users["user_id"]];
+            $First_Name = ($First_Name == "") ? $users["first_name"] : $First_Name;
+            $Surname = ($Surname == "") ? $users["surname"] : $Surname;
             
-            ///Query
             $q2  = "UPDATE users ";
        //     $q2 .= "SET group_id={$Group_ID} ";
             $q2 .= "SET first_name='{$First_Name}', surname='{$Surname}' ";
@@ -34,9 +29,11 @@
                     or die ('Error: insert failed'.mysql_error());  
 
         } 
-
-        if (isset ( $_POST['delete'.$users["user_id"]])){
-            //x$query = "DROP ";
+        $delete = isset($_POST['delete']) ? $_POST['delete'] : "";
+        if ($delete == $users["user_id"]){
+            $qdrop = "DELETE FROM users WHERE user_id = {$users['user_id']}";
+            $drop = mysqli_query($connection, $qdrop)
+                    or die ('Error: insert failed'.mysql_error());
         }
 
     }
