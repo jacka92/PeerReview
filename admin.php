@@ -7,7 +7,7 @@
     </head>
 
 <?php
-    $q  = "SELECT user_id ";
+    $q  = "SELECT * ";
     $q .= "FROM users ";
     $q .= "ORDER BY user_id ASC ";
     $check = mysqli_query($connection, $q);
@@ -15,9 +15,15 @@
 
     while($users = mysqli_fetch_assoc($check)){
         if (isset($_POST['update']) == $users["user_id"]) {
-            //$First_Name = (isset($_POST ['name'.$users["user_id"]]) : );
-            $Surname = $_POST ['surname'.$users["user_id"]];
-            //$Group_ID = $_POST ['group_id'.$users["user_id"]];
+            $First_Name = isset($_POST ['name'.$users["user_id"]]) ? $_POST ['name'.$users["user_id"]] : $users["first_name"];
+            $Surname = isset($_POST ['surname'.$users["user_id"]]) ? $_POST ['surname'.$users["user_id"]] : $users["surname"];
+
+            $First_Name= ($First_Name == "") ? $users["first_name"] : $First_Name;
+            $Surname= ($Surname == "") ? $users["surname"] : $Surname;
+            /*
+            $First_Name = (isset($_POST ['name'.$users["user_id"]]) != null ? $_POST ['name'.$users["user_id"]] : select_query("first_name","users","user_id={$users['user_id']}"));
+            $Surname = (isset($_POST ['surname'.$users["user_id"]]) != null ? $_POST ['surname'.$users["user_id"]] : select_query("surname","users","user_id={$users['user_id']}"));*/
+            //$group_iD = $_POST ['group_id'.$users["user_id"]];
             
             ///Query
             $q2  = "UPDATE users ";
@@ -26,16 +32,14 @@
             $q2 .= "WHERE user_id={$users['user_id']}";
             $check2 = mysqli_query($connection, $q2)
                     or die ('Error: insert failed'.mysql_error());  
-        } else {
 
-        }
+        } 
 
         if (isset ( $_POST['delete'.$users["user_id"]])){
             //x$query = "DROP ";
         }
+
     }
-
-
 ?>
 
 
