@@ -84,22 +84,15 @@
                         $currentrowgroupid = $row ["group_id"];
                         // giving all
                         echo "<h3>" . "Report ID : " . $row ["report_id"] . "</h3>";
-
-                        // if the current row is your user'
-                        if ($currentrowgroupid == $Group_ID) {
-                            echo "<div style = color:#A00000 ";
-                            // else just close the div
-                        } else {
-                            echo "<div ";
-                        }
+                        
+                        
                         // set the div's id to the current row's group id
+                        echo "<div ";
                         echo "id = $currentrowgroupid   >";
                         echo "<p> Report ID : " . $row ["report_id"] . "</li>";
                         echo "<p> Group ID: " . $row ["group_id"] . "</li>";
                         echo "<p> Mark Aggregate: " . $row ["mark_aggregate"] . "</li>";
-
                         echo "<p class = 'data' id = " . $row["report_id"] . "> Report col : ". $row["report_text"] . "</p>";   
-
                         echo "</div>";
 
                     }
@@ -123,10 +116,10 @@
 
         <div id="info">
         <h2 id = "title">You haven't been assigned a Report</h3>
-
         <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
         </p>
         <br />
+        <button id = "button" style = "visibility:hidden" onclick = "assessment();"> Create New Assessment </button>
             
             
             <div id="assessments">
@@ -196,7 +189,6 @@
         if ($("#accordion").children().length > 0) {
             title.innerHTML = "Select a report from the left";
         }
-        console.log("Fire");
     }
 
     // Function for changing ui elements 
@@ -204,8 +196,9 @@
         var title = document.getElementById("title");
         var subtitle = document.getElementById("subtitle");
         var body = document.getElementById("body");
-
-        var groupid = 1;
+        var button = document.getElementById("button");
+        
+        button.style.visibility = "visible";
         
         var tempdata = document.getElementById(reportid).innerHTML;  
         tempdata = tempdata.split("Report col : ");
@@ -238,7 +231,7 @@
                 var div = document.createElement("div");
                 div.style.background = "#f6f6f6";
                 div.style.padding = "25px 50px;";
-                
+                    
                 div.innerHTML = "<h3>"+tempdata[0]+tempdata[3]+"</h3>"+"<h4>"+tempdata[1]+","+tempdata[2]+"</h4>"+"<p>"+tempdata[4]+"</p>";
                 
                 ass.appendChild(div);
@@ -247,6 +240,15 @@
             i++;
             
         }
+    }
+    
+    function assessment(){
+        var reportno = document.getElementById("title").innerHTML;
+        reportno = reportno.split("Report ");
+        reportno = reportno[1];
+        console.log(reportno);
+        
+        
     }
 
 </script>
