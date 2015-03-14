@@ -167,13 +167,16 @@
 //                }   
     
     //Function for setting the title
-
+    $('#accordion').accordion({
+        active: false,
+        collapsible: true,
+        heightStyle: "content"
+        
+    });
         
     // Function for creating accordion
     $(function accordion() {
-
-        $( "#accordion" ).accordion();
-
+    
         $( "#accordion" ).accordion({
             activate: function( event, ui ) {
                 var temploader = ui.newPanel.html();                    
@@ -181,11 +184,11 @@
                 temploader = temploader.split("</p>");
                 var loader = temploader[0];
                 load(loader);
-                
                 }
 
         });
       });
+
     
     function title(){
         var title = document.getElementById("title");  
