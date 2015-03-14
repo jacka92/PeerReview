@@ -1,5 +1,12 @@
 <?php require_once 'templates/db_connection.php'; ?>
 <?php session_start (); ?>
+
+<html>
+	<head>
+	<title>Peer Assessment</title>
+        <?php include 'templates/imports.php'; ?>
+    </head>
+
 <?php
 	if(isset($_SESSION)&&!empty($_SESSION['user_id'])){
 		redirect_to('dashboard.php');
@@ -8,6 +15,7 @@
 	}
 	// ///Check if user already logged in to redirect
 ?>
+
 <?php
 // /No blank fields
 $Message = "";
@@ -63,11 +71,6 @@ else {
 }
 
 ?>
-<html>
-	<head>
-	<title>Peer Assessment</title>
-        <?php include 'templates/imports.php'; ?>
-    </head>
 
 	<body role='document'>
         <?php

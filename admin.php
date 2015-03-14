@@ -15,7 +15,7 @@
 
     while($users = mysqli_fetch_assoc($check)){
         if (isset($_POST['update']) == $users["user_id"]) {
-            $First_Name = (isset($_POST ['name'.$users["user_id"]]) : );
+            //$First_Name = (isset($_POST ['name'.$users["user_id"]]) : );
             $Surname = $_POST ['surname'.$users["user_id"]];
             //$Group_ID = $_POST ['group_id'.$users["user_id"]];
             
