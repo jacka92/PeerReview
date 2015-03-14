@@ -48,7 +48,7 @@
 
     </head>
 
-    <body role='document'>
+    <body role='document' onload="title();">
 
             <?php include 'templates/template_header.php';?>
 
@@ -73,12 +73,6 @@
 
     </style>
 
-
-        <h1>View Reports</h1>
-        <h2><?php
-            echo $Warning;
-            ?>
-        </h2>
 
 
                 <?php   
@@ -113,7 +107,14 @@
 
                     $i = 0;
                     while ( $row2 = mysqli_fetch_assoc ( $result2 ) ){
-                        echo "<p class = 'data' id = ass" . $row2["report_id"] . "no" . $i . "> Testing " . $row2["comments"] . " </p>";
+                        echo "<p class = 'data' 
+                        id = ass" . $row2["report_id"] . "no" . $i . "> " . 
+                            "Assessment ID: " . $row2["assessment_id"] . 
+                            ", Assigned to Report " . $row2["report_id"] .
+                            ", completed by User " . $row2["user_id"] .
+                            ", Score:" . $row2["assessment"] .
+                            ", " . $row2["comments"] .
+                            "</p>";
                         $i++;
                     }
 
@@ -121,14 +122,11 @@
 
 
         <div id="info">
-        <h2 id = "title">This</h3>
-        <h3 id = "subtitle">That</h2>
-        <form method="post" id="report" action="viewreport.php">
-        <textarea name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
-        </textarea>
+        <h2 id = "title">You haven't been assigned a Report</h3>
+
+        <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
+        </p>
         <br />
-        <input type="submit" name = "submit" value="submit"/>
-        </form>
             
             
             <div id="assessments">
@@ -167,6 +165,9 @@
 //                mark.step = "1";
 //                mark.placeholder = "Mark";
 //                }   
+    
+    //Function for setting the title
+
         
     // Function for creating accordion
     $(function accordion() {
@@ -180,10 +181,20 @@
                 temploader = temploader.split("</p>");
                 var loader = temploader[0];
                 load(loader);
+                
                 }
 
         });
       });
+    
+    function title(){
+        var title = document.getElementById("title");  
+        
+        if ($("#accordion").children().length > 0) {
+            title.innerHTML = "Select a report from the left";
+        }
+        console.log("Fire");
+    }
 
     // Function for changing ui elements 
     function load(reportid){
@@ -198,8 +209,7 @@
         tempdata = tempdata[1];
         tempdata = tempdata.replace("</p>","");
 
-        title.innerHTML = "Report number "+reportid+"";
-        subtitle.innerHTML = "Group number "+groupid+"";
+        title.innerHTML = "Report "+reportid+"";
         body.innerHTML = tempdata;
         
         loadass(reportid);
@@ -208,16 +218,26 @@
     
     //Function for loading assessments
     function loadass(reportid){
+        
+        var ass = document.getElementById("assessments");
+        while (ass.firstChild) {
+            ass.removeChild(ass.firstChild);
+        }
+        
         var i = 0;
         while (i < 10){
             var tempdata = document.getElementById("ass"+reportid+"no"+i);
             if (tempdata != null){
                 tempdata = tempdata.innerHTML;
-                console.log(tempdata);
-                
-                var ass = document.getElementById("assessments");
+                tempdata = tempdata.split(",");
+                console.log(tempdata[0]);
+                                     
                 var div = document.createElement("div");
-                div.innerHTML = tempdata;
+                div.style.background = "#f6f6f6";
+                div.style.padding = "25px 50px;";
+                
+                div.innerHTML = "<h3>"+tempdata[0]+tempdata[3]+"</h3>"+"<h4>"+tempdata[1]+","+tempdata[2]+"</h4>"+"<p>"+tempdata[4]+"</p>";
+                
                 ass.appendChild(div);
                 
             }
