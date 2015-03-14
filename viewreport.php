@@ -65,10 +65,11 @@
         float: right;
     }
 
-
     .data{
         display: none;   
     }
+                
+
 
     </style>
 
@@ -112,24 +113,32 @@
 
                     $i = 0;
                     while ( $row2 = mysqli_fetch_assoc ( $result2 ) ){
-                        echo "<p class = 'data' no = " . $i ." id = ass" . $row2["report_id"] . "> Testing " . $row2["comments"] . " </p>";
+                        echo "<p class = 'data' id = ass" . $row2["report_id"] . "no" . $i . "> Testing " . $row2["comments"] . " </p>";
                         $i++;
                     }
 
                 ?>
 
 
-            <div id="info">
-            <h2 id = "title">This</h3>
-            <h3 id = "subtitle">That</h2>
-            <form method="post" id="report" action="viewreport.php">
-            <textarea name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
-            </textarea>
-            <br />
-            <input type="submit" name = "submit" value="submit"/>
-            </form>
-            <input id="mark" type="hidden">
+        <div id="info">
+        <h2 id = "title">This</h3>
+        <h3 id = "subtitle">That</h2>
+        <form method="post" id="report" action="viewreport.php">
+        <textarea name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
+        </textarea>
+        <br />
+        <input type="submit" name = "submit" value="submit"/>
+        </form>
+            
+            
+            <div id="assessments">
+            
+            </div>
+            
         </div>
+        <input id="mark" type="hidden">
+            
+        
 
         <?php
             include 'templates/template footer.php';
@@ -197,9 +206,24 @@
 
     }
     
+    //Function for loading assessments
     function loadass(reportid){
-        var tempdata = document.getElementById("ass"+reportid).innerHTML;
-        console.log(tempdata);
+        var i = 0;
+        while (i < 10){
+            var tempdata = document.getElementById("ass"+reportid+"no"+i);
+            if (tempdata != null){
+                tempdata = tempdata.innerHTML;
+                console.log(tempdata);
+                
+                var ass = document.getElementById("assessments");
+                var div = document.createElement("div");
+                div.innerHTML = tempdata;
+                ass.appendChild(div);
+                
+            }
+            i++;
+            
+        }
     }
 
 </script>
