@@ -1,11 +1,12 @@
+<?php require_once 'templates/db_connection.php'; ?>
+<?php session_start (); ?>
 <?php
-require_once 'templates/db_connection.php';
-require_once 'included_functions.php';
-session_start ();
-if(isset($_SESSION)&&!empty($_SESSION['user_id'])){
-	redirect_to('dashboard.php');
-}
-// ///Check if user already logged in to redirect
+	if(isset($_SESSION)&&!empty($_SESSION['user_id'])){
+		redirect_to('dashboard.php');
+/*		header("Location: ". 'dashboard.php');
+		exit;*/
+	}
+	// ///Check if user already logged in to redirect
 ?>
 <?php
 // /No blank fields
@@ -18,14 +19,18 @@ if (isset ( $_POST ['submit'] )) {
 	// If neither field is blank
 	if (! empty ( $User ) && ! empty ( $Pass )) {
 		
-		$hashed_password = password_encrypt ( $_POST ['password'] );
+		//$hashed_password = password_encrypt ( $_POST ['password'] );
+		$hashed_password = sha1('hqb%$t'.$_POST ['password'].'cg*l');
 		
 		$query = "SELECT * FROM users WHERE '$User' = login AND '$hashed_password' = password LIMIT 1";
 		$result = mysqli_query ( $connection, $query ) or die ( 'Error: ' . mysql_error () );
 		
 		// If query produces nothing
 		if (empty ( $result )) {
-			$Message = "Incorrect username and/or password.";
+			$Message = "
+				<div class='alert alert-danger' role='alert'>
+					<strong>Oh snap!</strong> Everything's blank! Please fill in everything.
+			  	</div>";
 		} else {
 			while ( $row = mysqli_fetch_assoc ( $result ) ) {
 				// /TODO Store user id in session as well
@@ -35,13 +40,21 @@ if (isset ( $_POST ['submit'] )) {
 			}
 			
 			if (! isset ( $_SESSION ) || empty ( $_SESSION ['first_name'] )) {
-				die ( "Incorrect username/password" );
+				$Message = "
+					<div class='alert alert-danger' role='alert'>
+						<strong>Oh snap!</strong> You've entered an incorrect password and/or username. Change a few things up and try submitting again.
+				  	</div>";
 			} else {
-				redirect_to ( 'dashboard.php' );
+				redirect_to ('dashboard.php');
+				/*header("Location: ". 'dashboard.php');
+				exit;*/
 			}
 		}
 	} else {
-		$Message = "Fill in all fields";
+		$Message = "
+			<div class='alert alert-danger' role='alert'>
+				<strong>Oh snap!</strong> You're missing some fields. Please fill in everything.
+		  	</div>";
 	}
 } 
 
@@ -51,21 +64,22 @@ else {
 
 ?>
 <html>
-<head>
-<title>Peer Assessment</title>
+	<head>
+	<title>Peer Assessment</title>
         <?php include 'templates/imports.php'; ?>
     </head>
 
-<body role='document'>
+	<body role='document'>
         <?php
-								require_once 'templates/template_header.php';
-								/*
-								 * $html_string = header();
-								 * echo html_string;
-								 */
-								
-								// $Message = $User;
-								echo $Message?>
+			require_once 'templates/template_header.php';
+			/*
+			 * $html_string = header();
+			 * echo html_string;
+			 */
+			
+			// $Message = $User;
+			echo $Message
+		?>
 
         <div class="jumbotron">
 		<h1>Welcome to Peer Review!</h1>

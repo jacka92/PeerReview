@@ -1,13 +1,43 @@
-<?php
-    require_once 'templates/db_connection.php';
-    //require_once 'templates/template_header.php';
-?>
+<?php require_once 'templates/db_connection.php'; ?>
 
 <html>
     <head>
         <title>Admin page</title>
         <?php include 'templates/imports.php';?>
     </head>
+
+<?php
+    $q  = "SELECT user_id ";
+    $q .= "FROM users ";
+    $q .= "ORDER BY user_id ASC ";
+    $check = mysqli_query($connection, $q);
+    confirm_query($check);
+
+    while($users = mysqli_fetch_assoc($check)){
+        if (isset($_POST['update']) == $users["user_id"]) {
+            $First_Name = (isset($_POST ['name'.$users["user_id"]]) : );
+            $Surname = $_POST ['surname'.$users["user_id"]];
+            //$Group_ID = $_POST ['group_id'.$users["user_id"]];
+            
+            ///Query
+            $q2  = "UPDATE users ";
+       //     $q2 .= "SET group_id={$Group_ID} ";
+            $q2 .= "SET first_name='{$First_Name}', surname='{$Surname}' ";
+            $q2 .= "WHERE user_id={$users['user_id']}";
+            $check2 = mysqli_query($connection, $q2)
+                    or die ('Error: insert failed'.mysql_error());  
+        } else {
+
+        }
+
+        if (isset ( $_POST['delete'.$users["user_id"]])){
+            //x$query = "DROP ";
+        }
+    }
+
+
+?>
+
 
     <body role='document'>
 
@@ -30,24 +60,23 @@ groups defined from the student registration list
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <table class="table">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <td>User ID</td>
-                                <td>Username</td>
-                                <td>First Name</td>
-                                <td>Surname</td>
-                                <td>Admin/User</td>
-                                <td>Current Group ID</td>
-                                <td>New Group ID</td>
-                                <td>Remove User</td>
+                                <th>User ID</th>
+                                <th>Username</th>
+                                <th colspan="2">First Name</th>
+                                <th colspan="2">Surname</th>
+                                <th colspan="2">Admin/User</th>
+                                <th colspan="2">Group ID</th>
+                                <th>Update</th>
+                                <th>Remove</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                                 $query  = "SELECT * ";
                                 $query .= "FROM users ";
-                                $query .= "WHERE admin = 0 ";
                                 $query .= "ORDER BY user_id ASC ";
                                 $result = mysqli_query($connection, $query);
                                 confirm_query($result);
@@ -55,53 +84,70 @@ groups defined from the student registration list
                             <?php
                                 while($users = mysqli_fetch_assoc($result)){
                             ?>
-                                <tr>
-                                    <td>
-                                        <?php echo $users["user_id"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $users["login"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $users["first_name"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $users["surname"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php if ($users["admin"] == 0) {
-                                            echo "User";
-                                        } else {
-                                            echo "Admin";
-                                        }
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $users["group_id"]; ?>
-                                    </td>
-                                    <td>
-                                        <select>
-                                                <option value=""> </option>
-                                            <?php
-                                                $query  = "SELECT DISTINCT group_id ";
-                                                $query .= "FROM users ";
-                                                $query .= "ORDER BY group_id ASC ";
-                                                $result2 = mysqli_query($connection, $query);
-                                                confirm_query($result2);
+                                <form method="post" action="admin.php">
+
+                                    <tr id=<?php echo $users["user_id"]; ?>>
+                                        <td>
+                                            <?php echo $users["user_id"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $users["login"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $users["first_name"]; ?>
+                                        </td>
+                                        <td><input type="text" name=<?php echo 'name'.$users['user_id'] ?>></td>
+                                        <td>
+                                            <?php echo $users["surname"]; ?>
+                                        </td>
+                                        <td><input type="text" name=<?php echo "surname".$users['user_id'] ?>></td>
+                                        <td>
+                                            <?php if ($users["admin"] == 0) {
+                                                echo "User";
+                                            } else {
+                                                echo "Admin";
+                                            }
                                             ?>
-                                            <?php
-                                                while($groups = mysqli_fetch_assoc($result2)){
-                                            ?>
-                                                <option value=<?php echo $groups["group_id"] ?>><?php echo $groups["group_id"] ?></option>
-                                            <?php
-                                                }
-                                            ?>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        To be inputted
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>
+                                            <select>
+                                                <option type="admin" value=""> </option>
+                                                <option type="admin" value="0">User</option>
+                                                <option type="admin" value="1">Admin</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <?php echo $users["group_id"]; ?>
+                                        </td>
+                                        <td>
+                                            <select>
+                                                    <option type="group" value=""> </option>
+                                                <?php
+                                                    $query  = "SELECT DISTINCT group_id ";
+                                                    $query .= "FROM users ";
+                                                    $query .= "ORDER BY group_id ASC ";
+                                                    $result2 = mysqli_query($connection, $query);
+                                                    confirm_query($result2);
+                                                ?>
+                                                <?php
+                                                    while($groups = mysqli_fetch_assoc($result2)){
+                                                ?>
+                                                    <option type="group" value=<?php echo $groups["group_id"] ?>>
+                                                        <?php echo $groups["group_id"] ?>
+                                                    </option>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <button name="update" value=<?php echo $users["user_id"]; ?> class="btn btn-primary">Update</button>
+                                        </td>
+                                        <td>
+                                            <button name="delete" value=<?php echo $users["user_id"]; ?> class="btn btn-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                </form>
                             <?php
                                 }
                             ?>
