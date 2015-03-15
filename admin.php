@@ -6,53 +6,43 @@
         <?php include 'templates/imports.php';?>
     </head>
 
-<?php
-    $q  = "SELECT * ";
-    $q .= "FROM users ";
-    $q .= "ORDER BY user_id ASC ";
-    $check = mysqli_query($connection, $q);
-    confirm_query($check);
-
-    while($users = mysqli_fetch_assoc($check)){
-        $update = isset($_POST['update']) ? $_POST['update'] : '';
-        if ($update == $users['user_id']) {
-            $First_Name = isset($_POST ['name'.$users['user_id']]) ? $_POST ['name'.$users['user_id']] : '';
-            $First_Name = ($First_Name == '') ? $users['first_name'] : $First_Name;
-
-            $Surname = isset($_POST ['surname'.$users['user_id']]) ? $_POST ['surname'.$users['user_id']] : '';
-            $Surname = ($Surname == '') ? $users['surname'] : $Surname;
-
-            $Admin = (isset($_POST['admin'.$users['user_id']]) ? $_POST['admin'.$users['user_id']] : '');
-            $Admin = ($Admin == '') ? $users['admin'] : $Admin;
-            
-            $Group = (isset($_POST['group'.$users['user_id']]) ? $_POST['group'.$users['user_id']] : '');
-            $Group = ($Group == '') ? $users['group_id'] : $Group;
-            
-            $q2  = "UPDATE users ";
-            $q2 .= "SET first_name='{$First_Name}', surname='{$Surname}', ";
-            $q2 .= "admin={$Admin}, group_id={$Group} ";
-            $q2 .= "WHERE user_id={$users['user_id']}";
-            $check2 = mysqli_query($connection, $q2)
-                    or die ('Error: insert failed'.mysql_error());  
-
-        } 
-        $delete = isset($_POST['delete']) ? $_POST['delete'] : "";
-        if ($delete == $users["user_id"]){
-            $qdrop = "DELETE FROM users WHERE user_id = {$users['user_id']}";
-            $drop = mysqli_query($connection, $qdrop)
-                    or die ('Error: insert failed'.mysql_error());
-        }
-
-    }
-?>
-
-
     <body role='document'>
 
         <?php include 'templates/template_header.php' ?>
 
         <div class="page-header">
             <h1>Admin Page</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Create a group
+                        </h3>
+                    </div>
+                    <?php
+                        $query_group  = "SELECT DISTINCT group_id ";
+                        $query_group .= "FROM groups ";
+                        $query_group .= "ORDER BY group_id ASC ";
+                        $result_group = mysqli_query($connection, $query_group);
+                        confirm_query($result_group);
+                    ?>
+                    <div class="panel-body">
+                        <p>Current groups: 
+                            <?php
+                                while($group = mysqli_fetch_assoc($result_group)){
+                                    echo $group["group_id"]." ";
+                                }
+                            ?>
+                        </p>
+                        <form method="post" action="admin/add_group.php">
+                            <button name="create_group" class="btn btn-primary">Create new group</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="row">
@@ -92,7 +82,7 @@ groups defined from the student registration list
                             <?php
                                 while($users = mysqli_fetch_assoc($result)){
                             ?>
-                                <form method="post" action="admin.php">
+                                <form method="post" action="admin/edit_user.php">
 
                                     <tr id=<?php echo $users["user_id"]; ?>>
                                         <td>
@@ -131,7 +121,7 @@ groups defined from the student registration list
                                             <select name=<?php echo "group".$users["user_id"]; ?>>
                                                 <?php
                                                     $query  = "SELECT DISTINCT group_id ";
-                                                    $query .= "FROM users ";
+                                                    $query .= "FROM groups ";
                                                     $query .= "ORDER BY group_id ASC ";
                                                     $result2 = mysqli_query($connection, $query);
                                                     confirm_query($result2);
@@ -140,8 +130,8 @@ groups defined from the student registration list
                                                 <?php
                                                     while($groups = mysqli_fetch_assoc($result2)){
                                                 ?>
-                                                    <option value=<?php echo $groups["group_id"] ?>>
-                                                        <?php echo $groups["group_id"] ?>
+                                                    <option value=<?php echo $groups["group_id"]; ?>>
+                                                        <?php echo $groups["group_id"]; ?>
                                                     </option>
                                                 <?php
                                                     }
@@ -248,5 +238,3 @@ assessments on their submissions
 <?php
     mysqli_close($connection);
 ?>
-
-
