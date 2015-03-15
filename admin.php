@@ -15,6 +15,10 @@
         </div>
 
         <div class="row">
+            <!--
+the administrator-users will be able to see a list of the groups ranked according with the aggregation of peer
+assessments on their submissions
+            -->
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -58,7 +62,7 @@ groups defined from the student registration list
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-bordered">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>User ID</th>
@@ -169,7 +173,7 @@ student details
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <table class="table">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <td>Group ID</td>
@@ -219,14 +223,6 @@ student details
             <!--
 the administrator-user interface will allow particular groups to be allocated to the peer assessment of
 particular other groups
-            -->
-            
-        </div>
-
-        <div class="row">
-            <!--
-the administrator-users will be able to see a list of the groups ranked according with the aggregation of peer
-assessments on their submissions
             -->
             
         </div>
