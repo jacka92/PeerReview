@@ -113,7 +113,7 @@
 
                 ?>
 
-
+        <div id = "assinput" title = "Create a new Assessment">Bacon</div>
         <div id="info">
         <h2 id = "title">You haven't been assigned a Report</h3>
         <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
@@ -181,6 +181,10 @@
 
         });
       });
+    
+    $(function() {
+    $( "#assinput" ).dialog();
+  });
 
     
     function title(){
@@ -247,7 +251,6 @@
         reportno = reportno.split("Report ");
         reportno = reportno[1];
         console.log(reportno);
-        
         
     }
 
