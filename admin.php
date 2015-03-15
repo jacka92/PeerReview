@@ -14,16 +14,23 @@
     confirm_query($check);
 
     while($users = mysqli_fetch_assoc($check)){
-        if (isset($_POST['update']) == $users["user_id"]) {
-            $First_Name = isset($_POST ['name'.$users["user_id"]]) ? $_POST ['name'.$users["user_id"]] : "";
-            $Surname = isset($_POST ['surname'.$users["user_id"]]) ? $_POST ['surname'.$users["user_id"]] : "";
+        $update = isset($_POST['update']) ? $_POST['update'] : '';
+        if ($update == $users['user_id']) {
+            $First_Name = isset($_POST ['name'.$users['user_id']]) ? $_POST ['name'.$users['user_id']] : '';
+            $First_Name = ($First_Name == '') ? $users['first_name'] : $First_Name;
 
-            $First_Name = ($First_Name == "") ? $users["first_name"] : $First_Name;
-            $Surname = ($Surname == "") ? $users["surname"] : $Surname;
+            $Surname = isset($_POST ['surname'.$users['user_id']]) ? $_POST ['surname'.$users['user_id']] : '';
+            $Surname = ($Surname == '') ? $users['surname'] : $Surname;
+
+            $Admin = (isset($_POST['admin'.$users['user_id']]) ? $_POST['admin'.$users['user_id']] : '');
+            $Admin = ($Admin == '') ? $users['admin'] : $Admin;
+            
+            $Group = (isset($_POST['group'.$users['user_id']]) ? $_POST['group'.$users['user_id']] : '');
+            $Group = ($Group == '') ? $users['group_id'] : $Group;
             
             $q2  = "UPDATE users ";
-       //     $q2 .= "SET group_id={$Group_ID} ";
-            $q2 .= "SET first_name='{$First_Name}', surname='{$Surname}' ";
+            $q2 .= "SET first_name='{$First_Name}', surname='{$Surname}', ";
+            $q2 .= "admin={$Admin}, group_id={$Group} ";
             $q2 .= "WHERE user_id={$users['user_id']}";
             $check2 = mysqli_query($connection, $q2)
                     or die ('Error: insert failed'.mysql_error());  
@@ -111,18 +118,17 @@ groups defined from the student registration list
                                             ?>
                                         </td>
                                         <td>
-                                            <select>
-                                                <option type="admin" value=""> </option>
-                                                <option type="admin" value="0">User</option>
-                                                <option type="admin" value="1">Admin</option>
+                                            <select name=<?php echo "admin".$users["user_id"]; ?>>
+                                                <option value=""></option>
+                                                <option value="0">User</option>
+                                                <option value="1">Admin</option>
                                             </select>
                                         </td>
                                         <td>
                                             <?php echo $users["group_id"]; ?>
                                         </td>
                                         <td>
-                                            <select>
-                                                    <option type="group" value=""> </option>
+                                            <select name=<?php echo "group".$users["user_id"]; ?>>
                                                 <?php
                                                     $query  = "SELECT DISTINCT group_id ";
                                                     $query .= "FROM users ";
@@ -130,10 +136,11 @@ groups defined from the student registration list
                                                     $result2 = mysqli_query($connection, $query);
                                                     confirm_query($result2);
                                                 ?>
+                                                <option value=""></option>
                                                 <?php
                                                     while($groups = mysqli_fetch_assoc($result2)){
                                                 ?>
-                                                    <option type="group" value=<?php echo $groups["group_id"] ?>>
+                                                    <option value=<?php echo $groups["group_id"] ?>>
                                                         <?php echo $groups["group_id"] ?>
                                                     </option>
                                                 <?php
