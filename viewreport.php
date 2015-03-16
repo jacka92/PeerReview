@@ -113,7 +113,15 @@
 
                 ?>
 
-        <div id = "assinput" title = "Create a new Assessment">Bacon</div>
+        <div id = "assinput">
+            <form method="post" action="viewreport/add_ass.php">
+                
+            </form>
+                <textarea name="comment" form="assinput" name = "comment"></textarea><br><br>
+            <button name="create_ass" class="btn btn-primary" form = "assinput">Create new assessment</button>
+        </div>
+        
+        
         <div id="info">
         <h2 id = "title">You haven't been assigned a Report</h3>
         <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
@@ -183,8 +191,18 @@
       });
     
     $(function() {
-    $( "#assinput" ).dialog();
-  });
+        $( "#assinput" ).dialog({
+            autoOpen: false,
+            height: 300,
+            width: 600,
+        });
+        
+    $( "#button" ).click(function() {
+        $( "#assinput" ).dialog( "open" );
+        });
+    });
+    
+    
 
     
     function title(){
