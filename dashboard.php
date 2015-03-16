@@ -7,14 +7,12 @@ echo $Welcome;
 ?>
 
 <html>
-<head>
-
-<title>Dashboard</title>
+	<head>
+		<title>Dashboard</title>
         <?php include 'templates/imports.php';?>
-
     </head>
 
-<body role='document'>
+	<body role='document'>
 
         <?php include 'templates/template_header.php';?>
 

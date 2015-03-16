@@ -6,49 +6,47 @@
         <?php include 'templates/imports.php';?>
     </head>
 
-<?php
-    $q  = "SELECT * ";
-    $q .= "FROM users ";
-    $q .= "ORDER BY user_id ASC ";
-    $check = mysqli_query($connection, $q);
-    confirm_query($check);
-
-    while($users = mysqli_fetch_assoc($check)){
-        if (isset($_POST['update']) == $users["user_id"]) {
-            $First_Name = isset($_POST ['name'.$users["user_id"]]) ? $_POST ['name'.$users["user_id"]] : $users["first_name"];
-            $Surname = isset($_POST ['surname'.$users["user_id"]]) ? $_POST ['surname'.$users["user_id"]] : $users["surname"];
-
-            $First_Name= ($First_Name == "") ? $users["first_name"] : $First_Name;
-            $Surname= ($Surname == "") ? $users["surname"] : $Surname;
-            /*
-            $First_Name = (isset($_POST ['name'.$users["user_id"]]) != null ? $_POST ['name'.$users["user_id"]] : select_query("first_name","users","user_id={$users['user_id']}"));
-            $Surname = (isset($_POST ['surname'.$users["user_id"]]) != null ? $_POST ['surname'.$users["user_id"]] : select_query("surname","users","user_id={$users['user_id']}"));*/
-            //$group_iD = $_POST ['group_id'.$users["user_id"]];
-            
-            ///Query
-            $q2  = "UPDATE users ";
-       //     $q2 .= "SET group_id={$Group_ID} ";
-            $q2 .= "SET first_name='{$First_Name}', surname='{$Surname}' ";
-            $q2 .= "WHERE user_id={$users['user_id']}";
-            $check2 = mysqli_query($connection, $q2)
-                    or die ('Error: insert failed'.mysql_error());  
-
-        } 
-
-        if (isset ( $_POST['delete'.$users["user_id"]])){
-            //x$query = "DROP ";
-        }
-
-    }
-?>
-
-
     <body role='document'>
 
         <?php include 'templates/template_header.php' ?>
 
         <div class="page-header">
             <h1>Admin Page</h1>
+        </div>
+
+        <div class="row">
+            <!--
+the administrator-users will be able to see a list of the groups ranked according with the aggregation of peer
+assessments on their submissions
+            -->
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Create a group
+                        </h3>
+                    </div>
+                    <?php
+                        $query_group  = "SELECT DISTINCT group_id ";
+                        $query_group .= "FROM groups ";
+                        $query_group .= "ORDER BY group_id ASC ";
+                        $result_group = mysqli_query($connection, $query_group);
+                        confirm_query($result_group);
+                    ?>
+                    <div class="panel-body">
+                        <p>Current groups: 
+                            <?php
+                                while($group = mysqli_fetch_assoc($result_group)){
+                                    echo $group["group_id"]." ";
+                                }
+                            ?>
+                        </p>
+                        <form method="post" action="admin/add_group.php">
+                            <button name="create_group" class="btn btn-primary">Create new group</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="row">
@@ -64,7 +62,7 @@ groups defined from the student registration list
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-bordered">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>User ID</th>
@@ -88,7 +86,7 @@ groups defined from the student registration list
                             <?php
                                 while($users = mysqli_fetch_assoc($result)){
                             ?>
-                                <form method="post" action="admin.php">
+                                <form method="post" action="admin/edit_user.php">
 
                                     <tr id=<?php echo $users["user_id"]; ?>>
                                         <td>
@@ -114,30 +112,30 @@ groups defined from the student registration list
                                             ?>
                                         </td>
                                         <td>
-                                            <select>
-                                                <option type="admin" value=""> </option>
-                                                <option type="admin" value="0">User</option>
-                                                <option type="admin" value="1">Admin</option>
+                                            <select name=<?php echo "admin".$users["user_id"]; ?>>
+                                                <option value=""></option>
+                                                <option value="0">User</option>
+                                                <option value="1">Admin</option>
                                             </select>
                                         </td>
                                         <td>
                                             <?php echo $users["group_id"]; ?>
                                         </td>
                                         <td>
-                                            <select>
-                                                    <option type="group" value=""> </option>
+                                            <select name=<?php echo "group".$users["user_id"]; ?>>
                                                 <?php
                                                     $query  = "SELECT DISTINCT group_id ";
-                                                    $query .= "FROM users ";
+                                                    $query .= "FROM groups ";
                                                     $query .= "ORDER BY group_id ASC ";
                                                     $result2 = mysqli_query($connection, $query);
                                                     confirm_query($result2);
                                                 ?>
+                                                <option value=""></option>
                                                 <?php
                                                     while($groups = mysqli_fetch_assoc($result2)){
                                                 ?>
-                                                    <option type="group" value=<?php echo $groups["group_id"] ?>>
-                                                        <?php echo $groups["group_id"] ?>
+                                                    <option value=<?php echo $groups["group_id"]; ?>>
+                                                        <?php echo $groups["group_id"]; ?>
                                                     </option>
                                                 <?php
                                                     }
@@ -175,7 +173,7 @@ student details
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <table class="table">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <td>Group ID</td>
@@ -229,14 +227,6 @@ particular other groups
             
         </div>
 
-        <div class="row">
-            <!--
-the administrator-users will be able to see a list of the groups ranked according with the aggregation of peer
-assessments on their submissions
-            -->
-            
-        </div>
-
         <?php include 'templates/template footer.php';?>
     </body>
 </html>
@@ -244,5 +234,3 @@ assessments on their submissions
 <?php
     mysqli_close($connection);
 ?>
-
-
