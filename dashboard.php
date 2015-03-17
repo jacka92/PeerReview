@@ -1,6 +1,11 @@
-<?php
-    require_once 'templates/db_connection.php';
+<?php require_once 'templates/db_connection.php'; ?>
+<html>
 
+    <head>
+        <link rel="stylesheet" href="jquery-ui-1.11.3/jquery-ui.css">
+        <title>Peer Assessment</title>
+        <?php include 'templates/imports.php';?>
+<?php
     $Group_ID = $_SESSION ['group_id'];
     $User = $_SESSION ['user_id'];
 
@@ -40,12 +45,6 @@
 ?>
 
 
-<html>
-
-    <head>
-        <link rel="stylesheet" href="jquery-ui-1.11.3/jquery-ui.css">
-        <title>Peer Assessment</title>
-        <?php include 'templates/imports.php';?>
 
     </head>
 
