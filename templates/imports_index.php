@@ -1,8 +1,5 @@
 <?php 
     include 'templates/included_functions.php';
-    if (!isset($_SESSION)||empty($_SESSION['user_id'])){
-		redirect_to('index.php');
-	}
 ?>
 <?php
 	echo "<meta charset='utf-8'>

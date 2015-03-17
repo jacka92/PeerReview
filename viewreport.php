@@ -1,7 +1,5 @@
 <?php
     require_once 'templates/db_connection.php';
-
-    session_start ();
     // TODO change this for a dynamic update
         $Group_ID = $_SESSION ['group_id'];
         $User = $_SESSION ['user_id'];

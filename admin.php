@@ -4,6 +4,11 @@
     <head>
         <title>Admin page</title>
         <?php include 'templates/imports.php';?>
+        <?php
+            if ($_SESSION['admin']!=1){
+                redirect_to('dashboard.php');
+            }
+        ?>
     </head>
 
     <body role='document'>
