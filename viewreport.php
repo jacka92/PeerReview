@@ -17,6 +17,7 @@
     // query handling
     $query = "SELECT * ";
     $query .= "FROM reports ";
+    //Select all reports that have abeen assinged
 
     $result = mysqli_query ( $connection, $query );
 
@@ -27,7 +28,8 @@
     ///student-users will submit grading assessments and comments on the reports assigned to them - check user from session and display only the reports
     //assigned to them
 
-    $query2 = "SELECT * FROM assessments ";
+    $query2 = "SELECT * ";
+    $query2 .= "FROM assessments ";
     $result2 = mysqli_query ($connection, $query2);
 
     if (! $result2){
@@ -115,8 +117,9 @@
             <form method="post" action="viewreport/add_ass.php">
             <input class = "data" id = "assinput_report_id" name = "report_id">
             <input class = "data" name = "user_id" value = "<?php echo $User; ?>">
-            <textarea name="comment" name = "comment"></textarea><br><br>
-            <button name="create_ass" class="btn btn-primary">Create new assessment</button>    
+            <textarea name="comments"></textarea><br><br>
+            <input name = "assessment" type = "number" max = "5" placeholder = "mark"><br><br>
+            <button name="create_ass" class="btn btn-primary">Create</button>    
             </form>
                  
         </div>
@@ -151,20 +154,6 @@
 
 
 <script type="text/javascript">
-            
-//      Dont remove - old select, needed to be used
-//            function select(){
-//                var title = document.getElementById("title");
-//                var mark = document.getElementById("mark");
-//                var body = document.getElementsById("body");
-//                
-//                title.innerHTML = "Edit Report for Group "+currentgroupid+"";
-//                mark.type = "number";
-//                mark.min = "0";
-//                mark.max = "100";
-//                mark.step = "1";
-//                mark.placeholder = "Mark";
-//                }   
     
     //Function for setting the title
     $('#accordion').accordion({
@@ -201,8 +190,6 @@
         });
     });
     
-    
-
     
     function title(){
         var title = document.getElementById("title");  
@@ -270,6 +257,7 @@
         console.log(reportno);
         var aim = document.getElementById("assinput_report_id");
         aim.value = reportno;
+
     }
 
 </script>
