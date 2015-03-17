@@ -1,8 +1,8 @@
 <?php
     require_once 'templates/db_connection.php';
-    // TODO change this for a dynamic update
-        $Group_ID = $_SESSION ['group_id'];
-        $User = $_SESSION ['user_id'];
+
+    $Group_ID = $_SESSION ['group_id'];
+    $User = $_SESSION ['user_id'];
 
     $Warning = "";
     if (isset($_POST) && !empty($_POST['submit'])) {
