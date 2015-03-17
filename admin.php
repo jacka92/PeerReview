@@ -93,7 +93,7 @@ groups defined from the student registration list
                             ?>
                                 <form method="post" action="admin/edit_user.php">
 
-                                    <tr id=<?php echo $users["user_id"]; ?>>
+                                    <tr>
                                         <td>
                                             <?php echo $users["user_id"]; ?>
                                         </td>
@@ -148,10 +148,14 @@ groups defined from the student registration list
                                             </select>
                                         </td>
                                         <td>
-                                            <button name="update" value=<?php echo $users["user_id"]; ?> class="btn btn-primary">Update</button>
+                                            <button name="update" value=<?php echo $users["user_id"]; ?> class="btn btn-primary">
+                                                Update
+                                            </button>
                                         </td>
                                         <td>
-                                            <button name="delete" value=<?php echo $users["user_id"]; ?> class="btn btn-danger">Delete</button>
+                                            <button name="delete" value=<?php echo $users["user_id"]; ?> class="btn btn-danger">
+                                                Delete
+                                            </button>
                                         </td>
                                     </tr>
                                 </form>
@@ -181,39 +185,69 @@ particular other groups
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <td>Group ID</td>
-                                <td>Currently Assigned Reports</td>
-                                <td>Reports to be assigned</td>
+                                <th>Group ID</td>
+                                <th>Currently Assigned Reports</td>
+                                <th>Reports to be assigned</td>
+                                <th>Update</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                                $query  = "SELECT * ";
-                                $query .= "FROM users ";
-                                $query .= "WHERE admin = 0 ";
-                                $query .= "ORDER BY user_id ASC ";
+                                $query  = "SELECT DISTINCT group_id ";
+                                $query .= "FROM groups ";
+                                $query .= "ORDER BY group_id ASC ";
                                 $result = mysqli_query($connection, $query);
                                 confirm_query($result);
                             ?>
                             <?php
-                                while($users = mysqli_fetch_assoc($result)){
+                                while($group = mysqli_fetch_assoc($result)){
                             ?>
-                                <tr>
-                                    <td>
-                                        To be inputted
-                                    </td>
-                                    <td>
-                                        To be inputted
-                                    </td>
-                                    <td>
-                                        <select multiple>
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="opel">Opel</option>
-                                            <option value="audi">Audi</option>
-                                        </select>
-                                    </td>
-                                </tr>
+                                <form method="get" action="admin/assign_report.php">
+                                    <tr>
+                                        <td><?php echo $group["group_id"]; ?></td>
+                                        <td>
+                                            <?php
+                                                $query  = "SELECT DISTINCT report_id ";
+                                                $query .= "FROM assignments ";
+                                                $query .= "WHERE group_id=".$group["group_id"]." ";
+                                                $query .= "ORDER BY report_id ASC ";
+                                                $result2 = mysqli_query($connection, $query);
+                                                confirm_query($result2);
+                                            ?>
+                                            <?php
+                                                while($reports = mysqli_fetch_assoc($result2)){
+                                                    echo $reports["report_id"]." ";
+                                                }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <select name=<?php echo "report".$group['group_id']; ?>[] multiple>
+                                                <?php
+                                                    $query  = "SELECT DISTINCT report_id ";
+                                                    $query .= "FROM reports ";
+                                                    $query .= "ORDER BY report_id ASC ";
+                                                    $result3 = mysqli_query($connection, $query);
+                                                    confirm_query($result3);
+                                                ?>
+                                                <option value=""></option>
+                                                <?php
+                                                    while($report_list = mysqli_fetch_assoc($result3)){
+                                                ?>
+                                                    <option value=<?php echo $report_list["report_id"]; ?>>
+                                                        <?php echo $report_list["report_id"]; ?>
+                                                    </option>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <button name="update" value=<?php echo $group["group_id"]; ?> class="btn btn-primary">
+                                                Update
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </form>
                             <?php
                                 }
                             ?>
