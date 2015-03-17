@@ -17,7 +17,8 @@
     // query handling
     $query = "SELECT * ";
     $query .= "FROM reports ";
-    $query .= "WHERE group_id = ". $Group_ID ."";
+    $query .= "WHERE group_id = ".$Group_ID."";
+    //Select all reports that have abeen assinged
 
     $result = mysqli_query ( $connection, $query );
 
@@ -28,7 +29,8 @@
     ///student-users will submit grading assessments and comments on the reports assigned to them - check user from session and display only the reports
     //assigned to them
 
-    $query2 = "SELECT * FROM assessments ";
+    $query2 = "SELECT * ";
+    $query2 .= "FROM assessments ";
     $result2 = mysqli_query ($connection, $query2);
 
     if (! $result2){
@@ -50,13 +52,6 @@
     <body role='document' onload="title();">
 
             <?php include 'templates/template_header.php';?>
-        
-        <h1>
-        	<?php
-				$Welcome = "Hello " . $_SESSION ['first_name'] . ", your Group ID is " . $_SESSION ['group_id'];
-				echo $Welcome;
-			?>
-        </h1>
 
             <style>
 
@@ -78,7 +73,8 @@
 
 
     </style>
-        
+
+
 
                 <?php   
                     // run through all rows
@@ -117,8 +113,6 @@
                     }
 
                 ?>
-        
-
 
         <div id = "assinput">
             <form method="post" action="viewreport/add_ass.php">
@@ -133,11 +127,11 @@
         
         
         <div id="info">
-        <h2 id = "title">You haven't completed a Report</h3>
+        <h2 id = "title">You haven't been assigned a Report</h3>
         <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
         </p>
         <br />
-        <button id = "button" style = "visibility:hidden" onclick = "assessment();"> Create New Assessment </button>
+<!--        <button id = "button" style = "visibility:hidden" onclick = "assessment();"> Create New Assessment </button>-->
             
             
             <div id="assessments">
@@ -161,7 +155,6 @@
 
 
 <script type="text/javascript">
-
     
     //Function for setting the title
     $('#accordion').accordion({
@@ -193,19 +186,17 @@
             width: 600,
         });
         
-    $( "#button" ).click(function() {
-        $( "#assinput" ).dialog( "open" );
-        });
+//    $( "#button" ).click(function() {
+//        $( "#assinput" ).dialog( "open" );
+//        });
     });
     
-    
-
     
     function title(){
         var title = document.getElementById("title");  
         
         if ($("#accordion").children().length > 0) {
-            title.innerHTML = "Select a group report from the left";
+            title.innerHTML = "Select a report from the left";
         }
     }
 
@@ -214,9 +205,9 @@
         var title = document.getElementById("title");
         var subtitle = document.getElementById("subtitle");
         var body = document.getElementById("body");
-        var button = document.getElementById("button");
-        
-        button.style.visibility = "visible";
+//        var button = document.getElementById("button");
+//        
+//        button.style.visibility = "visible";
         
         var tempdata = document.getElementById(reportid).innerHTML;  
         tempdata = tempdata.split("Report col : ");
