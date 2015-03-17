@@ -115,8 +115,9 @@
             <form method="post" action="viewreport/add_ass.php">
             <input class = "data" id = "assinput_report_id" name = "report_id">
             <input class = "data" name = "user_id" value = "<?php echo $User; ?>">
-            <textarea name="comment" name = "comment"></textarea><br><br>
-            <button name="create_ass" class="btn btn-primary">Create new assessment</button>    
+            <textarea name="comments"></textarea><br><br>
+            <input name = "assessment" type = "number" max = "5" placeholder = "mark"><br><br>
+            <button name="create_ass" class="btn btn-primary">Create</button>    
             </form>
                  
         </div>
@@ -270,6 +271,7 @@
         console.log(reportno);
         var aim = document.getElementById("assinput_report_id");
         aim.value = reportno;
+
     }
 
 </script>
