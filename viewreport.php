@@ -152,20 +152,6 @@
 
 
 <script type="text/javascript">
-            
-//      Dont remove - old select, needed to be used
-//            function select(){
-//                var title = document.getElementById("title");
-//                var mark = document.getElementById("mark");
-//                var body = document.getElementsById("body");
-//                
-//                title.innerHTML = "Edit Report for Group "+currentgroupid+"";
-//                mark.type = "number";
-//                mark.min = "0";
-//                mark.max = "100";
-//                mark.step = "1";
-//                mark.placeholder = "Mark";
-//                }   
     
     //Function for setting the title
     $('#accordion').accordion({
@@ -202,8 +188,6 @@
         });
     });
     
-    
-
     
     function title(){
         var title = document.getElementById("title");  
