@@ -115,10 +115,11 @@
 
         <div id = "assinput">
             <form method="post" action="viewreport/add_ass.php">
-                
+            <input class = "data" id = "assinput_report_id" name = "report_id">
+            <textarea name="comment" name = "comment"></textarea><br><br>
+            <button name="create_ass" class="btn btn-primary">Create new assessment</button>    
             </form>
-                <textarea name="comment" form="assinput" name = "comment"></textarea><br><br>
-            <button name="create_ass" class="btn btn-primary" form = "assinput">Create new assessment</button>
+                 
         </div>
         
         
@@ -135,7 +136,6 @@
             </div>
             
         </div>
-        <input id="mark" type="hidden">
             
         
 
@@ -269,7 +269,8 @@
         reportno = reportno.split("Report ");
         reportno = reportno[1];
         console.log(reportno);
-        
+        var aim = document.getElementById("assinput_report_id");
+        aim.value = reportno;
     }
 
 </script>
