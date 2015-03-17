@@ -17,6 +17,7 @@
     // query handling
     $query = "SELECT * ";
     $query .= "FROM reports ";
+    $query .= "WHERE group_id = ". $Group_ID ."";
 
     $result = mysqli_query ( $connection, $query );
 
@@ -132,7 +133,7 @@
         
         
         <div id="info">
-        <h2 id = "title">You haven't been assigned a Report</h3>
+        <h2 id = "title">You haven't completed a Report</h3>
         <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
         </p>
         <br />
@@ -204,7 +205,7 @@
         var title = document.getElementById("title");  
         
         if ($("#accordion").children().length > 0) {
-            title.innerHTML = "Select a report from the left";
+            title.innerHTML = "Select a group report from the left";
         }
     }
 

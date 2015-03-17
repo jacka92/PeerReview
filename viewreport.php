@@ -17,6 +17,7 @@
     // query handling
     $query = "SELECT * ";
     $query .= "FROM reports ";
+    //Select all reports that have abeen assinged
 
     $result = mysqli_query ( $connection, $query );
 
@@ -27,7 +28,8 @@
     ///student-users will submit grading assessments and comments on the reports assigned to them - check user from session and display only the reports
     //assigned to them
 
-    $query2 = "SELECT * FROM assessments ";
+    $query2 = "SELECT * ";
+    $query2 .= "FROM assessments ";
     $result2 = mysqli_query ($connection, $query2);
 
     if (! $result2){
