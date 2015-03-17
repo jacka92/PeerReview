@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<title>Registration</title>
-        <?php include 'templates/imports.php';?>
+        <?php include 'templates/imports_index.php';?>
     </head>
     
 <?php
@@ -36,7 +36,7 @@ if (isset ( $_POST ['submit'] )) {
 		$Pass = password_encrypt($Pass); 
 		
 		///Query then redirect
-		$query = "INSERT INTO users (/*group_id, */first_name, surname, login, password) VALUES (/*{$Group_ID},*/'{$First_Name}','{$Surname}','{$User}','{$Pass}')";
+		$query = "INSERT INTO users (first_name, surname, login, password) VALUES ('{$First_Name}','{$Surname}','{$User}','{$Pass}')";
                 $result = mysqli_query($connection, $query)
                     or die ('Error: insert failed'.mysql_error());  
 		
@@ -51,7 +51,6 @@ if (isset ( $_POST ['submit'] )) {
 } else {
 	$First_Name = "";
 	$Surname = "";
-//	$Group_ID = "";
 	$User = "";
 	$Pass = "";
 	$CPass = "";
