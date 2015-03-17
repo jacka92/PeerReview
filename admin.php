@@ -21,8 +21,8 @@
 
         <div class="row">
             <!--
-the administrator-users will be able to see a list of the groups ranked according with the aggregation of peer
-assessments on their submissions
+the administrator-users will be able to see a list of the groups */
+ranked according with the aggregation of peer assessments on their submissions 
             -->
             <div class="col-sm-4">
                 <div class="panel panel-default">
@@ -167,8 +167,8 @@ groups defined from the student registration list
 
         <div class="row">
             <!--
-the administrator-user interface will support searching for details of a particular student and browsing of
-student details
+the administrator-user interface will allow particular groups to be allocated to the peer assessment of
+particular other groups
             -->
 
             <div class="panel panel-default">
@@ -226,8 +226,9 @@ student details
 
         <div class="row">
             <!--
-the administrator-user interface will allow particular groups to be allocated to the peer assessment of
-particular other groups
+
+the administrator-user interface will support searching for details of a particular student and browsing of
+student details
             -->
             
         </div>

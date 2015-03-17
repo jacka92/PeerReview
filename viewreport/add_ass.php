@@ -8,7 +8,8 @@
     $comments = (isset($_POST['comment']) ? $_POST['comment'] : '');
 
 
-    $q  = "INSERT INTO assessments (report_id, user_id, comments) VALUES ('{$report_id}}','{$user_id}','{$comments}')"; 
+    $q  = "INSERT INTO assessments (report_id, user_id, comments) ";
+    $q .= "VALUES (report_id='{$report_id}}',user_id='{$user_id}',comments='{$comments}')"; 
 
     $check = mysqli_query($connection, $q)
             or die ('Error: insert failed'.mysql_error());  

@@ -1,6 +1,6 @@
 <?php
 	require_once '../templates/db_connection.php';
-	include '../included_functions.php';
+	include '../templates/included_functions.php';
 
     $q  = "SELECT * ";
     $q .= "FROM users ";
