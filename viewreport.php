@@ -116,6 +116,7 @@
         <div id = "assinput">
             <form method="post" action="viewreport/add_ass.php">
             <input class = "data" id = "assinput_report_id" name = "report_id">
+            <input class = "data" name = "user_id" value = "<?php echo $User; ?>">
             <textarea name="comment" name = "comment"></textarea><br><br>
             <button name="create_ass" class="btn btn-primary">Create new assessment</button>    
             </form>
@@ -134,7 +135,7 @@
             <div id="assessments">
             
             </div>
-            
+            <br><br>
         </div>
             
         
@@ -243,7 +244,7 @@
         }
         
         var i = 0;
-        while (i < 10){
+        while (i < 10000){
             var tempdata = document.getElementById("ass"+reportid+"no"+i);
             if (tempdata != null){
                 tempdata = tempdata.innerHTML;
