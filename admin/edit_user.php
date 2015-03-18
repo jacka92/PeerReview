@@ -1,10 +1,9 @@
 <?php require_once '../templates/db_connection.php'; ?>
 <?php
 	include '../templates/included_functions.php';
+    include 'queries.php';
 
-    $q  = "SELECT * ";
-    $q .= "FROM users ";
-    $q .= "ORDER BY user_id ASC ";
+    $q  = users();
     $check = mysqli_query($connection, $q);
     confirm_query($check);
 
@@ -23,17 +22,14 @@
             $Group = (isset($_POST['group'.$users['user_id']]) ? $_POST['group'.$users['user_id']] : '');
             $Group = ($Group == '') ? $users['group_id'] : $Group;
             
-            $q2  = "UPDATE users ";
-            $q2 .= "SET first_name='{$First_Name}', surname='{$Surname}', ";
-            $q2 .= "admin={$Admin}, group_id={$Group} ";
-            $q2 .= "WHERE user_id={$users['user_id']}";
+            $q2  = update_user($First_Name,$Surname,$Admin,$Group,$users['user_id']);
             $check2 = mysqli_query($connection, $q2)
                     or die ('Error: insert failed'.mysql_error());  
 
         } 
         $delete = isset($_POST['delete']) ? $_POST['delete'] : "";
         if ($delete == $users["user_id"]){
-            $qdrop = "DELETE FROM users WHERE user_id = {$users['user_id']}";
+            $qdrop = delete_user($users['user_id']);
             $drop = mysqli_query($connection, $qdrop)
                     or die ('Error: insert failed'.mysql_error());
         }

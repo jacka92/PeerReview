@@ -1,4 +1,5 @@
 <?php require_once 'templates/db_connection.php'; ?>
+<?php include 'admin/queries.php'; ?>
 
 <html>
     <head>
@@ -48,9 +49,7 @@ groups defined from the student registration list
                         </thead>
                         <tbody>
                             <?php
-                                $query  = "SELECT * ";
-                                $query .= "FROM users ";
-                                $query .= "ORDER BY user_id ASC ";
+                                $query  = users();
                                 $result = mysqli_query($connection, $query);
                                 confirm_query($result);
                             ?>
@@ -60,22 +59,15 @@ groups defined from the student registration list
                                 <form method="post" action="admin/edit_user.php">
 
                                     <tr>
-                                        <td>
-                                            <?php echo $users["user_id"]; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $users["login"]; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $users["first_name"]; ?>
-                                        </td>
+                                        <td><?php echo $users["user_id"]; ?></td>
+                                        <td><?php echo $users["login"]; ?></td>
+                                        <td><?php echo $users["first_name"]; ?></td>
                                         <td><input type="text" name=<?php echo 'name'.$users['user_id'] ?>></td>
-                                        <td>
-                                            <?php echo $users["surname"]; ?>
-                                        </td>
+                                        <td><?php echo $users["surname"]; ?></td>
                                         <td><input type="text" name=<?php echo "surname".$users['user_id'] ?>></td>
                                         <td>
-                                            <?php if ($users["admin"] == 0) {
+                                            <?php 
+                                            if ($users["admin"] == 0) {
                                                 echo "User";
                                             } else {
                                                 echo "Admin";
@@ -89,15 +81,11 @@ groups defined from the student registration list
                                                 <option value="1">Admin</option>
                                             </select>
                                         </td>
-                                        <td>
-                                            <?php echo $users["group_id"]; ?>
-                                        </td>
+                                        <td><?php echo $users["group_id"]; ?></td>
                                         <td>
                                             <select name=<?php echo "group".$users["user_id"]; ?>>
                                                 <?php
-                                                    $query  = "SELECT DISTINCT group_id ";
-                                                    $query .= "FROM groups ";
-                                                    $query .= "ORDER BY group_id ASC ";
+                                                    $query  = groups();
                                                     $result2 = mysqli_query($connection, $query);
                                                     confirm_query($result2);
                                                 ?>
@@ -148,9 +136,7 @@ ranked according with the aggregation of peer assessments on their submissions
                         </h3>
                     </div>
                     <?php
-                        $query_group  = "SELECT DISTINCT group_id ";
-                        $query_group .= "FROM groups ";
-                        $query_group .= "ORDER BY group_id ASC ";
+                        $query_group  = groups();
                         $result_group = mysqli_query($connection, $query_group);
                         confirm_query($result_group);
                     ?>
@@ -191,9 +177,7 @@ particular other groups
                             </thead>
                             <tbody>
                                 <?php
-                                    $query  = "SELECT DISTINCT group_id ";
-                                    $query .= "FROM groups ";
-                                    $query .= "ORDER BY group_id ASC ";
+                                    $query  = groups();
                                     $result = mysqli_query($connection, $query);
                                     confirm_query($result);
                                 ?>
@@ -205,10 +189,7 @@ particular other groups
                                             <td><?php echo $group["group_id"]; ?></td>
                                             <td>
                                                 <?php
-                                                    $query  = "SELECT DISTINCT report_id ";
-                                                    $query .= "FROM assignments ";
-                                                    $query .= "WHERE group_id=".$group["group_id"]." ";
-                                                    $query .= "ORDER BY report_id ASC ";
+                                                    $query  = report_assigned($group["group_id"]);
                                                     $result2 = mysqli_query($connection, $query);
                                                     confirm_query($result2);
                                                 ?>
@@ -221,10 +202,7 @@ particular other groups
                                             <td>
                                                 <select name=<?php echo "report".$group['group_id']; ?>[] size=6 multiple>
                                                     <?php
-                                                        $query  = "SELECT DISTINCT report_id ";
-                                                        $query .= "FROM reports ";
-                                                        $query .= "WHERE group_id <> ".$group['group_id']." ";
-                                                        $query .= "ORDER BY report_id ASC ";
+                                                        $query  = report_available($group["group_id"]);
                                                         $result3 = mysqli_query($connection, $query);
                                                         confirm_query($result3);
                                                     ?>
@@ -259,9 +237,10 @@ particular other groups
         </div>
         <div class="row">
             <!--
-
 the administrator-user interface will support searching for details of a particular student and browsing of
 student details
+
+make drop down list of all usesr_id / username, select, show
             -->
             
         </div>
