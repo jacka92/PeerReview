@@ -13,24 +13,27 @@
 
             $Group_ID = $_SESSION ['group_id'];
             $User = $_SESSION ['user_id'];
-            $Warning = "";
 
-            $reportquery = "SELECT * ";
-            $reportquery .= "FROM reports ";
-            $reportquery .= "WHERE group_id = ".$Group_ID."";
+            if ($Group_ID = 0){
+                console.log("Message to administrator: This User has not been assigned to a group");
+            }else{
+                $reportquery = "SELECT * ";
+                $reportquery .= "FROM reports ";
+                $reportquery .= "WHERE group_id = ".$Group_ID."";
 
-            $reports = mysqli_query ( $connection, $reportquery );
+                $reports = mysqli_query ( $connection, $reportquery );
 
-            if (! $reports) {
-                die ( "Database query failed." );
-            }
+                if (! $reports) {
+                    die ( "Database query failed." );
+                }
 
-            $assessmentquery = "SELECT * ";
-            $assessmentquery .= "FROM assessments ";
-            $assessments = mysqli_query ($connection, $assessmentquery);
+                $assessmentquery = "SELECT * ";
+                $assessmentquery .= "FROM assessments ";
+                $assessments = mysqli_query ($connection, $assessmentquery);
 
-            if (! $assessments){
-                die ("Database query failed.");   
+                if (! $assessments){
+                    die ("Database query failed.");   
+                }
             }
 
             echo "<div id ='accordion'>";

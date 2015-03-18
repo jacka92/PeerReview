@@ -2,43 +2,36 @@
    
     $Group_ID = $_SESSION ['group_id'];
     $User = $_SESSION ['user_id'];
+    
+    if ($Group_ID = 0){
+        console.log("Message to administrator: Please assign this user to a report");
+    }else{
+        $query = "SELECT * ";
+        $query .= "FROM reports ";
+        $query .= "WHERE report_id IN (";
+        $query .= "SELECT report_id ";
+        $query .= "FROM assignments ";
+        $query .= "WHERE group_id = ".$Group_ID." )";
 
-    $Warning = "";
-    if (isset($_POST) && !empty($_POST['submit'])) {
-        $ReportText = $_POST ['body'];
-        $query = "INSERT INTO reports (group_id, report_text ) VALUES ({$Group_ID}, '{$ReportText}')";
-        $result = mysqli_query ( $connection, $query ) or die ( 'Error: insert failed' . mysql_error () );
-        $_POST['submit'] = "";
-    } else {
-        $Warning = "Please enter some text to create a report";
-    }
+        //Select all reports that have abeen assinged
 
-    // query handling
-    $query = "SELECT * ";
-    $query .= "FROM reports ";
-    $query .= "WHERE report_id IN (";
-    $query .= "SELECT report_id ";
-    $query .= "FROM assignments ";
-    $query .= "WHERE group_id = ".$Group_ID." )";
+        $result = mysqli_query ( $connection, $query );
 
-    //Select all reports that have abeen assinged
+        // query error handling
+        if (! $result) {
+            die ( "Database query failed." );
+        }
 
-    $result = mysqli_query ( $connection, $query );
+        $query2 = "SELECT t1.* ";
+        $query2 .= "FROM assessments t1, assignments t2 ";
+        $query2 .= "WHERE (t2.group_id = {$Group_ID} ";
+        $query2 .= "AND t1.report_id = t2.report_id)";
 
-    // query error handling
-    if (! $result) {
-        die ( "Database query failed." );
-    }
+        $result2 = mysqli_query ($connection, $query2);
 
-    $query2 = "SELECT t1.* ";
-    $query2 .= "FROM assessments t1, assignments t2 ";
-    $query2 .= "WHERE (t2.group_id = {$Group_ID} ";
-    $query2 .= "AND t1.report_id = t2.report_id)";
-
-    $result2 = mysqli_query ($connection, $query2);
-
-    if (! $result2){
-        die ("Database query failed.");   
+        if (! $result2){
+            die ("Database query failed.");   
+        }
     }
 
 ?>
@@ -110,7 +103,7 @@
         
         
         <div id="info">
-        <h2 id = "title">You haven't been assigned a Report</h3>
+        <h2 id = "title">You haven't been assigned a Report.</h3>
         <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
         </p>
         <br />
