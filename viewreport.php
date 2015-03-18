@@ -15,7 +15,7 @@
     }
 
     // query handling
-    $query = "SELECT t1.report_id, t1.group_id, t1.report_text FROM reports t1, assignments t2 WHERE (t2.group_id = 1 AND t1.report_id = t2.report_id)";
+    $query = "SELECT t1.report_id, t1.group_id, t1.report_text FROM reports t1, assignments t2 WHERE (t2.group_id = {$Group_ID} AND t1.report_id = t2.report_id)";
 
     //Select all reports that have abeen assinged
 
