@@ -11,7 +11,6 @@
 				<li><a href='viewreport.php'>Reports</a></li>
 				<li><a href='admin.php'>Admin page</a></li>
 				<li><a href='forum.php'>Forum</a></li>
-				<li><a href='groupaccount.php'>Group Account</a></li>
 				<li><a href='reportrankings.php'>Report Rankings</a></li>
 				<li><a href='assessormarks.php'>Assessor Marks</a></li>
 <!--				<li class='dropdown'>
