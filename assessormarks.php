@@ -11,7 +11,8 @@
         <?php include 'templates/template_header.php' ?>
 
         <div class="page-header">
-		<h1></h1>
+		<h1>Assessor marks</h1>
+		<p>Shown below are the assessments given to the assessors assigned to provide marks on your report.</p>
 	</div>
 	<div class="row">
 		<div class="panel panel-default">
@@ -23,8 +24,7 @@
 					<thead>
 						<tr>
 							<th>Group ID</th>
-							<th>Mark</th>
-							<th>Assessment ID</th>
+							<th>Assessment Mark</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -61,6 +61,7 @@
 								<td>
                                             <?php echo $row["assessment"];} ?>
                                         </td>
+                                        
 							</tr>
 					</tbody>
 				</table>
