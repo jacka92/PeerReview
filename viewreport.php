@@ -14,7 +14,12 @@
     }
 
     // query handling
-    $query = "SELECT t1.report_id, t1.group_id, t1.report_text FROM reports t1, assignments t2 WHERE (t2.group_id = {$Group_ID} AND t1.report_id = t2.report_id)";
+    $query = "SELECT * ";
+    $query .= "FROM reports ";
+    $query .= "WHERE report_id IN (";
+    $query .= "SELECT report_id ";
+    $query .= "FROM assignments ";
+    $query .= "WHERE group_id = ".[$Group_ID]." )";
 
     //Select all reports that have abeen assinged
 
@@ -27,7 +32,8 @@
     ///student-users will submit grading assessments and comments on the reports assigned to them - check user from session and display only the reports
     //assigned to them
 
-    $query2 = "SELECT t1.assessment_id, t1.report_id, t1.user_id, t1.assessment, t1.comments FROM assessments t1, assignments t2 WHERE (t2.group_id = 1 AND t1.report_id = t2.report_id)";
+    $query2 = "SELECT * ";
+    $query2 .= "FROM assessments ";
     $result2 = mysqli_query ($connection, $query2);
 
     if (! $result2){
@@ -50,28 +56,6 @@
 
             <?php include 'templates/template_header.php';?>
 
-<!--
-            <style>
-
-    #accordion {
-        padding: 20px;
-        width: 30%;
-        float: left;
-    }
-
-    #info {
-        width: 70%;
-        float: right;
-    }
-
-    .data{
-        display: none;   
-    }
-                
-
-
-    </style>
--->
 
 
 

@@ -10,6 +10,7 @@
     <body role='document' onload="title();">
     
         <?php include 'templates/template_header.php';
+
             $Group_ID = $_SESSION ['group_id'];
             $User = $_SESSION ['user_id'];
             $Warning = "";
