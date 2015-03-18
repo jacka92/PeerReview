@@ -31,99 +31,55 @@
             if (! $assessments){
                 die ("Database query failed.");   
             }
-        ?>
 
-    <style>
+            echo "<div id ='accordion'>";
+                echo "<h3> Insert New Report <h3>";
+                echo "<div> Start creating your new report to the right </div>";
 
-    #accordion {
-        padding: 20px;
-        width: 30%;
-        float: left;
-    }
-
-    #info {
-        width: 70%;
-        float: right;
-    }
-
-    .data{
-        display: none;   
-    }
-                
-
-
-    </style>
-
-                <?php   
-                    // run through all rows
-                    echo "<div id ='accordion'>";
-
-                    echo "<h3> Insert New Report <h3>";
-                    echo "<div> Start creating your new report to the right </div>";
-    
-                    while ( $row = mysqli_fetch_assoc ( $result ) ) {
-                        // set the current row to this php var. Needed for id use
-                        $currentrowgroupid = $row ["group_id"];
-                        // giving all
-                        echo "<h3>" . "Report ID : " . $row ["report_id"] . "</h3>";
-                        
-                        
-                        // set the div's id to the current row's group id
-                        echo "<div ";
-                        echo "id = $currentrowgroupid   >";
-                        echo "<p> Report ID : " . $row ["report_id"] . "</li>";
-                        echo "<p> Group ID: " . $row ["group_id"] . "</li>";
-                        echo "<p class = 'data' id = " . $row["report_id"] . "> Report col : ". $row["report_text"] . "</p>";   
-                        echo "</div>";
-
-                    }
+                while ( $row = mysqli_fetch_assoc ( $reports ) ) {
+                    echo "<h3>" . "Report ID : " . $row ["report_id"] . "</h3>";
+                    echo "<div ";
+                    echo "id = " . $row ["group_id"] . ">";
+                    echo "<p> Report ID : " . $row ["report_id"] . "</li>";
+                    echo "<p> Group ID: " . $row ["group_id"] . "</li>";
+                    echo "<p class = 'data' id = " . $row["report_id"] . "> Report col : ". $row["report_text"] . "</p>";   
                     echo "</div>";
 
-                    $i = 0;
-                    while ( $row2 = mysqli_fetch_assoc ( $result2 ) ){
-                        echo "<p class = 'data' 
-                        id = ass" . $row2["report_id"] . "no" . $i . "> " . 
-                            "Assessment ID: " . $row2["assessment_id"] . 
-                            ", Assigned to Report " . $row2["report_id"] .
-                            ", completed by User " . $row2["user_id"] .
-                            ", Score:" . $row2["assessment"] .
-                            ", " . $row2["comments"] .
-                            "</p>";
-                        $i++;
-                    }
+                }
+            echo "</div>";
 
-                ?>
+            $i = 0;
+            while ( $row2 = mysqli_fetch_assoc ( $assessments ) ){
+                echo "<p class = 'data' 
+                    id = ass" . $row2["report_id"] . "no" . $i . "> " . 
+                    "Assessment ID: " . $row2["assessment_id"] . 
+                    ", Assigned to Report " . $row2["report_id"] .
+                    ", completed by User " . $row2["user_id"] .
+                    ", Score:" . $row2["assessment"] .
+                    ", " . $row2["comments"] .
+                    "</p>";
+                $i++;
+            }
+        ?>
+    
+        <div id="info"><br>
+            <h2 id = "title">Your group has not completed any Reports</h3>
+            <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" ></p>
+            <div id="assessments"></div>
 
-
-        
-        
-        <div id="info">
-        <br>
-        <h2 id = "title">Your group has not completed any Reports</h3>
-            
-        <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" ></p>
-
-        <div id="assessments"></div>
-            
             <div id = "reportinput" style = "visibility:hidden;">
                 <form method="post" action="dashboard/add_report.php">
                     <input class = "data" name = "group_id" name = "<?php echo $Group_ID; ?>">
                     <input class = "data" name = "user_id" value = "<?php echo $User; ?>">
-                        <textarea name="report_text"></textarea><br><br>
-                        <button name="create_report" class="btn btn-primary">Create</button>    
+                    <textarea name="report_text"></textarea><br><br>
+                    <button name="create_report" class="btn btn-primary">Create</button>    
                 </form>    
-            </div>  
+            </div>
         </div>
             
-        
-
-        <?php
-            include 'templates/template footer.php';
-        ?>
-
+        <?php include 'templates/template footer.php'; ?>
         <script src="jquery-ui-1.11.3/external/jquery/jquery.js"></script>
         <script src="jquery-ui-1.11.3/jquery-ui.js"></script>
-
 
     </body>
 </html>
@@ -131,7 +87,6 @@
 
 <script type="text/javascript">
     
-    //Function for setting the title
     $('#accordion').accordion({
         active: false,
         collapsible: true,
@@ -139,7 +94,6 @@
         
     });
         
-    // Function for creating accordion
     $(function accordion() {
     
         $( "#accordion" ).accordion({

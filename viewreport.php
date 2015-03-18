@@ -50,6 +50,7 @@
 
             <?php include 'templates/template_header.php';?>
 
+<!--
             <style>
 
     #accordion {
@@ -70,6 +71,7 @@
 
 
     </style>
+-->
 
 
 
