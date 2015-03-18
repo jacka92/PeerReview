@@ -122,24 +122,19 @@
         <div id="info">
         <br>
         <h2 id = "title">Your group has not completed any Reports</h3>
-        <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
-        <div id = "assinput" >
-            <form method="post" action="viewreport/add_ass.php">
-            <input class = "data" id = "assinput_report_id" name = "report_id">
-            <input class = "data" name = "user_id" value = "<?php echo $User; ?>">
-            <textarea name="comments"></textarea><br><br>
-            <input name = "assessment" type = "number" max = "5" placeholder = "mark"><br><br>
-            <button name="create_ass" class="btn btn-primary">Create</button>    
-        </form>
-                 
-        </div>
-        </p>
-        <br />
-
-            <div id="assessments">
             
-            </div>
-            <br><br>
+        <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" ></p>
+
+        <div id="assessments"></div>
+            
+            <div id = "reportinput" style = "visibility:hidden;">
+                <form method="post" action="dashboard/add_report.php">
+                    <input class = "data" name = "group_id" name = "<?php echo $Group_ID; ?>">
+                    <input class = "data" name = "user_id" value = "<?php echo $User; ?>">
+                        <textarea name="report_text"></textarea><br><br>
+                        <button name="create_report" class="btn btn-primary">Create</button>    
+                </form>    
+            </div>  
         </div>
             
         
@@ -201,9 +196,11 @@
     function createreport(){
         var title = document.getElementById("title");
         var body = document.getElementById("body");
+        var reportinput = document.getElementById("reportinput");
         
         title.innerHTML = "New Report for Group <?php echo $Group_ID; ?>";
-        body.innerHTML = "yo";
+        body.innerHTML = "";
+        reportinput.style = "visibility : visible;";
         
         var ass = document.getElementById("assessments");
         while (ass.firstChild) {
@@ -217,6 +214,9 @@
     function load(reportid){
         var title = document.getElementById("title");
         var body = document.getElementById("body");
+        var reportinput = document.getElementById("reportinput");
+        
+        reportinput.style = "visibility : hidden;";
         
         var tempdata = document.getElementById(reportid).innerHTML;  
         tempdata = tempdata.split("Report col : ");
