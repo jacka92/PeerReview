@@ -67,11 +67,11 @@ groups defined from the student registration list
                                         <td><input type="text" name=<?php echo "surname".$users['user_id'] ?>></td>
                                         <td>
                                             <?php 
-                                            if ($users["admin"] == 0) {
-                                                echo "User";
-                                            } else {
-                                                echo "Admin";
-                                            }
+                                                if ($users["admin"] == 0) {
+                                                    echo "User";
+                                                } else {
+                                                    echo "Admin";
+                                                }
                                             ?>
                                         </td>
                                         <td>

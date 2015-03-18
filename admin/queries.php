@@ -30,12 +30,12 @@
 // assign_report.php ----------------------------------------
 	function delete_assigned($group){
 		$query  = "DELETE FROM assignments ";
-        $query .= "WHERE group_id = ".$group;
+        $query .= "WHERE group_id = {$group}";
         return $query;
     }
-	function report_assign($group,$report_output){
+	function report_assign($group,$report){
 		$query  = "INSERT INTO assignments (group_id, report_id) ";
-        $query .= "VALUES ('{$group}', '{$report_output}')";
+        $query .= "VALUES ('{$group}', '{$report}')";
         return $query;
 	}
 

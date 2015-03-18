@@ -31,3 +31,6 @@ body {
 .theme-showcase .navbar .container {
     width: auto;
 }
+div.page-header{
+    margin-top: -20px;
+}
