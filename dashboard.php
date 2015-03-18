@@ -1,59 +1,39 @@
 <?php require_once 'templates/db_connection.php'; ?>
+
 <html>
-
     <head>
-        <link rel="stylesheet" href="jquery-ui-1.11.3/jquery-ui.css">
         <title>Peer Assessment</title>
-        <?php include 'templates/imports.php';?>
-<?php
-    $Group_ID = $_SESSION ['group_id'];
-    $User = $_SESSION ['user_id'];
-
-    $Warning = "";
-    if (isset($_POST) && !empty($_POST['submit'])) {
-        $ReportText = $_POST ['body'];
-        $query = "INSERT INTO reports (group_id, report_text ) VALUES ({$Group_ID}, '{$ReportText}')";
-        $result = mysqli_query ( $connection, $query ) or die ( 'Error: insert failed' . mysql_error () );
-        $_POST['submit'] = "";
-    } else {
-        $Warning = "Please enter some text to create a report";
-    }
-
-    // query handling
-    $query = "SELECT * ";
-    $query .= "FROM reports ";
-    $query .= "WHERE group_id = ".$Group_ID."";
-
-    //Select all reports that have abeen assinged
-
-    $result = mysqli_query ( $connection, $query );
-
-    // query error handling
-    if (! $result) {
-        die ( "Database query failed." );
-    }
-    ///student-users will submit grading assessments and comments on the reports assigned to them - check user from session and display only the reports
-    //assigned to them
-
-    $query2 = "SELECT * ";
-    $query2 .= "FROM assessments ";
-    $result2 = mysqli_query ($connection, $query2);
-
-    if (! $result2){
-        die ("Database query failed.");   
-    }
-
-?>
-
-
-
+        <link rel="stylesheet" href="jquery-ui-1.11.3/jquery-ui.css">
+        <?php include 'templates/imports.php';  ?>
     </head>
-
+    
     <body role='document' onload="title();">
+    
+        <?php include 'templates/template_header.php';
+            $Group_ID = $_SESSION ['group_id'];
+            $User = $_SESSION ['user_id'];
+            $Warning = "";
 
-            <?php include 'templates/template_header.php';?>
+            $reportquery = "SELECT * ";
+            $reportquery .= "FROM reports ";
+            $reportquery .= "WHERE group_id = ".$Group_ID."";
 
-            <style>
+            $reports = mysqli_query ( $connection, $reportquery );
+
+            if (! $reports) {
+                die ( "Database query failed." );
+            }
+
+            $assessmentquery = "SELECT * ";
+            $assessmentquery .= "FROM assessments ";
+            $assessments = mysqli_query ($connection, $assessmentquery);
+
+            if (! $assessments){
+                die ("Database query failed.");   
+            }
+        ?>
+
+    <style>
 
     #accordion {
         padding: 20px;
@@ -73,8 +53,6 @@
 
 
     </style>
-
-
 
                 <?php   
                     // run through all rows
@@ -224,7 +202,12 @@
         tempdata = tempdata.replace("</p>","");
 
         title.innerHTML = "Report "+reportid+"";
-        body.innerHTML = tempdata;
+        body.innerHTML = tempdata + "<br><br>";
+        
+        var button = document.createElement("button");
+        button.innerHTML = "Edit";
+        button.onclick = "dumpforedit();";
+        body.appendChild(button);
         
         loadass(reportid);
 
@@ -268,6 +251,10 @@
         var aim = document.getElementById("assinput_report_id");
         aim.value = reportno;
 
+    }
+    
+    function dumpforedit(){
+        console.log("yo");
     }
 
 </script>
