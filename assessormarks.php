@@ -45,7 +45,7 @@
                                 $resulti = mysqli_query($connection, $queryi)or die("Report ID slection failed.");
                                 while($rowi = mysqli_fetch_assoc($resulti)){
                                 $AssessorGroupID = $rowi["group_id"];}
-                                	
+                                
                                 //Query to find marks given to assessor's group
                                 $query2 = "SELECT t1.group_id, t2.assessment FROM reports t1, assessments t2 WHERE (t1.group_id = {$AssessorGroupID} AND t1.report_id = t2.report_id)";
                                 $result2 = mysqli_query($connection, $query2)or die("Query to find marks of assessors failed");

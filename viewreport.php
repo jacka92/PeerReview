@@ -19,7 +19,7 @@
     $query .= "WHERE report_id IN (";
     $query .= "SELECT report_id ";
     $query .= "FROM assignments ";
-    $query .= "WHERE group_id = ".[$Group_ID]." )";
+    $query .= "WHERE group_id = ".$Group_ID." )";
 
     //Select all reports that have abeen assinged
 
@@ -29,11 +29,12 @@
     if (! $result) {
         die ( "Database query failed." );
     }
-    ///student-users will submit grading assessments and comments on the reports assigned to them - check user from session and display only the reports
-    //assigned to them
 
-    $query2 = "SELECT * ";
-    $query2 .= "FROM assessments ";
+    $query2 = "SELECT t1.* ";
+    $query2 .= "FROM assessments t1, assignments t2 ";
+    $query2 .= "WHERE (t2.group_id = {$Group_ID} ";
+    $query2 .= "AND t1.report_id = t2.report_id)";
+
     $result2 = mysqli_query ($connection, $query2);
 
     if (! $result2){
