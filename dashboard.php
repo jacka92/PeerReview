@@ -14,7 +14,7 @@
             $Group_ID = $_SESSION ['group_id'];
             $User = $_SESSION ['user_id'];
 
-            if ($Group_ID = 0){
+            if ($Group_ID == 0){
                 console.log("Message to administrator: This User has not been assigned to a group");
             }else{
                 $reportquery = "SELECT * ";

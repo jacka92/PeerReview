@@ -3,7 +3,7 @@
     $Group_ID = $_SESSION ['group_id'];
     $User = $_SESSION ['user_id'];
     
-    if ($Group_ID = 0){
+    if ($Group_ID == 0){
         console.log("Message to administrator: Please assign this user to a report");
     }else{
         $query = "SELECT * ";
