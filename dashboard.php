@@ -23,6 +23,7 @@
     $query = "SELECT * ";
     $query .= "FROM reports ";
     $query .= "WHERE group_id = ".$Group_ID."";
+
     //Select all reports that have abeen assinged
 
     $result = mysqli_query ( $connection, $query );
@@ -116,27 +117,26 @@
 
                 ?>
 
-        <div id = "assinput">
+
+        
+        
+        <div id="info">
+        <br>
+        <h2 id = "title">Your group has not completed any Reports</h3>
+        <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
+        <div id = "assinput" >
             <form method="post" action="viewreport/add_ass.php">
             <input class = "data" id = "assinput_report_id" name = "report_id">
             <input class = "data" name = "user_id" value = "<?php echo $User; ?>">
             <textarea name="comments"></textarea><br><br>
             <input name = "assessment" type = "number" max = "5" placeholder = "mark"><br><br>
             <button name="create_ass" class="btn btn-primary">Create</button>    
-            </form>
+        </form>
                  
         </div>
-        
-        
-        <div id="info">
-        <br>
-        <h2 id = "title">You haven't been assigned a Report</h3>
-        <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
         </p>
         <br />
 
-            
-            
             <div id="assessments">
             
             </div>
@@ -188,18 +188,6 @@
         });
       });
     
-    $(function() {
-        $( "#assinput" ).dialog({
-            autoOpen: false,
-            height: 300,
-            width: 600,
-        });
-        
-//    $( "#button" ).click(function() {
-//        $( "#assinput" ).dialog( "open" );
-//        });
-    });
-    
 
     
     function title(){
@@ -208,6 +196,7 @@
         if ($("#accordion").children().length > 0) {
             title.innerHTML = "Select a report from the left";
         }
+        
     }
     
     function createreport(){
@@ -216,7 +205,14 @@
         
         title.innerHTML = "New Report for Group <?php echo $Group_ID; ?>";
         body.innerHTML = "yo";
+        
+        var ass = document.getElementById("assessments");
+        while (ass.firstChild) {
+            ass.removeChild(ass.firstChild);
+        }
+        
     }
+
 
     // Function for changing ui elements 
     function load(reportid){
