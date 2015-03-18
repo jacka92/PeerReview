@@ -95,7 +95,6 @@
                         echo "id = $currentrowgroupid   >";
                         echo "<p> Report ID : " . $row ["report_id"] . "</li>";
                         echo "<p> Group ID: " . $row ["group_id"] . "</li>";
-                        echo "<p> Mark Aggregate: " . $row ["mark_aggregate"] . "</li>";
                         echo "<p class = 'data' id = " . $row["report_id"] . "> Report col : ". $row["report_text"] . "</p>";   
                         echo "</div>";
 
