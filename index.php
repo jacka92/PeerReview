@@ -25,7 +25,7 @@ $Message = "";
 		if (! empty ( $User ) && ! empty ( $Pass )) {
 			
 			//$hashed_password = password_encrypt ( $_POST ['password'] );
-			$hashed_password = sha1('hqb%$t'.$_POST ['password'].'cg*l');
+			$hashed_password = password_encrypt($_POST ['password']);
 			
 			$query = "SELECT * FROM users WHERE '$User' = login AND '$hashed_password' = password LIMIT 1";
 			$result = mysqli_query ( $connection, $query ) or die ( 'Error: ' . mysql_error () );
