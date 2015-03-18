@@ -128,10 +128,11 @@
         
         <div id="info">
         <h2 id = "title">You haven't been assigned a Report</h3>
+                   <button id = "button" style = "visibility:hidden" onclick = "assessment();"> Create New Assessment </button>
         <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
         </p>
         <br />
-<!--        <button id = "button" style = "visibility:hidden" onclick = "assessment();"> Create New Assessment </button>-->
+
             
             
             <div id="assessments">
