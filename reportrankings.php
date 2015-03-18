@@ -22,18 +22,15 @@
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th colspan="2">Group ID</th>
-							<th colspan="2">Aggregated Mark</th>
+							<th>Group ID</th>
+							<th>Aggregated Mark</th>
 						</tr>
 					</thead>
 					<tbody>
                             <?php
-                                $query  = "SELECT AVG(t1.assessment), t2.group_id FROM assessments t1 INNER JOIN reports t2 ON(t1.report_id = t2.report_id)";
-                             /*   $query .= "";
-                                $query .= " ";
-                                $query .= "";*/
+                                $query  = "SELECT AVG(t1.assessment), t2.group_id FROM assessments t1 INNER JOIN reports t2 ON(t1.report_id = t2.report_id) GROUP BY t2.group_id ORDER BY AVG(t1.assessment) DESC";
                                 $result = mysqli_query($connection, $query)or die("didn't connect");
-                                //confirm_query($result);
+                                confirm_query($result);
                             ?>
                             <?php
                                 while($row = mysqli_fetch_assoc($result)){
