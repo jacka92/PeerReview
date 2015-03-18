@@ -78,6 +78,9 @@
                 <?php   
                     // run through all rows
                     echo "<div id ='accordion'>";
+
+                    echo "<h3> Insert New Report <h3>";
+                    echo "<div> Start creating your new report to the right </div>";
     
                     while ( $row = mysqli_fetch_assoc ( $result ) ) {
                         // set the current row to this php var. Needed for id use
@@ -125,11 +128,12 @@
         
         
         <div id="info">
+        <br>
         <h2 id = "title">You haven't been assigned a Report</h3>
         <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
         </p>
         <br />
-<!--        <button id = "button" style = "visibility:hidden" onclick = "assessment();"> Create New Assessment </button>-->
+
             
             
             <div id="assessments">
@@ -167,12 +171,18 @@
     
         $( "#accordion" ).accordion({
             activate: function( event, ui ) {
-                var temploader = ui.newPanel.html();                    
-                temploader = temploader.replace("<p> Report ID : ","");
-                temploader = temploader.split("</p>");
-                var loader = temploader[0];
-                load(loader);
+                var temploader = ui.newPanel.html();  
+                if (temploader == "<div> Start creating your new report to the right </div>"){
+                    console.log("yo");
+                    createreport();
+                }else{
+                    console.log("pleb");
+                    temploader = temploader.replace("<p> Report ID : ","");
+                    temploader = temploader.split("</p>");
+                    var loader = temploader[0];
+                    load(loader);
                 }
+            }
 
         });
       });
@@ -189,6 +199,7 @@
 //        });
     });
     
+
     
     function title(){
         var title = document.getElementById("title");  
@@ -197,15 +208,19 @@
             title.innerHTML = "Select a report from the left";
         }
     }
+    
+    function createreport(){
+        var title = document.getElementById("title");
+        var body = document.getElementById("body");
+        
+        title.innerHTML = "New Report for Group <?php echo $Group_ID; ?>";
+        body.innerHTML = "yo";
+    }
 
     // Function for changing ui elements 
     function load(reportid){
         var title = document.getElementById("title");
-        var subtitle = document.getElementById("subtitle");
         var body = document.getElementById("body");
-//        var button = document.getElementById("button");
-//        
-//        button.style.visibility = "visible";
         
         var tempdata = document.getElementById(reportid).innerHTML;  
         tempdata = tempdata.split("Report col : ");
