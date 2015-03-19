@@ -13,7 +13,7 @@
             $Group_ID = $_SESSION ['group_id'];
             $User = $_SESSION ['user_id'];
         ?>
-        <div id = "welcome" class = "col-md-15">
+        <div id ="welcome" class ="col-md-15">
             <h1>Welcome to Peer Review, User <?php echo $User; ?> </h1>
             <h3>Your Group number is <?php echo $Group_ID ?>. The reports submitted by your group are below.</h3>
             
