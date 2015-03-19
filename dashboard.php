@@ -71,7 +71,7 @@
             <h2 id = "title">You have not been assigned to a group.</h3>
             <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" ></p>
  
-            <button id = "edit" onclick = "edit();" style = "visibility:hidden;">Edit</button>
+            <button id = "edit" onclick = "edit();" class="btn btn-primary" style = "visibility:hidden;">Edit</button>
 
             
             <div id="assessments"></div>
