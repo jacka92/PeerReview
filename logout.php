@@ -35,7 +35,7 @@ echo "<meta http-equiv='refresh' content=\"4;URL='index.php'\">
 			<div class='row'>
 				<h1 style = 'text-align:center;'>You have successfully logged out. Redirecting in 4 seconds...</h1>
                 <div id = pacman style = 'position:absolute;'>
-				    <img src='img/ajax-loader.gif' height='80' width='80'>
+				    <img src='img/ajax-loader.gif' height='40' width='40'>
                 </div>
 			</div>
 
@@ -53,7 +53,6 @@ echo "<meta http-equiv='refresh' content=\"4;URL='index.php'\">
           <script type='text/javascript'>
             $(document).ready(function () {
                 var right = $('#pacman').offset().right;
-                $('#pacman').css({right:right}).animate({'right':'0px'}, 4500, 'linear');
                 $('#pacman').css({right:right}).animate({'right':'0px'}, 4500, 'linear');
             });
         </script>
