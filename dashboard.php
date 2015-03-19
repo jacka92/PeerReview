@@ -38,7 +38,6 @@
                 
                 <br><br>
             </div>
-        </div>
             <?php
         
                 if ($Group_ID == 0){
@@ -121,7 +120,7 @@
         <script src="jquery-ui-1.11.3/external/jquery/jquery.js"></script>
         <script src="jquery-ui-1.11.3/jquery-ui.js"></script>
 
-        <br></div>
+        <div><br></div>
     </body>
 </html>
 
