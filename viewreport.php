@@ -94,7 +94,7 @@
             <form method="post" action="viewreport/add_ass.php">
             <input class = "data" id = "assinput_report_id" name = "report_id">
             <input class = "data" name = "user_id" value = "<?php echo $User; ?>">
-            <textarea name="comments"></textarea><br><br>
+            <textarea name="comments" "15" cols = "120"></textarea><br><br>
             <input name = "assessment" type = "number" min = "0" max = "5" placeholder = "mark"><br><br>
             <button name="create_ass" class="btn btn-primary">Create</button>    
             </form>
