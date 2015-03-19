@@ -43,7 +43,7 @@
                                 	//Query to find marks given to assessor's group
                                 	
                                 	$query2 = 	"SELECT t1.* FROM assessments t1, assignments t2, users t4 
-                                				WHERE (t2.report_id = 4) 
+                                				WHERE (t2.report_id = {$ReportID}) 
                                 				AND (t4.group_id = t2.group_id) 
                                 				AND (t4.user_id = t1.user_id)";
                                 
