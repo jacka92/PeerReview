@@ -2,8 +2,8 @@
 	require_once '../templates/db_connection.php';
 	include '../templates/included_functions.php';
 
-    $group_id = (isset($_POST['group_id']) ? $_POST['group_id'] : '');
-    $report_text = (isset($_POST['report_text']) ? $_POST['report_text'] : '');
+    $group_id = mysqli_real_escape_string($connection,(isset($_POST['group_id']) ? $_POST['group_id'] : ''));
+    $report_text = mysqli_real_escape_string($connection,(isset($_POST['report_text']) ? $_POST['report_text'] : ''));
 
     $q  = "INSERT INTO reports (group_id, report_text) ";
     $q .= "VALUES ('{$group_id}', '{$report_text}')"; 
