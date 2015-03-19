@@ -34,32 +34,39 @@
 	    </div>
 	    <div><br></div>
         <div class="row">
-        	<div class="page-header">
-	            <h3 style="font-style: italic;">Comments:</h3>
-	        </div>
-        </div>
+        	<div class="col-sm-8">
+	        	<div class="panel panel-default">
+					<div class="panel-heading">
+					  	<h3 class="panel-title">Comments</h3>
+					</div>
+					<div class="panel-body">
 
-		<?php
-	        $query = comments($posts['post_id']);
-	        $result = mysqli_query($connection, $query);
-	        confirm_query($result);
-	    ?>
-	    <?php
-	        while($comments = mysqli_fetch_assoc($result)){
-	    ?>
-		    <div class="row">
-		        <div class="page-header">
-		            <h3 style="font-weight: bold;"><?php echo $comments["comment_title"]; ?></h3>
-		            <h4 style="font-style: italic;"><?php echo $comments["comment_date"]; ?></h4>
-		        </div>
-		        <div>
-		        	<p><?php echo $comments["comment_content"]; ?></p>
-		        </div>
-		    </div>
-		    <div><br></div>
-	    <?php
-	        }
-	    ?>
+						<?php
+					        $query = comments($posts['post_id']);
+					        $result = mysqli_query($connection, $query);
+					        confirm_query($result);
+					    ?>
+					    <?php
+					        while($comments = mysqli_fetch_assoc($result)){
+					    ?>
+						    <div class="row" style="margin-left: 10px;">
+						        <div class="page-header">
+						            <h3 style="font-weight: bold;"><?php echo $comments["comment_title"]; ?></h3>
+						            <h4 style="font-style: italic;"><?php echo $comments["comment_date"]; ?></h4>
+						        </div>
+						        <div>
+						        	<p><?php echo $comments["comment_content"]; ?></p>
+						        </div>
+						    </div>
+						    <div><br></div>
+					    <?php
+					        }
+					    ?>
+
+					</div>
+				</div>
+			</div>
+        </div>
 
 		<div class="row">
             <div class="col-md-8">

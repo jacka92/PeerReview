@@ -16,10 +16,10 @@ $Message = "";
 	}else{
 		//$Message
 	}
-
+	//$firstname = mysqli_real_escape_string($con, $_POST['firstname']);
 	if (isset ( $_POST ['submit'] )) {
-		$User = $_POST ['username'];
-		$Pass = $_POST ['password'];
+		$User = mysqli_real_escape_string($connection, $_POST ['username']);
+		$Pass = mysqli_real_escape_string($connection, $_POST ['password']);
 		
 		// If neither field is blank
 		if (! empty ( $User ) && ! empty ( $Pass )) {
@@ -52,8 +52,6 @@ $Message = "";
 					  	</div>";
 				} else {
 					redirect_to ('dashboard.php');
-					/*header("Location: ". 'dashboard.php');
-					exit;*/
 				}
 			}
 		} else {

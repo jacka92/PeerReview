@@ -7,8 +7,12 @@
 		<nav class='navbar navbar-inverse navbar-fixed-bottom'>
 		<div class='row'> </div>
 			<div class='container'>
-				<div class='navbar-footer'>
-				  	<a class='navbar-brand' href='logout.php'>Log Out</a>
+				<div class='navbar-footer'>";
+    if (!isset($_SESSION)||empty($_SESSION['user_id'])){
+	}else{
+		echo "<a class='navbar-brand' href='logout.php'>Log Out</a>";
+	}
+	echo "
 				</div>
 			</div>
 		</nav>
