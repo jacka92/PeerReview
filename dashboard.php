@@ -70,6 +70,8 @@
         <div id="info"><br>
             <h2 id = "title">You have not been assigned to a group.</h3>
             <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" ></p>
+            <button id = "edit" onclick = "dumpforedit();" style = "visibility:hidden;">Edit</button>
+            
             <div id="assessments"></div>
 
             <div id = "reportinput" style = "visibility:hidden;">
@@ -132,11 +134,16 @@
         var title = document.getElementById("title");
         var body = document.getElementById("body");
         var reportinput = document.getElementById("reportinput");
+        var edit = document.getElementById("edit");
         
         title.innerHTML = "New Report for Group <?php echo $Group_ID; ?>";
         body.innerHTML = "";
+        
         reportinput.style.visibility = "visible";
         reportinput.style.display = "block";//this is needed mainly for Chrome
+        
+        edit.style.visibility = "hidden";
+        edit.style.display = "none";//this is needed mainly for Chrome
         
         var ass = document.getElementById("assessments");
         while (ass.firstChild) {
@@ -151,6 +158,10 @@
         var title = document.getElementById("title");
         var body = document.getElementById("body");
         var reportinput = document.getElementById("reportinput");
+        var edit = document.getElementById("edit");
+        
+        edit.style.visibility = "visible";
+        edit.style.display = "block";//this is needed mainly for Chrome
         
         reportinput.style.display = "hidden";
         reportinput.style.display = "none" //this is needed mainly for Chrome"
@@ -162,11 +173,7 @@
 
         title.innerHTML = "Report "+reportid+"";
         body.innerHTML = tempdata + "<br><br>";
-        
-        var button = document.createElement("button");
-        button.innerHTML = "Edit";
-        button.onclick = "dumpforedit()";
-        body.appendChild(button);
+    
         
         loadass(reportid);
 
@@ -214,6 +221,14 @@
     
     function dumpforedit(){
         console.log("yo");
+        
+        var oldreport = document.getElementById("body");
+        var newreport = document.createElement("textarea");
+        var info = document.getElementById("info");
+        
+        newreport.value = oldreport.innerHTML;
+        info.appendChild(newreport);
+        
     }
 
 </script>
