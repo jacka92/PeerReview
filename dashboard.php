@@ -82,7 +82,7 @@
                     <input class = "data" name = "group_id" value = "<?php echo $Group_ID; ?>">
                     <input class = "data" name = "user_id" value = "<?php echo $User; ?>">                  
                     <textarea id = "report_text" name="report_text"></textarea><br><br>
-                    <button name="create_report" class="btn btn-primary">Create</button>    
+                    <button id = "button" name="create_report" class="btn btn-primary">Submit</button>    
                 </form>    
             </div>
             
@@ -234,6 +234,9 @@
         var edit = document.getElementById("edit");
         var title = document.getElementById("title");
         var report_id = document.getElementById("report_id");
+        var button = document.getElementById("button");
+        
+        button.value = "Update";
         
         report_id.value = title.innerHTML.replace("Report ","");
         
