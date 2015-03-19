@@ -80,7 +80,7 @@
                         <table class="table table-hover">
                             <tbody>
                             	<form method="post" action="forum/add_comment.php">
-    								<input type="text" name="post_id" class="data" value=<?php echo $posts['post_id']; ?>>
+    								<input type="text" name="post_id" class="data" value=<?php echo $posts['post_id']; ?> placeholder="Enter the post title ...">
                                 	<tr>
     									<td>Comment title</td>
     									<td><input type="text" name="title"></td>

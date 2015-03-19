@@ -62,9 +62,13 @@ groups defined from the student registration list
                                         <td><?php echo $users["user_id"]; ?></td>
                                         <td><?php echo $users["login"]; ?></td>
                                         <td><?php echo $users["first_name"]; ?></td>
-                                        <td><input type="text" name=<?php echo 'name'.$users['user_id'] ?>></td>
+                                        <td>
+                                            <input type="text" name=<?php echo 'name'.$users['user_id'] ?> placeholder="Enter the first name...">
+                                        </td>
                                         <td><?php echo $users["surname"]; ?></td>
-                                        <td><input type="text" name=<?php echo "surname".$users['user_id'] ?>></td>
+                                        <td>
+                                            <input type="text" name=<?php echo "surname".$users['user_id'] ?> placeholder="Enter the surname...">
+                                        </td>
                                         <td>
                                             <?php 
                                                 if ($users["admin"] == 0) {
