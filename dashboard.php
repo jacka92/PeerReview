@@ -111,7 +111,7 @@
                     <input class = "data" name = "report_id" id = "report_id">
                     <input class = "data" name = "group_id" value = "<?php echo $Group_ID; ?>">
                     <input class = "data" name = "user_id" value = "<?php echo $User; ?>">                  
-                    <textarea id = "report_text" name="report_text"></textarea><br><br>
+                    <textarea id = "report_text" name="report_text" rows = "15" cols = "120"></textarea><br><br>
                     <button id = "button" name="create_report" class="btn btn-primary">Submit</button>    
                 </form>    
             </div>
