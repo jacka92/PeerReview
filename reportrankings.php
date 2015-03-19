@@ -38,17 +38,21 @@
 	                            ?>
 	                			
 	                			<?php
-	                				if($counter == 1){
-										echo "<tr class='success'>";
-	                				}elseif($counter == $max){
-	                					echo "<tr class='danger'>";
-	                				}else{
-	                					echo "<tr>";
-	                				}
+		                				if($counter == 1){
+											echo "<tr class='success'>";
+		                				}elseif($counter == $max){
+		                					echo "<tr class='danger'>";
+		                				}else{
+		                					echo "<tr>";
+		                				}
 								?>
 									<td><?php echo $row["group_id"]; ?></td>
-									<td><?php echo $row["AVG(t1.assessment)"];} ?></td>
+									<td><?php echo $row["AVG(t1.assessment)"]; ?></td>
 								</tr>
+								<?php
+										$counter ++;
+									}
+								?>
 						</tbody>
 					</table>
 				</div>
