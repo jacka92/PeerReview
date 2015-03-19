@@ -78,6 +78,7 @@
 
             <div id = "reportinput" style = "visibility:hidden;">
                 <form id = "reportform" method="post" action="dashboard/add_report.php">
+                    <input class = "data" name = "report_id" id = "report_id">
                     <input class = "data" name = "group_id" value = "<?php echo $Group_ID; ?>">
                     <input class = "data" name = "user_id" value = "<?php echo $User; ?>">                  
                     <textarea id = "report_text" name="report_text"></textarea><br><br>
@@ -177,7 +178,7 @@
 
         title.innerHTML = "Report "+reportid+"";
         body.innerHTML = tempdata + "<br><br>";
-    
+        
         
         loadass(reportid);
 
@@ -226,12 +227,15 @@
     function edit(){
         console.log("yo");
         
-        var title = document.getElementById("title");
-        var body = document.getElementById("body");
+        
         var reportinput = document.getElementById("reportinput");
         var report_text = document.getElementById("report_text");
         var reportform = document.getElementById("reportform");
         var edit = document.getElementById("edit");
+        var title = document.getElementById("title");
+        var report_id = document.getElementById("report_id");
+        
+        report_id.value = title.innerHTML.replace("Report ","");
         
         report_text.value = body.innerHTML.replace("<br><br>","");
         
