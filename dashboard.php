@@ -70,18 +70,22 @@
         <div id="info"><br>
             <h2 id = "title">You have not been assigned to a group.</h3>
             <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" ></p>
-            <button id = "edit" onclick = "dumpforedit();" style = "visibility:hidden;">Edit</button>
+ 
+            <button id = "edit" onclick = "edit();" style = "visibility:hidden;">Edit</button>
+
             
             <div id="assessments"></div>
 
             <div id = "reportinput" style = "visibility:hidden;">
-                <form method="post" action="dashboard/add_report.php">
+                <form id = "reportform" method="post" action="dashboard/add_report.php">
                     <input class = "data" name = "group_id" value = "<?php echo $Group_ID; ?>">
-                    <input class = "data" name = "user_id" value = "<?php echo $User; ?>">
-                    <textarea name="report_text"></textarea><br><br>
+                    <input class = "data" name = "user_id" value = "<?php echo $User; ?>">                  
+                    <textarea id = "report_text" name="report_text"></textarea><br><br>
                     <button name="create_report" class="btn btn-primary">Create</button>    
                 </form>    
             </div>
+            
+
         </div>
             
         <?php include 'templates/template footer.php'; ?>
@@ -159,7 +163,7 @@
         var body = document.getElementById("body");
         var reportinput = document.getElementById("reportinput");
         var edit = document.getElementById("edit");
-        
+
         edit.style.visibility = "visible";
         edit.style.display = "block";//this is needed mainly for Chrome
         
@@ -219,15 +223,25 @@
 
     }
     
-    function dumpforedit(){
+    function edit(){
         console.log("yo");
         
-        var oldreport = document.getElementById("body");
-        var newreport = document.createElement("textarea");
-        var info = document.getElementById("info");
+        var title = document.getElementById("title");
+        var body = document.getElementById("body");
+        var reportinput = document.getElementById("reportinput");
+        var report_text = document.getElementById("report_text");
+        var reportform = document.getElementById("reportform");
+        var edit = document.getElementById("edit");
         
-        newreport.value = oldreport.innerHTML;
-        info.appendChild(newreport);
+        report_text.value = body.innerHTML.replace("<br><br>","");
+        
+        reportform.action = "dashboard/edit_report.php";
+        
+        reportinput.style.visibility = "visible";
+        reportinput.style.display = "block";//this is needed mainly for Chrome
+        
+        edit.style.visibility = "hidden";
+        edit.style.display = "none";//this is needed mainly for Chrome
         
     }
 
