@@ -58,11 +58,11 @@
                             	<form method="post" action="forum/add_post.php">
                                 	<tr>
     									<td>Forum post title</td>
-    									<td><input type="text" name="title"></td>
+    									<td><input type="text" name="title" placeholder="Enter the post title ..."></td>
     								</tr>
     								<tr>
     									<td>Forum post content</td>
-    									<td><textarea name="content" rows="4" cols="50" placeholder="Enter the forum post text here..."></textarea></td>
+    									<td><textarea name="content" rows="4" cols="50" placeholder="Enter the forum post text ..."></textarea></td>
     								</tr>
     								<tr>
     									<td colspan="2">

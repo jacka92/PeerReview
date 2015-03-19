@@ -99,12 +99,15 @@ $Message = "";
 							<tbody>
 								<tr>
 									<td>Username :</td>
-									<td><input name="username" type="text" id="username"
-										value=<?php echo htmlentities($User); ?>></td>
+									<td>
+										<input name="username" type="text" id="username" placeholder="Enter your username">
+									</td>
 								</tr>
 								<tr>
 									<td>Password :</td>
-									<td><input name="password" type="password" id="password"></td>
+									<td>
+										<input name="password" type="password" id="password" placeholder="Enter your password">
+									</td>
 								</tr>
 								<tr>
 									<td colspan="3"><input type="submit" name="submit"
