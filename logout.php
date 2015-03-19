@@ -6,8 +6,15 @@
         <script src='jquery-ui-1.11.3/jquery-ui.js'></script>
                   <script type='text/javascript'>
             $(document).ready(function () {
-                var right = $('#pacman').offset().left;
-                $('#pacman').css({right:right}).dequeue().animate({'left':'96.5%'}, 4000);
+                
+                var chrome = navigator.userAgent.indexOf('Chrome') > -1;
+                if (chrome){
+                    var right = $('#pacman').offset().left;
+                    $('#pacman').css({right:right}).dequeue().animate({'left':'96.5%'}, 4000);
+                }else{
+                    var right = $('#pacman').offset().right;
+                    $('#pacman').css({right:right}).dequeue().animate({'left':'96.5%'}, 4000);
+                }
             });
             
             
