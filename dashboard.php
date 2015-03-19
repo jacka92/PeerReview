@@ -15,7 +15,7 @@
         ?>
         <div id = "welcome" class = "col-md-15">
             <h1>Welcome to Peer Review, User <?php echo $User; ?> </h1>
-            <h3>Your Group is <?php echo $Group_ID ?>. The reports submitted by your group are below.</h3>
+            <h3>Your Group number is <?php echo $Group_ID ?>. The reports submitted by your group are below.</h3>
             
             <?php 
                 $groupquery = "SELECT user_id FROM users WHERE group_id = ".$Group_ID.""; 
