@@ -13,6 +13,7 @@
 				<li><a href='forum.php'>Forum</a></li>
 				<li><a href='reportrankings.php'>Report Rankings</a></li>
 				<li><a href='assessormarks.php'>Assessor Marks</a></li>
+				<li><a href='templates/bootstrap example things.html'>Bootstrap examples</a></li>
 <!--				<li class='dropdown'>
 					<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Dropdown <span class='caret'></span></a>
 					<ul class='dropdown-menu' role='menu'>
