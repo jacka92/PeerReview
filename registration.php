@@ -18,6 +18,7 @@ if (isset ( $_POST ['submit'] )) {
 	$CPass = mysqli_real_escape_string($connection,$_POST ['cpass']);
 	
 	$Num = 0;
+	$WrongUsername = 0;
 	
 	if($Pass!=$CPass){
 		$Num++;
@@ -28,6 +29,15 @@ if (isset ( $_POST ['submit'] )) {
 			$Num ++;
 		}
 	}
+
+	$sql  = "SELECT * FROM users WHERE login = '{$User}'";
+	$check = mysqli_query($connection, $sql) or die("Query to check if username exists failed");
+    confirm_query($check);
+
+    if(!null == (mysqli_fetch_assoc($check))){
+    	$Num ++;
+    	$WrongUsername ++;
+    }
 	
 	if ($Num == 0) {
 		
@@ -41,10 +51,15 @@ if (isset ( $_POST ['submit'] )) {
 		
 		redirect_to('index.php');
 		
-	} else{
+	} elseif($WrongUsername == 0){
 		$Message = "
 		  <div class='alert alert-danger' role='alert'>
 			<strong>Oh snap!</strong> You're missing some fields or have entered some things in incorrectly. Change a few things up and try submitting again.
+		  </div>";
+	}else{
+		$Message = "
+		  <div class='alert alert-danger' role='alert'>
+			<strong>Oh snap!</strong> That username's already been taken. Change a few things up and try submitting again.
 		  </div>";
 	}
 } else {
