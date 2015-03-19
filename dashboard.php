@@ -135,7 +135,8 @@
         
         title.innerHTML = "New Report for Group <?php echo $Group_ID; ?>";
         body.innerHTML = "";
-        reportinput.style = "visibility : visible;";
+        reportinput.style.visibility = "visible";
+        reportinput.style.display = "block";//this is needed mainly for Chrome
         
         var ass = document.getElementById("assessments");
         while (ass.firstChild) {
@@ -151,7 +152,8 @@
         var body = document.getElementById("body");
         var reportinput = document.getElementById("reportinput");
         
-        reportinput.style = "visibility : hidden;";
+        reportinput.style.display = "hidden";
+        reportinput.style.display = "none" //this is needed mainly for Chrome"
         
         var tempdata = document.getElementById(reportid).innerHTML;  
         tempdata = tempdata.split("Report col : ");
@@ -163,7 +165,7 @@
         
         var button = document.createElement("button");
         button.innerHTML = "Edit";
-        button.onclick = "dumpforedit();";
+        button.onclick = "dumpforedit()";
         body.appendChild(button);
         
         loadass(reportid);
