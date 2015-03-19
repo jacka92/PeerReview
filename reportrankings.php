@@ -39,11 +39,11 @@
 	                			
 	                			<?php
 	                				if($counter == 1){
-										echo "<tr class='success'>"
+										echo "<tr class='success'>";
 	                				}elseif($counter == $max){
-	                					echo "<tr class='danger'>"
+	                					echo "<tr class='danger'>";
 	                				}else{
-	                					echo "<tr>"
+	                					echo "<tr>";
 	                				}
 								?>
 									<td><?php echo $row["group_id"]; ?></td>
