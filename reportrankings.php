@@ -33,7 +33,7 @@
 	                                confirm_query($result);
 
 	                                $counter = 1;
-	                                $max = mysql_num_rows($result);
+	                                $max = mysqli_num_rows($result);
 	                                while($row = mysqli_fetch_assoc($result)){
 	                            ?>
 	                			
