@@ -39,17 +39,17 @@
                             	//Assign user's report id to a var
                                 while($row = mysqli_fetch_assoc($result)){
                                 	$ReportID = $row["report_id"];}
+                    
+                                	//Query to find marks given to assessor's group
                                 	
-                                //Query assignments table to find user's assessor's group id
-                                $queryi = "SELECT * FROM assignments WHERE report_id = {$ReportID}";
-                                $resulti = mysqli_query($connection, $queryi)or die("Report ID slection failed.");
-                                while($rowi = mysqli_fetch_assoc($resulti)){
-                                $AssessorGroupID = $rowi["group_id"];}
+                                	$query2 = 	"SELECT t1.* FROM assessments t1, assignments t2, users t4 
+                                				WHERE (t2.report_id = 4) 
+                                				AND (t4.group_id = t2.group_id) 
+                                				AND (t4.user_id = t1.user_id)";
                                 
-                                //Query to find marks given to assessor's group
-                                $query2 = "SELECT t1.group_id, t2.assessment FROM reports t1, assessments t2 WHERE (t1.group_id = {$AssessorGroupID} AND t1.report_id = t2.report_id)";
+                    
                                 $result2 = mysqli_query($connection, $query2)or die("Query to find marks of assessors failed");
-                                confirm_query($result);
+                                confirm_query($result2);
                                 while($row = mysqli_fetch_assoc($result2)){
                                 	
                             ?>
