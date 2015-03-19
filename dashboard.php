@@ -13,116 +13,115 @@
             $Group_ID = $_SESSION ['group_id'];
             $User = $_SESSION ['user_id'];
         ?>
-        <div id ="welcome" class ="col-md-15">
-            <h1>Welcome to Peer Review, User <?php echo $User; ?> </h1>
-            <h3>Your Group number is <?php echo $Group_ID ?>. The reports submitted by your group are below.</h3>
-            
-            <?php 
-                $groupquery = "SELECT user_id FROM users WHERE group_id = ".$Group_ID.""; 
-                $groupmembers = mysqli_query( $connection, $groupquery );
-
-                 if (! $groupmembers){
-                        die ("Database query failed.");   
-                    }
-
- 
-            
-            ?>
-            
-            <h4> Your group members are;</h4>
-            <?php                            
-                while ( $row0 = mysqli_fetch_assoc ( $groupmembers ) ){
-                    echo "<li> User ";
-                    echo $row0 ["user_id"];
-                    echo "</li>";
-                }; ?>
-            
-            <br><br>
-        </div>
-        
-        <?php
-
-            if ($Group_ID == 0){
-
-            }else{
-                $reportquery = "SELECT * ";
-                $reportquery .= "FROM reports ";
-                $reportquery .= "WHERE group_id = ".$Group_ID."";
-
-                $reports = mysqli_query ( $connection, $reportquery );
-
-                if (! $reports) {
-                    die ( "Database query failed." );
-                }
-                    $assessmentquery = "SELECT * ";
-                    $assessmentquery .= "FROM assessments ";
-                    $assessments = mysqli_query ($connection, $assessmentquery);
-
-                    if (! $assessments){
-                        die ("Database query failed.");   
-                    }
-
-
-                echo "<div id ='accordion' class = 'col-md-3'>";
-                    echo "<h3> Insert New Report <h3>";
-                    echo "<div> Start creating your new report to the right </div>";
-
-                    while ( $row = mysqli_fetch_assoc ( $reports ) ) {
-                        echo "<h3>" . "Report ID : " . $row ["report_id"] . "</h3>";
-                        echo "<div ";
-                        echo "id = " . $row ["group_id"] . ">";
-                        echo "<p> Report ID : " . $row ["report_id"] . "</li>";
-                        echo "<p> Group ID: " . $row ["group_id"] . "</li>";
-                        echo "<p class = 'data' id = " . $row["report_id"] . "> Report col : ". $row["report_text"] . "</p>";   
-                        echo "</div>";
-
-                    }
-                echo "</div>";
-
-                $i = 0;
-                while ( $row2 = mysqli_fetch_assoc ( $assessments ) ){
-                    echo "<p class = 'data' 
-                        id = ass" . $row2["report_id"] . "no" . $i . "> " . 
-                        "Assessment ID: " . $row2["assessment_id"] . 
-                        ", Assigned to Report " . $row2["report_id"] .
-                        ", completed by User " . $row2["user_id"] .
-                        ", Score:" . $row2["assessment"] .
-                        ", " . $row2["comments"] .
-                        "</p>";
-                    $i++;
-                }
-            }
-
-        ?>
-        
-
+        <div class="row">
+            <div id ="welcome">
+                <h1>Welcome to Peer Review, User <?php echo $User; ?> </h1>
+                <h3>Your Group number is <?php echo $Group_ID ?>. The reports submitted by your group are below.</h3>
+                
+                <?php 
+                    $groupquery = "SELECT user_id FROM users WHERE group_id = ".$Group_ID.""; 
+                    $groupmembers = mysqli_query( $connection, $groupquery );
     
-        <div id="info" class = "col-md-9">
-            <h2 id = "title">You have not been assigned to a group.</h3>
-            <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" ></p>
- 
-            <button id = "edit" onclick = "edit();" class="btn btn-primary" style = "visibility:hidden;">Edit</button>
-
-            
-            <div id="assessments"></div>
-
-            <div id = "reportinput" style = "visibility:hidden;">
-                <form id = "reportform" method="post" action="dashboard/add_report.php">
-                    <input class = "data" name = "report_id" id = "report_id">
-                    <input class = "data" name = "group_id" value = "<?php echo $Group_ID; ?>">
-                    <input class = "data" name = "user_id" value = "<?php echo $User; ?>">                  
-                    <textarea id = "report_text" name="report_text" rows = "15" cols = "120"></textarea><br><br>
-                    <button id = "button" name="create_report" class="btn btn-primary">Submit</button>    
-                </form>    
+                     if (! $groupmembers){
+                            die ("Database query failed.");   
+                        }
+                ?>
+                
+                <h4> Your group members are;</h4>
+                <?php                            
+                    while ( $row0 = mysqli_fetch_assoc ( $groupmembers ) ){
+                        echo "<li> User ";
+                        echo $row0 ["user_id"];
+                        echo "</li>";
+                    }; ?>
+                
+                <br><br>
             </div>
-            
+        </div>
+        <div class="row">
+            <?php
+        
+                if ($Group_ID == 0){
+    
+                }else{
+                    $reportquery = "SELECT * ";
+                    $reportquery .= "FROM reports ";
+                    $reportquery .= "WHERE group_id = ".$Group_ID."";
+    
+                    $reports = mysqli_query ( $connection, $reportquery );
+    
+                    if (! $reports) {
+                        die ( "Database query failed." );
+                    }
+                        $assessmentquery = "SELECT * ";
+                        $assessmentquery .= "FROM assessments ";
+                        $assessments = mysqli_query ($connection, $assessmentquery);
+    
+                        if (! $assessments){
+                            die ("Database query failed.");   
+                        }
+    
+    
+                    echo "<div id ='accordion' class = 'col-md-4'>";
+                        echo "<h3> Insert New Report <h3>";
+                        echo "<div> Start creating your new report to the right </div>";
+    
+                        while ( $row = mysqli_fetch_assoc ( $reports ) ) {
+                            echo "<h3>" . "Report ID : " . $row ["report_id"] . "</h3>";
+                            echo "<div ";
+                            echo "id = " . $row ["group_id"] . ">";
+                            echo "<p> Report ID : " . $row ["report_id"] . "</li>";
+                            echo "<p> Group ID: " . $row ["group_id"] . "</li>";
+                            echo "<p class = 'data' id = " . $row["report_id"] . "> Report col : ". $row["report_text"] . "</p>";   
+                            echo "</div>";
+    
+                        }
+                    echo "</div>";
+    
+                    $i = 0;
+                    while ( $row2 = mysqli_fetch_assoc ( $assessments ) ){
+                        echo "<p class = 'data' 
+                            id = ass" . $row2["report_id"] . "no" . $i . "> " . 
+                            "Assessment ID: " . $row2["assessment_id"] . 
+                            ", Assigned to Report " . $row2["report_id"] .
+                            ", completed by User " . $row2["user_id"] .
+                            ", Score:" . $row2["assessment"] .
+                            ", " . $row2["comments"] .
+                            "</p>";
+                        $i++;
+                    }
+                }
+    
+            ?>
+                
+            <div id="info" class = "col-md-6">
+                <h2 id = "title">You have not been assigned to a group.</h3>
+                <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" ></p>
+     
+                <button id = "edit" onclick = "edit();" class="btn btn-primary" style = "visibility:hidden;">Edit</button>
+    
+                
+                <div id="assessments"></div>
+    
+                <div id = "reportinput" style = "visibility:hidden;">
+                    <form id = "reportform" method="post" action="dashboard/add_report.php">
+                        <input class = "data" name = "report_id" id = "report_id">
+                        <input class = "data" name = "group_id" value = "<?php echo $Group_ID; ?>">
+                        <input class = "data" name = "user_id" value = "<?php echo $User; ?>">                  
+                        <textarea id = "report_text" name="report_text" rows = "15" cols = "120"></textarea><br><br>
+                        <button id = "button" name="create_report" class="btn btn-primary">Submit</button>    
+                    </form>    
+                </div>
+            </div>
 
         </div>
+
             
         <?php include 'templates/template footer.php'; ?>
         <script src="jquery-ui-1.11.3/external/jquery/jquery.js"></script>
         <script src="jquery-ui-1.11.3/jquery-ui.js"></script>
 
+        <div class="row"><br></div>
     </body>
 </html>
 
