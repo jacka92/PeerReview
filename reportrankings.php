@@ -11,7 +11,7 @@
         <?php include 'templates/template_header.php' ?>
 
         <div class="page-header">
-		<h1>Reports rankings</h1>
+		<h1>Group rankings</h1>
 	</div>
 	<div class="row">
 		<div class="panel panel-default">
