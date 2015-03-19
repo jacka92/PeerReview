@@ -8,11 +8,39 @@
     </head>
     
     <body role='document' onload="title();">
-    
-        <?php include 'templates/template_header.php';
+          <?php include 'templates/template_header.php';
 
             $Group_ID = $_SESSION ['group_id'];
             $User = $_SESSION ['user_id'];
+        ?>
+        <div id = "welcome" class = "col-md-15">
+            <h1>Welcome to Peer Review, User <?php echo $User; ?> </h1>
+            <h3>Your Group is <?php echo $Group_ID ?>. The reports submitted by your group are below.</h3>
+            
+            <?php 
+                $groupquery = "SELECT user_id FROM users WHERE group_id = ".$Group_ID.""; 
+                $groupmembers = mysqli_query( $connection, $groupquery );
+
+                 if (! $groupmembers){
+                        die ("Database query failed.");   
+                    }
+
+ 
+            
+            ?>
+            
+            <h4> Your group members are <?php                            
+                while ( $row0 = mysqli_fetch_assoc ( $groupmembers ) ){
+                    echo "user ";
+                    echo $row0 ["user_id"];
+                    echo " ";
+                }; ?>
+            </h4>
+            
+            <br><br>
+        </div>
+        
+        <?php
 
             if ($Group_ID == 0){
 
@@ -35,7 +63,7 @@
                     }
 
 
-                echo "<div id ='accordion'>";
+                echo "<div id ='accordion' class = 'col-md-3'>";
                     echo "<h3> Insert New Report <h3>";
                     echo "<div> Start creating your new report to the right </div>";
 
@@ -66,8 +94,10 @@
             }
 
         ?>
+        
+
     
-        <div id="info"><br>
+        <div id="info" class = "col-md-9">
             <h2 id = "title">You have not been assigned to a group.</h3>
             <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" ></p>
  

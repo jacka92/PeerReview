@@ -1,12 +1,5 @@
-#accordion {
-    padding: 20px;
-    width: 30%;
-    float: left;
-}
-
-#info {
-    width: 70%;
-    float: right;
+#welcome{
+    text-align: center;
 }
 
 .data{
@@ -34,3 +27,4 @@ body {
 div.page-header{
     margin-top: -20px;
 }
+
