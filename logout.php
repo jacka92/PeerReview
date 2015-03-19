@@ -3,7 +3,15 @@
         <title>Forum</title>
         <link rel="stylesheet" href="jquery-ui-1.11.3/jquery-ui.css">
         <script src='jquery-ui-1.11.3/external/jquery/jquery.js'></script>
-        <script src='jquery-ui-1.11.3/jquery-ui.js'></script
+        <script src='jquery-ui-1.11.3/jquery-ui.js'></script>
+                  <script type='text/javascript'>
+            $(document).ready(function () {
+                var right = $('#pacman').offset().right;
+                $('#pacman').css({right:right}).animate({'right':'0px'}, 4500, 'linear');
+            });
+            
+            
+        </script>
         <?php include 'templates/imports_index.php'; ?>
 <?php
 	session_start();
@@ -50,19 +58,7 @@ echo "<meta http-equiv='refresh' content=\"4;URL='index.php'\">
 			</div>
 		</nav>
         
-          <script type='text/javascript'>
-          
 
-
-          
-          
-            $(document).ready(function () {
-                var right = $('#pacman').offset().right;
-                $('#pacman').stop().dequeue().animate({'right':'0px'}, 4500, 'linear');
-            });
-            
-            
-        </script>
         
 
 
