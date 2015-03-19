@@ -65,8 +65,11 @@
 
                                 <tr>
                                     <td><?php echo $row["group_id"]; ?></td>
-                                    <td><?php echo $row["assessment"];} ?></td>
+                                    <td><?php echo $row["assessment"]; ?></td>
                                 </tr>
+                                <?php
+                                    }
+                                ?>
 
         					</tbody>
         				</table>
