@@ -21,7 +21,7 @@
 					?>
 					<li><a href='forum.php'>Forum</a></li>
 					<li><a href='reportrankings.php'>Report Rankings</a></li>
-					<li><a href='assessormarks.php'>Assessor Marks</a></li>
+					<li><a href='assessormarks.php'>Marks</a></li>
 				<?php
 					}
 				?>
