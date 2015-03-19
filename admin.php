@@ -125,6 +125,99 @@ groups defined from the student registration list
 
         <div class="row">
             <!--
+the administrator-user interface will allow particular groups to be allocated to the peer assessment of
+particular other groups
+            -->
+            <div class="col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Assign reports to groups for marking
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Group ID</td>
+                                    <th>This Group's Reports</td>
+                                    <th>Currently Assigned Reports</td>
+                                    <th>Reports to be assigned</td>
+                                    <th>Update</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $query  = groups();
+                                    $result = mysqli_query($connection, $query);
+                                    confirm_query($result);
+                                ?>
+                                <?php
+                                    while($group = mysqli_fetch_assoc($result)){
+                                ?>
+                                    <form method="get" action="admin/assign_report.php">
+                                        <tr>
+                                            <td><?php echo $group["group_id"]; ?></td>
+                                            <td>
+                                                <?php
+                                                    $query  = report_owned($group["group_id"]);
+                                                    $result_owned = mysqli_query($connection, $query);
+                                                    confirm_query($result_owned);
+                                                ?>
+                                                <?php
+                                                    while($reports_owned = mysqli_fetch_assoc($result_owned)){
+                                                        echo $reports_owned["report_id"]." ";
+                                                    }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                    $query  = report_assigned($group["group_id"]);
+                                                    $result_assigned = mysqli_query($connection, $query);
+                                                    confirm_query($result_assigned);
+                                                ?>
+                                                <?php
+                                                    while($reports_assigned = mysqli_fetch_assoc($result_assigned)){
+                                                        echo $reports_assigned["report_id"]." ";
+                                                    }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <select name=<?php echo "report".$group['group_id']; ?>[] size=6 multiple>
+                                                    <?php
+                                                        $query  = report_available($group["group_id"]);
+                                                        $result_available = mysqli_query($connection, $query);
+                                                        confirm_query($result_available);
+                                                    ?>
+                                                    <option value=""></option>
+                                                    <?php
+                                                        while($report_list = mysqli_fetch_assoc($result_available)){
+                                                    ?>
+                                                        <option value=<?php echo $report_list["report_id"]; ?>>
+                                                            <?php echo $report_list["report_id"]; ?>
+                                                        </option>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <button name="update" value=<?php echo $group["group_id"]; ?> class="btn btn-primary">
+                                                    Update
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </form>
+                                <?php
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+            <!--
 the administrator-users will be able to see a list of the groups */
 ranked according with the aggregation of peer assessments on their submissions 
             -->
@@ -153,86 +246,6 @@ ranked according with the aggregation of peer assessments on their submissions
                         </form>
                     </div>
                 </div>
-            </div>
-            <!--
-the administrator-user interface will allow particular groups to be allocated to the peer assessment of
-particular other groups
-            -->
-            <div class="col-sm-8">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            Assign groups to reports
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Group ID</td>
-                                    <th>Currently Assigned Reports</td>
-                                    <th>Reports to be assigned</td>
-                                    <th>Update</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    $query  = groups();
-                                    $result = mysqli_query($connection, $query);
-                                    confirm_query($result);
-                                ?>
-                                <?php
-                                    while($group = mysqli_fetch_assoc($result)){
-                                ?>
-                                    <form method="get" action="admin/assign_report.php">
-                                        <tr>
-                                            <td><?php echo $group["group_id"]; ?></td>
-                                            <td>
-                                                <?php
-                                                    $query  = report_assigned($group["group_id"]);
-                                                    $result2 = mysqli_query($connection, $query);
-                                                    confirm_query($result2);
-                                                ?>
-                                                <?php
-                                                    while($reports = mysqli_fetch_assoc($result2)){
-                                                        echo $reports["report_id"]." ";
-                                                    }
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <select name=<?php echo "report".$group['group_id']; ?>[] size=6 multiple>
-                                                    <?php
-                                                        $query  = report_available($group["group_id"]);
-                                                        $result3 = mysqli_query($connection, $query);
-                                                        confirm_query($result3);
-                                                    ?>
-                                                    <option value=""></option>
-                                                    <?php
-                                                        while($report_list = mysqli_fetch_assoc($result3)){
-                                                    ?>
-                                                        <option value=<?php echo $report_list["report_id"]; ?>>
-                                                            <?php echo $report_list["report_id"]; ?>
-                                                        </option>
-                                                    <?php
-                                                        }
-                                                    ?>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <button name="update" value=<?php echo $group["group_id"]; ?> class="btn btn-primary">
-                                                    Update
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </form>
-                                <?php
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
             </div>
         </div>
         <div class="row">

@@ -3,9 +3,9 @@
 	include '../templates/included_functions.php';
 	include 'queries.php';
 
-	$Title = isset($_POST ['title']) ? $_POST ['title'] : '';
-	$Content = isset($_POST ['content']) ? $_POST ['content'] : '';
-	$Post = isset($_POST ['post_id']) ? $_POST ['post_id'] : '';
+	$Title = mysqli_real_escape_string($connection,(isset($_POST ['title']) ? $_POST ['title'] : ''));
+	$Content = mysqli_real_escape_string($connection,(isset($_POST ['content']) ? $_POST ['content'] : ''));
+	$Post = mysqli_real_escape_string($connection,(isset($_POST ['post_id']) ? $_POST ['post_id'] : ''));
 
     $q  = create_comment($Title,$Content,$Post);
     $check = mysqli_query($connection, $q)
