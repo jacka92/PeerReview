@@ -62,7 +62,7 @@
                         }
     
     
-                    echo "<div id ='accordion' class = 'col-md-4'>";
+                    echo "<div id ='accordion' class = 'col-sm-4'>";
                         echo "<h3> Insert New Report <h3>";
                         echo "<div> Start creating your new report to the right </div>";
     
@@ -94,9 +94,9 @@
     
             ?>
                 
-            <div id="info" class = "col-md-6">
+            <div id="info" class = "col-sm-6">
                 <h2 id = "title">You have not been assigned to a group.</h3>
-                <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" ></p>
+                <p name = "body" id="body" rows="20" cols="90" placeholder="Place your report body here" ></p>
      
                 <button id = "edit" onclick = "edit();" class="btn btn-primary" style = "visibility:hidden;">Edit</button>
     
@@ -108,7 +108,7 @@
                         <input class = "data" name = "report_id" id = "report_id">
                         <input class = "data" name = "group_id" value = "<?php echo $Group_ID; ?>">
                         <input class = "data" name = "user_id" value = "<?php echo $User; ?>">                  
-                        <textarea id = "report_text" name="report_text" rows = "15" cols = "120"></textarea><br><br>
+                        <textarea id = "report_text" name="report_text" rows = "15" cols = "90"></textarea><br><br>
                         <button id = "button" name="create_report" class="btn btn-primary">Submit</button>    
                     </form>    
                 </div>
