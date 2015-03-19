@@ -135,8 +135,8 @@
         
         title.innerHTML = "New Report for Group <?php echo $Group_ID; ?>";
         body.innerHTML = "";
-        reportinput.style = "visibility:visible;";
-            
+        reportinput.style = "visibility : visible;";
+        
         var ass = document.getElementById("assessments");
         while (ass.firstChild) {
             ass.removeChild(ass.firstChild);
