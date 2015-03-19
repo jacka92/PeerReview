@@ -3,8 +3,30 @@
     $Group_ID = $_SESSION ['group_id'];
     $User = $_SESSION ['user_id'];
     
+
+
+?>
+
+
+<html>
+
+    <head>
+        <link rel="stylesheet" href="jquery-ui-1.11.3/jquery-ui.css">
+        <title>Peer Assessment</title>
+        <?php include 'templates/imports.php';?>
+
+    </head>
+
+    <body role='document' onload="title();">
+
+            <?php include 'templates/template_header.php';?>
+
+
+
+
+                <?php   
     if ($Group_ID == 0){
-        console.log("Message to administrator: Please assign this user to a report");
+
     }else{
         $query = "SELECT * ";
         $query .= "FROM reports ";
@@ -32,28 +54,7 @@
         if (! $result2){
             die ("Database query failed.");   
         }
-    }
-
-?>
-
-
-<html>
-
-    <head>
-        <link rel="stylesheet" href="jquery-ui-1.11.3/jquery-ui.css">
-        <title>Peer Assessment</title>
-        <?php include 'templates/imports.php';?>
-
-    </head>
-
-    <body role='document' onload="title();">
-
-            <?php include 'templates/template_header.php';?>
-
-
-
-
-                <?php   
+    
                     // run through all rows
                     echo "<div id ='accordion'>";
     
@@ -87,6 +88,7 @@
                             "</p>";
                         $i++;
                     }
+    }
 
                 ?>
 

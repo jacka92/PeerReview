@@ -15,7 +15,7 @@
             $User = $_SESSION ['user_id'];
 
             if ($Group_ID == 0){
-                console.log("Message to administrator: This User has not been assigned to a group");
+
             }else{
                 $reportquery = "SELECT * ";
                 $reportquery .= "FROM reports ";
@@ -26,54 +26,55 @@
                 if (! $reports) {
                     die ( "Database query failed." );
                 }
+                    $assessmentquery = "SELECT * ";
+                    $assessmentquery .= "FROM assessments ";
+                    $assessments = mysqli_query ($connection, $assessmentquery);
 
-                $assessmentquery = "SELECT * ";
-                $assessmentquery .= "FROM assessments ";
-                $assessments = mysqli_query ($connection, $assessmentquery);
+                    if (! $assessments){
+                        die ("Database query failed.");   
+                    }
 
-                if (! $assessments){
-                    die ("Database query failed.");   
+
+                echo "<div id ='accordion'>";
+                    echo "<h3> Insert New Report <h3>";
+                    echo "<div> Start creating your new report to the right </div>";
+
+                    while ( $row = mysqli_fetch_assoc ( $reports ) ) {
+                        echo "<h3>" . "Report ID : " . $row ["report_id"] . "</h3>";
+                        echo "<div ";
+                        echo "id = " . $row ["group_id"] . ">";
+                        echo "<p> Report ID : " . $row ["report_id"] . "</li>";
+                        echo "<p> Group ID: " . $row ["group_id"] . "</li>";
+                        echo "<p class = 'data' id = " . $row["report_id"] . "> Report col : ". $row["report_text"] . "</p>";   
+                        echo "</div>";
+
+                    }
+                echo "</div>";
+
+                $i = 0;
+                while ( $row2 = mysqli_fetch_assoc ( $assessments ) ){
+                    echo "<p class = 'data' 
+                        id = ass" . $row2["report_id"] . "no" . $i . "> " . 
+                        "Assessment ID: " . $row2["assessment_id"] . 
+                        ", Assigned to Report " . $row2["report_id"] .
+                        ", completed by User " . $row2["user_id"] .
+                        ", Score:" . $row2["assessment"] .
+                        ", " . $row2["comments"] .
+                        "</p>";
+                    $i++;
                 }
             }
 
-            echo "<div id ='accordion'>";
-                echo "<h3> Insert New Report <h3>";
-                echo "<div> Start creating your new report to the right </div>";
-
-                while ( $row = mysqli_fetch_assoc ( $reports ) ) {
-                    echo "<h3>" . "Report ID : " . $row ["report_id"] . "</h3>";
-                    echo "<div ";
-                    echo "id = " . $row ["group_id"] . ">";
-                    echo "<p> Report ID : " . $row ["report_id"] . "</li>";
-                    echo "<p> Group ID: " . $row ["group_id"] . "</li>";
-                    echo "<p class = 'data' id = " . $row["report_id"] . "> Report col : ". $row["report_text"] . "</p>";   
-                    echo "</div>";
-
-                }
-            echo "</div>";
-
-            $i = 0;
-            while ( $row2 = mysqli_fetch_assoc ( $assessments ) ){
-                echo "<p class = 'data' 
-                    id = ass" . $row2["report_id"] . "no" . $i . "> " . 
-                    "Assessment ID: " . $row2["assessment_id"] . 
-                    ", Assigned to Report " . $row2["report_id"] .
-                    ", completed by User " . $row2["user_id"] .
-                    ", Score:" . $row2["assessment"] .
-                    ", " . $row2["comments"] .
-                    "</p>";
-                $i++;
-            }
         ?>
     
         <div id="info"><br>
-            <h2 id = "title">Your group has not completed any Reports</h3>
+            <h2 id = "title">You have not been assigned to a group.</h3>
             <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" ></p>
             <div id="assessments"></div>
 
             <div id = "reportinput" style = "visibility:hidden;">
                 <form method="post" action="dashboard/add_report.php">
-                    <input class = "data" name = "group_id" name = "<?php echo $Group_ID; ?>">
+                    <input class = "data" name = "group_id" value = "<?php echo $Group_ID; ?>">
                     <input class = "data" name = "user_id" value = "<?php echo $User; ?>">
                     <textarea name="report_text"></textarea><br><br>
                     <button name="create_report" class="btn btn-primary">Create</button>    
@@ -104,10 +105,8 @@
             activate: function( event, ui ) {
                 var temploader = ui.newPanel.html();  
                 if (temploader == "<div> Start creating your new report to the right </div>"){
-                    console.log("yo");
                     createreport();
                 }else{
-                    console.log("pleb");
                     temploader = temploader.replace("<p> Report ID : ","");
                     temploader = temploader.split("</p>");
                     var loader = temploader[0];
