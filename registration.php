@@ -11,12 +11,11 @@
     
 <?php
 if (isset ( $_POST ['submit'] )) {
-	$First_Name = $_POST ['name'];
-	$Surname = $_POST ['surname'];
-//	$Group_ID = $_POST ['group_id'];
-	$User = $_POST ['user'];
-	$Pass = $_POST ['pass'];
-	$CPass = $_POST ['cpass'];
+	$First_Name = mysqli_real_escape_string($connection, $_POST ['name']);
+	$Surname = mysqli_real_escape_string($connection, $_POST ['surname']);
+	$User = mysqli_real_escape_string($connection,$_POST ['user']);
+	$Pass = mysqli_real_escape_string($connection,$_POST ['pass']);
+	$CPass = mysqli_real_escape_string($connection,$_POST ['cpass']);
 	
 	$Num = 0;
 	

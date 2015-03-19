@@ -2,8 +2,6 @@
    
     $Group_ID = $_SESSION ['group_id'];
     $User = $_SESSION ['user_id'];
-    
-
 
 ?>
 
