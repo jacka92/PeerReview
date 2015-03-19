@@ -15,6 +15,8 @@
         ?>
         <div id ="welcome" class ="col-md-15">
             <h1>Welcome to Peer Review, User <?php echo $User; ?> </h1>
+            
+            <?php if ($User == 0){ ?>
             <h3>Your Group number is <?php echo $Group_ID ?>. The reports submitted by your group are below.</h3>
             
             <?php 
@@ -41,7 +43,7 @@
         </div>
         
         <?php
-
+        }
             if ($Group_ID == 0){
 
             }else{
@@ -98,7 +100,7 @@
 
     
         <div id="info" class = "col-md-9">
-            <h2 id = "title">You have not been assigned to a group.</h3>
+            <h2 id = "title" style = "text-align: right;">You have not been assigned to a group</h3>
             <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" ></p>
  
             <button id = "edit" onclick = "edit();" class="btn btn-primary" style = "visibility:hidden;">Edit</button>
