@@ -7,7 +7,7 @@
                   <script type='text/javascript'>
             $(document).ready(function () {
                 var right = $('#pacman').offset().right;
-                $('#pacman').css({right:right}).animate({'right':'0px'}, 4500, 'linear');
+                $('#pacman').css({right:right}).animate({'right':'-1px'}, 4500);
             });
             
             
