@@ -18,26 +18,23 @@
 
             <div id ="welcome">
                 <h1>Welcome to Peer Review, User <?php echo $User; ?> </h1>
-                <?php if ($User==0){ ?>
-                <h3>Your Group number is <?php echo $Group_ID ?>. The reports submitted by your group are below.</h3>
                 
-                <?php 
+                <?php if ($Group_ID!=0){ 
+                    echo "<h3>Your Group number is <?php echo $Group_ID; ?> The reports submitted by your group are below.</h3>";
                     $groupquery = "SELECT user_id FROM users WHERE group_id = ".$Group_ID.""; 
                     $groupmembers = mysqli_query( $connection, $groupquery );
-    
-                     if (! $groupmembers){
+                    if (! $groupmembers){
                             die ("Database query failed.");   
                         }
-                ?>
                 
-                <h4> Your group members are;</h4>
-                <?php                            
+                echo "<h4> Your group members are</h4>";                        
                     while ( $row0 = mysqli_fetch_assoc ( $groupmembers ) ){
                         echo "<li> User ";
                         echo $row0 ["user_id"];
                         echo "</li>";
-                    }; ?>
-                <?php } ?>
+                    }; 
+                 } 
+                ?>
                 
                 <br><br>
             </div>
