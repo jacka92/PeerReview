@@ -1,6 +1,9 @@
 <html>
     <head>
         <title>Forum</title>
+        <link rel="stylesheet" href="jquery-ui-1.11.3/jquery-ui.css">
+        <script src='jquery-ui-1.11.3/external/jquery/jquery.js'></script>
+        <script src='jquery-ui-1.11.3/jquery-ui.js'></script
         <?php include 'templates/imports_index.php'; ?>
 <?php
 	session_start();
@@ -9,7 +12,10 @@
 ?>
 <?php
 
+
 echo "<meta http-equiv='refresh' content=\"4;URL='index.php'\">
+
+
 	</head>
 	<body>
 		<nav class='navbar navbar-inverse navbar-fixed-top'>
@@ -27,8 +33,10 @@ echo "<meta http-equiv='refresh' content=\"4;URL='index.php'\">
 		<div class='container'>
 
 			<div class='row'>
-				<h1>You have successfully logged out. Redirecting in 4 seconds...</h1>
-				<img src='img/ajax-loader.gif' height='80' width='80'>
+				<h1 style = 'text-align:center;'>You have successfully logged out. Redirecting in 4 seconds...</h1>
+                <div id = pacman style = 'position:absolute;'>
+				    <img src='img/ajax-loader.gif' height='80' width='80'>
+                </div>
 			</div>
 
 		</div>
@@ -41,6 +49,16 @@ echo "<meta http-equiv='refresh' content=\"4;URL='index.php'\">
 				</div>
 			</div>
 		</nav>
+        
+          <script type='text/javascript'>
+            $(document).ready(function () {
+                var right = $('#pacman').offset().right;
+                $('#pacman').css({right:right}).animate({'right':'0px'}, 4500, 'linear');
+                $('#pacman').css({right:right}).animate({'right':'0px'}, 4500, 'linear');
+            });
+        </script>
+        
+
 
 		<!-- Bootstrap core JavaScript -->
 		<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>
@@ -49,3 +67,4 @@ echo "<meta http-equiv='refresh' content=\"4;URL='index.php'\">
 </html>";
 
 ?>
+      

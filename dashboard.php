@@ -118,7 +118,6 @@
             
         <?php include 'templates/template footer.php'; ?>
         <script src="jquery-ui-1.11.3/external/jquery/jquery.js"></script>
-        <script src="jquery-ui-1.11.3/external/jquery/jquery.js"></script>
         <script src="jquery-ui-1.11.3/jquery-ui.js"></script>
 
         <br></div>
