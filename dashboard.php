@@ -29,13 +29,13 @@
             
             ?>
             
-            <h4> Your group members are <?php                            
+            <h4> Your group members are;</h4>
+            <?php                            
                 while ( $row0 = mysqli_fetch_assoc ( $groupmembers ) ){
-                    echo "user ";
+                    echo "<li> User ";
                     echo $row0 ["user_id"];
-                    echo " ";
+                    echo "</li>";
                 }; ?>
-            </h4>
             
             <br><br>
         </div>

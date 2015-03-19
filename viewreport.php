@@ -54,7 +54,7 @@
         }
     
                     // run through all rows
-                    echo "<div id ='accordion'>";
+                    echo "<div id ='accordion' class = 'col-md-3'>";
     
                     while ( $row = mysqli_fetch_assoc ( $result ) ) {
                         // set the current row to this php var. Needed for id use
@@ -102,7 +102,7 @@
         </div>
         
         
-        <div id="info">
+        <div id="info" class = "col-md-9">
         <h2 id = "title">You haven't been assigned a Report.</h3>
         <p name = "body" id="body" rows="20" cols="100" placeholder="Place your report body here" >
         </p>
