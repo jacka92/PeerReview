@@ -6,6 +6,23 @@
         $query .= "ORDER BY post_id DESC ";
         return $query;
 	}
+    function poster_name($User){
+        $query  = "SELECT login ";
+        $query .= "FROM users ";
+        $query .= "WHERE user_id = {$User} ";
+        return $query;
+    }
+    function search_users(){
+        $query  = "SELECT users.login ";
+        $query .= "FROM users,forum ";
+        $query .= "WHERE users.user_id = forum.user_id ";
+        return $query;
+    }
+    function search_threads(){
+        $query  = "SELECT post_title ";
+        $query .= "FROM forum ";
+        return $query;
+    }
 
 // add_post.php ----------------------------------------
     function create_post($Title,$Content){

@@ -42,7 +42,20 @@
 		<div class="row">
         	<div class="page-header">
 	            <h1>Forum post: <?php echo $posts["post_title"]; ?></h1>
-	            <h4 style="font-style: italic;">Post originally created: <?php echo $posts["post_date"]; ?></h4>
+                <h4 style="font-style: italic;">
+                    <strong>
+                        Thread originally created by 
+                        <?php
+                            $q = poster_name($posts['user_id']);
+                            $q_result = mysqli_query($connection, $q);
+                            confirm_query($q_result);
+                            while($poster = mysqli_fetch_assoc($q_result)){
+                                echo $poster['login'];
+                            }
+                        ?>
+                    </strong>
+                    <br>Date posted: <?php echo $posts["post_date"]; ?>
+                </h4>
 	        </div>
         </div>
 
@@ -53,7 +66,7 @@
 	    </div>
 	    <div><br></div>
         <div class="row">
-        	<div class="col-sm-8">
+        	<div class="col-sm-11">
 	        	<div class="panel panel-default">
 					<div class="panel-heading">
 					  	<h3 class="panel-title">Comments</h3>
@@ -71,7 +84,20 @@
 						    <div class="row" style="margin-left: 10px;">
 						        <div class="page-header">
 						            <h3 style="font-weight: bold;"><?php echo $comments["comment_title"]; ?></h3>
-						            <h4 style="font-style: italic;"><?php echo $comments["comment_date"]; ?></h4>
+                                    <h4 style="font-style: italic;">
+                                        <strong>
+                                            Comment by 
+                                            <?php
+                                                $q = poster_name($comments['user_id']);
+                                                $result2 = mysqli_query($connection, $q);
+                                                confirm_query($result2);
+                                                while($commenter = mysqli_fetch_assoc($result2)){
+                                                    echo $commenter['login'];
+                                                }
+                                            ?>
+                                        </strong>
+                                        <br>Date posted: <?php echo $comments["comment_date"]; ?>
+                                    </h4>
 						        </div>
 						        <div>
 						        	<p><?php echo $comments["comment_content"]; ?></p>

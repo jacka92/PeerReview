@@ -103,11 +103,7 @@ if (isset ( $_POST ['submit'] )) {
 											<td>Surname</td>
 											<td><input type="text" name="surname" value=<?php echo $Surname ?>></td>
 										</tr>
-									<!--	<tr>
-											<td>Group ID</td>
-											<td><input type="text" name="group_id" value=<?php echo $Group_ID ?>></td>
-										</tr>
-									-->	<tr>
+										<tr>
 											<td>Username</td>
 											<td><input type="text" name="user" value=<?php echo $User ?>></td>
 										</tr>
