@@ -41,16 +41,8 @@
                 $result2 = mysqli_query($connection, $query2)or die("Query to find marks of assessors failed");
                 confirm_query($result2);
 
-                if(null === (mysqli_fetch_assoc($result2))){
         ?>
-                    <div class="page-header">
-                        <h1>Either your report or your assessors' reports are yet to be marked</h1>
-                    </div>
-                    <h3>Please check again later</h3>
-        <?php
-                }else{
-        ?>
-        
+                    
                 <div class="page-header">
             		<h1>Assessor marks</h1>
             		<p>Shown below are the assessments given to the assessors assigned to provide marks on your report.</p>
@@ -70,11 +62,11 @@
             					</thead>
             					<tbody>
                                     <?php
-                                        while($row = mysqli_fetch_assoc($result2)){ 
+                                        while($row2 = mysqli_fetch_assoc($result2)){ 
                                     ?>
                                     <tr>
-                                        <td><?php echo $row["group_id"]; ?></td>
-                                        <td><?php echo $row["assessment"]; ?></td>
+                                        <td><?php echo $row2["group_id"]; ?></td>
+                                        <td><?php echo $row2["assessment"]; ?></td>
                                     </tr>
                                     <?php
                                         }
@@ -84,9 +76,8 @@
             			</div>
             		</div>
             	</div>
-            <?php
-                }
-            ?>
+
+
         <?php
             }
         ?>

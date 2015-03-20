@@ -12,6 +12,13 @@
         $query .= "ORDER BY user_id ASC ";
         return $query;
 	}
+    function user_specific($User){
+        $query  = "SELECT * ";
+        $query .= "FROM users ";
+        $query .= "WHERE user_id = {$User} ";
+        $query .= "ORDER BY user_id ASC ";
+        return $query;
+    }
     function report_owned($group){
         $query  = "SELECT DISTINCT report_id ";
         $query .= "FROM reports ";

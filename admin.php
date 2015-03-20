@@ -64,7 +64,7 @@
                         <table class="table table-hover">
                             <tbody>
                                 <tr>
-                                    <form method="get" action="forum/search.php">
+                                    <form method="get" action="admin/search.php">
                                         <td>Username:</td>
                                         <td>
                                             <select name="user">
@@ -92,7 +92,7 @@
                                     <th colspan="3">Alternatively, you could type in the username</th>
                                 </tr>
                                 <tr>
-                                    <form method="get" action="forum/search_user.php">
+                                    <form method="get" action="admin/search.php">
                                         <td>Username:</td>
                                         <td>
                                             <input type="text" name='user' placeholder="Enter the username...">
@@ -158,7 +158,7 @@
                         <tbody>
                             <?php
                                 if(isset($_POST ['submit'])){
-                                    $query  = users();
+                                    $query  = users($_POST ['submit']);
                                     $result = mysqli_query($connection, $query);
                                     confirm_query($result);
                                 }else{
