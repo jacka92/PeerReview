@@ -55,7 +55,7 @@
         return $query;
     }
     function user_threads($User){
-        $query  = "SELECT post_title ";
+        $query  = "SELECT * ";
         $query .= "FROM forum ";
         $query .= "WHERE user_id = {$User} ";
         return $query;

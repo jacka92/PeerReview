@@ -34,27 +34,36 @@
                         </h3>
                     </div>
                     <div class="panel-body">
+                        <table class="table table-hover">
+                            <tbody>
                         <?php
                             $user = isset($_POST['view']) ? $_POST['view'] : '';
-                            $q = user_threads($user)
+                            $q = user_threads($user);
                             $check = mysqli_query($connection, $q)
                                     or die ('Error: insert failed'.mysql_error());  
                             confirm_query($check);
                             while($posts = mysqli_fetch_assoc($check)){
                         ?>
-                                <div class="row">
-                                    <form class="form-inline" method="post" action="forum_comments.php">
-                                        <h3 style="font-weight: bold;">
+                            
+                            <tr>
+                                <form method="post" action="forum_comments.php">
+                                    <td>
+                                        <h3>
                                             <?php echo $posts["post_title"]; ?>
                                         </h3>
+                                    </td>
+                                    <td>
                                         <button name="view" value=<?php echo $posts["post_id"]?> class="btn btn-primary">
                                             View Comments
                                         </button>
-                                    </form>
-                                </div>
+                                    </td>
+                                </form>
+                            </tr>
                         <?php
                             }
                         ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

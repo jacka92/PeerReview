@@ -22,13 +22,13 @@
                     or die ('Error: user threads failed'.mysql_error());  
             confirm_query($check);
 
-            if(count($check)>1){
+            if(mysqli_num_rows($check)>1){
     ?>
                 <form id="redirect" action="../forum_search_results.php" method="post">
                     <input type="text" name="view" value=<?php echo $User_ID ?> style="position: absolute; display: none;">
                 </form>
     <?php
-            }elseif(count($check)===1){
+            }elseif(mysqli_num_rows($check)===1){
                 $q2 = get_post_id($User_ID);
                 $check2 = mysqli_query($connection, $q2)
                     or die ('Error: get post id failed'.mysql_error());  
