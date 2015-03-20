@@ -69,7 +69,7 @@
 
 // search_thread.php ----------------------------------------
     function get_thread_id($Post){
-        $query  = "SELECT post_id ";
+        $query  = "SELECT * ";
         $query .= "FROM forum ";
         $query .= "WHERE post_title = '{$Post}' ";
         return $query;

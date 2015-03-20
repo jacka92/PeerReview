@@ -48,33 +48,37 @@
             		<p>Shown below are the assessments given to the assessors assigned to provide marks on your report.</p>
             	</div>
             	<div class="row">
-            		<div class="panel panel-default">
-            			<div class="panel-heading">
-            				<h3 class="panel-title"></h3>
-            			</div>
-            			<div class="panel-body">
-            				<table class="table table-hover">
-            					<thead>
-            						<tr>
-            							<th>Group ID</th>
-            							<th>Assessment Mark</th>
-            						</tr>
-            					</thead>
-            					<tbody>
-                                    <?php
-                                        while($row2 = mysqli_fetch_assoc($result2)){ 
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $row2["group_id"]; ?></td>
-                                        <td><?php echo $row2["assessment"]; ?></td>
-                                    </tr>
-                                    <?php
-                                        }
-                                    ?>
-            					</tbody>
-            				</table>
-            			</div>
-            		</div>
+                    <div class="col-md-6">
+                		<div class="panel panel-default">
+                			<div class="panel-heading">
+                				<h3 class="panel-title"></h3>
+                			</div>
+                			<div class="panel-body">
+                				<table class="table table-hover">
+                					<thead>
+                						<tr>
+                                            <th>User ID</th>
+                							<th>Group ID</th>
+                							<th>Assessment Mark</th>
+                						</tr>
+                					</thead>
+                					<tbody>
+                                        <?php
+                                            while($row2 = mysqli_fetch_assoc($result2)){ 
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $row2["user_id"]; ?></td>
+                                            <td><?php echo $row2["group_id"]; ?></td>
+                                            <td><?php echo $row2["assessment"]; ?></td>
+                                        </tr>
+                                        <?php
+                                            }
+                                        ?>
+                					</tbody>
+                				</table>
+                			</div>
+                		</div>
+                    </div>
             	</div>
 
 

@@ -15,19 +15,11 @@
                 or die ('Error: get thread id failed'.mysql_error());  
         confirm_query($id_check);
 
-        if(count($check)>1){
-    ?>
-                <form id="redirect" action="../forum_search_results.php" method="post">
-                    <input type="text" name="view" value=<?php echo $User_ID ?> style="position: absolute; display: none;">
-                </form>
-    <?php
-            }
-
         while($Post_ID = mysqli_fetch_assoc($id_check)){
     ?>
-                    <form id="redirect" action="../forum_comments.php" method="post">
-                        <input type="text" name="view" value=<?php echo $Post_ID['post_id']; ?> style="position: absolute; display: none;">
-                    </form>
+            <form id="redirect" action="../forum_comments.php" method="post">
+                <input type="text" name="view" value=<?php echo $Post_ID['post_id']; ?> style="position: absolute; display: none;">
+            </form>
     <?php
         }
     }
