@@ -157,9 +157,15 @@
                         </thead>
                         <tbody>
                             <?php
-                                $query  = users();
-                                $result = mysqli_query($connection, $query);
-                                confirm_query($result);
+                                if(isset($_POST ['submit'])){
+                                    $query  = users();
+                                    $result = mysqli_query($connection, $query);
+                                    confirm_query($result);
+                                }else{
+                                    $query  = users();
+                                    $result = mysqli_query($connection, $query);
+                                    confirm_query($result);
+                                }                                
                             ?>
                             <?php
                                 while($users = mysqli_fetch_assoc($result)){
