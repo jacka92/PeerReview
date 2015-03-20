@@ -66,4 +66,12 @@
         $query .= "WHERE user_id = {$User} ";
         return $query;
     }
+
+// search_user.php ----------------------------------------
+    function get_thread_id($Post){
+        $query  = "SELECT post_id ";
+        $query .= "FROM forum ";
+        $query .= "WHERE post_title = '{$Post}' ";
+        return $query;
+    }
 ?>

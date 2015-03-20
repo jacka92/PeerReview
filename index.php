@@ -39,7 +39,6 @@
 					$_SESSION ['admin'] = $row ["admin"];
 
     				$_SESSION['check'] = 0;
-    				$_SESSION['search'] = 0;
 				}
 				
 				if (! isset ( $_SESSION ) || empty ( $_SESSION ['first_name'] )) {

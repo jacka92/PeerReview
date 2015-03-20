@@ -6,6 +6,7 @@
     $User = isset($_GET['user']) ? $_GET['user'] : '';
 
     if($User === ''){
+        $_SESSION['check'] = 2;
         redirect_to('../forum.php');
     }else{
 
