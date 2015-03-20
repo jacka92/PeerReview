@@ -14,7 +14,7 @@
 					<li><a href='profile.php'><?php echo $_SESSION ['first_name']."'s "; ?>Profile</a></li>
 					<li><a href='forum.php'>Forum</a></li>
 					<li><a href='reportrankings.php'>Group Rankings</a></li>
-					<li><a href='assessormarks.php'>Marks</a></li>
+					<li><a href='assessormarks.php'>Reviewer's Marks</a></li>
 					<?php
 						if (($_SESSION['admin'])==0){
 						}else{
