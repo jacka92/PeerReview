@@ -15,7 +15,7 @@
     $_SESSION ['check'] = 1;
 ?>
 
-<form id="redirect" action="../view_forum_comments.php" method="post">
+<form id="redirect" action="../forum_comments.php" method="post">
 	<input type="text" name="view" value=<?php echo $_POST ['post_id']; ?> style="position: absolute; display: none;">
 </form>
 

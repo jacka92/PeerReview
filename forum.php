@@ -9,6 +9,20 @@
                         <strong>Success!</strong> Your post is now live.
                     </div>
                 </div>";
+    }elseif($_SESSION['check']===2){
+        $Message = "
+                <div class='row'>
+                    <div class='alert alert-danger' role='alert'>
+                        <strong>Oh snap!</strong> Your search yielded 0 results. Try searching again.
+                    </div>
+                </div>";
+    }elseif($_SESSION['check']===3){
+        $Message = "
+                <div class='row'>
+                    <div class='alert alert-danger' role='alert'>
+                        <strong>Oh snap!</strong> The thread title you entered has been used. Try another.
+                    </div>
+                </div>";
     }else{
 
     }
@@ -50,10 +64,10 @@
                         <table class="table table-hover">
                             <tbody>
                                 <tr>
-                                    <form method="post" action="forum/search_user_drop.php">
+                                    <form method="get" action="forum/search_user.php">
                                         <td>Username:</td>
                                         <td>
-                                            <select name="user_drop">
+                                            <select name="user">
                                                 <?php
                                                     $query  = search_users();
                                                     $result = mysqli_query($connection, $query);
@@ -71,14 +85,14 @@
                                                 ?>
                                             </select>
                                         </td>
-                                        <td><button name="search_user_drop" class="btn btn-primary">Search</button></td>
+                                        <td><button name="search_user" class="btn btn-primary">Search</button></td>
                                     </form>
                                 </tr>
                                 <tr>
-                                    <form method="post" action="forum/search_thread_drop.php">
+                                    <form method="get" action="forum/search_thread.php">
                                         <td>Thread name:</td>
                                         <td>
-                                            <select name="thread_drop">
+                                            <select name="thread">
                                                 <?php
                                                     $query  = search_threads();
                                                     $result = mysqli_query($connection, $query);
@@ -96,26 +110,26 @@
                                                 ?>
                                             </select>
                                         </td>
-                                        <td><button name="search_thread_drop" class="btn btn-primary">Search</button></td>
+                                        <td><button name="search_thread" class="btn btn-primary">Search</button></td>
                                     </form>
                                 </tr>
                                 <tr>
                                     <th colspan="3">Alternatively, you could type in the search terms</th>
                                 </tr>
                                 <tr>
-                                    <form method="post" action="forum/search_user.php">
+                                    <form method="get" action="forum/search_user.php">
                                         <td>Username:</td>
                                         <td>
-                                            <input type="text" name='user_text' placeholder="Enter the username...">
+                                            <input type="text" name='user' placeholder="Enter the username...">
                                         </td>
                                         <td><button name="search_user" class="btn btn-primary">Search</button></td>
                                     </form>
                                 </tr>
                                 <tr>
-                                    <form method="post" action="forum/search_thread.php">
+                                    <form method="get" action="forum/search_thread.php">
                                         <td>Thread name:</td>
                                         <td>
-                                            <input type="text" name='thread_text' placeholder="Enter the thread title...">
+                                            <input type="text" name='thread' placeholder="Enter the thread title...">
                                         </td>
                                         <td><button name="search_thread" class="btn btn-primary">Search</button></td>
                                     </form>
@@ -167,7 +181,7 @@
 	        while($posts = mysqli_fetch_assoc($result)){
 	    ?>
 		    <div class="row">
-				<form method="post" action="view_forum_comments.php">
+				<form method="post" action="forum_comments.php">
 			        <div class="page-header">
 			            <h3 style="font-weight: bold;"><?php echo $posts["post_title"]; ?></h3>
 			            <h4 style="font-style: italic;">

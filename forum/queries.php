@@ -46,4 +46,24 @@
         $query .= "ORDER BY post_id DESC ";
         return $query;
     }
+
+// search_user.php ----------------------------------------
+    function get_user_id($User){
+        $query  = "SELECT user_id ";
+        $query .= "FROM users ";
+        $query .= "WHERE login = '{$User}' ";
+        return $query;
+    }
+    function user_threads($User){
+        $query  = "SELECT post_title ";
+        $query .= "FROM forum ";
+        $query .= "WHERE user_id = {$User} ";
+        return $query;
+    }
+    function get_post_id($User){
+        $query  = "SELECT post_id ";
+        $query .= "FROM forum ";
+        $query .= "WHERE user_id = {$User} ";
+        return $query;
+    }
 ?>
