@@ -17,6 +17,13 @@
                         <strong>Success!</strong> The user has been deleted.
                     </div>
                 </div>";
+    }elseif($_SESSION['check']===3){
+        $Message = "
+                <div class='row'>
+                    <div class='alert alert-danger' role='alert'>
+                        <strong>Oh snap!</strong> Your search yielded 0 results. Try searching again.
+                    </div>
+                </div>";
     }else{
 
     }
@@ -45,12 +52,88 @@
             <h1>Admin Page</h1>
         </div>
 
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Search for a user. Choose an option to search by ...
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <form method="get" action="forum/search.php">
+                                        <td>Username:</td>
+                                        <td>
+                                            <select name="user">
+                                                <?php
+                                                    $query  = users();
+                                                    $result = mysqli_query($connection, $query);
+                                                    confirm_query($result);
+                                                ?>
+                                                <option value=""></option>
+                                                <?php
+                                                    while($users = mysqli_fetch_assoc($result)){
+                                                ?>
+                                                    <option value=<?php echo $users["login"]; ?>>
+                                                        <?php echo $users["login"]; ?>
+                                                    </option>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </select>
+                                        </td>
+                                        <td><button name="search_user" class="btn btn-primary">Search</button></td>
+                                    </form>
+                                </tr>
+                                <tr>
+                                    <th colspan="3">Alternatively, you could type in the username</th>
+                                </tr>
+                                <tr>
+                                    <form method="get" action="forum/search_user.php">
+                                        <td>Username:</td>
+                                        <td>
+                                            <input type="text" name='user' placeholder="Enter the username...">
+                                        </td>
+                                        <td><button name="search_user" class="btn btn-primary">Search</button></td>
+                                    </form>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Create a group
+                        </h3>
+                    </div>
+                    <?php
+                        $query_group  = groups();
+                        $result_group = mysqli_query($connection, $query_group);
+                        confirm_query($result_group);
+                    ?>
+                    <div class="panel-body">
+                        <p>Current groups: 
+                            <?php
+                                while($group = mysqli_fetch_assoc($result_group)){
+                                    echo $group["group_id"]." ";
+                                }
+                            ?>
+                        </p>
+                        <form method="post" action="admin/add_group.php">
+                            <button name="create_group" class="btn btn-primary">Create new group</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
-            <!--
-administrator-users will have a separate interface through which student registration will be managed and
-groups defined from the student registration list
-            -->
 
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -74,9 +157,15 @@ groups defined from the student registration list
                         </thead>
                         <tbody>
                             <?php
-                                $query  = users();
-                                $result = mysqli_query($connection, $query);
-                                confirm_query($result);
+                                if(isset($_POST ['submit'])){
+                                    $query  = users();
+                                    $result = mysqli_query($connection, $query);
+                                    confirm_query($result);
+                                }else{
+                                    $query  = users();
+                                    $result = mysqli_query($connection, $query);
+                                    confirm_query($result);
+                                }                                
                             ?>
                             <?php
                                 while($users = mysqli_fetch_assoc($result)){
@@ -153,10 +242,6 @@ groups defined from the student registration list
         </div>
 
         <div class="row">
-            <!--
-the administrator-user interface will allow particular groups to be allocated to the peer assessment of
-particular other groups
-            -->
             <div class="col-sm-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -246,45 +331,6 @@ particular other groups
                 </div>
                 
             </div>
-            <!--
-the administrator-users will be able to see a list of the groups */
-ranked according with the aggregation of peer assessments on their submissions 
-            -->
-            <div class="col-sm-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            Create a group
-                        </h3>
-                    </div>
-                    <?php
-                        $query_group  = groups();
-                        $result_group = mysqli_query($connection, $query_group);
-                        confirm_query($result_group);
-                    ?>
-                    <div class="panel-body">
-                        <p>Current groups: 
-                            <?php
-                                while($group = mysqli_fetch_assoc($result_group)){
-                                    echo $group["group_id"]." ";
-                                }
-                            ?>
-                        </p>
-                        <form method="post" action="admin/add_group.php">
-                            <button name="create_group" class="btn btn-primary">Create new group</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <!--
-the administrator-user interface will support searching for details of a particular student and browsing of
-student details
-
-make drop down list of all usesr_id / username, select, show
-            -->
-            
         </div>
 
         <?php include 'templates/template footer.php';?>

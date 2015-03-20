@@ -26,15 +26,15 @@
 
 // add_post.php ----------------------------------------
     function create_post($Title,$Content){
-        $query  = "INSERT INTO forum (post_id, post_title, post_content, post_date) ";
-        $query .= "VALUES (NULL, '{$Title}', '{$Content}', CURRENT_TIMESTAMP)";
+        $query  = "INSERT INTO forum (post_id, post_title, post_content, post_date, user_id) ";
+        $query .= "VALUES (NULL, '{$Title}', '{$Content}', CURRENT_TIMESTAMP, {$_SESSION['user_id']})";
         return $query;
     }
 
 // add_comment.php ----------------------------------------
     function create_comment($Title,$Content,$Post){
-        $query  = "INSERT INTO forum_comments (comment_id, comment_title, comment_content, comment_date, post_id) ";
-        $query .= "VALUES (NULL, '{$Title}', '{$Content}', CURRENT_TIMESTAMP, '{$Post}')";
+        $query  = "INSERT INTO forum_comments (comment_id, comment_title, comment_content, comment_date, post_id, user_id) ";
+        $query .= "VALUES (NULL, '{$Title}', '{$Content}', CURRENT_TIMESTAMP, '{$Post}', {$_SESSION['user_id']})";
         return $query;
     }
 
@@ -67,7 +67,7 @@
         return $query;
     }
 
-// search_user.php ----------------------------------------
+// search_thread.php ----------------------------------------
     function get_thread_id($Post){
         $query  = "SELECT post_id ";
         $query .= "FROM forum ";
