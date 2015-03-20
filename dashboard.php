@@ -15,11 +15,19 @@
         ?>
 
             <div id ="welcome">
-                <h1>Welcome to Peer Review, User <?php echo $User; ?> </h1>
+                <h1>
+                    Welcome to Peer Review, 
+                    <?php
+                        if(($_SESSION['admin'])==1){
+                            echo "Admin ";
+                        }
+                    ?>
+                    User <?php echo $_SESSION ['first_name']; ?>
+                </h1>
                 
                 <?php 
                     if ($Group_ID!=0){ 
-                        echo "<h3>Your Group number is <?php echo $Group_ID; ?> The reports submitted by your group are below.</h3>";
+                        echo "<h3>Your Group number is ".$Group_ID.". The reports submitted by your group are below.</h3>";
                         $groupquery = "SELECT user_id FROM users WHERE group_id = ".$Group_ID.""; 
                         $groupmembers = mysqli_query( $connection, $groupquery );
                         if (! $groupmembers){

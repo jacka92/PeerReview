@@ -11,6 +11,8 @@
     $check = mysqli_query($connection, $q)
             or die ('Error: insert failed'.mysql_error());  
     confirm_query($check);
+
+    $_SESSION ['check'] = 1;
 ?>
 
 <form id="redirect" action="../view_forum_comments.php" method="post">

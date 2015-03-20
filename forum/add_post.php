@@ -11,5 +11,7 @@
             or die ('Error: insert failed'.mysql_error());  
     confirm_query($check);
 
+    $_SESSION ['check'] = 1;
+
     redirect_to('../forum.php');
 ?>

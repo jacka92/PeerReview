@@ -1,5 +1,20 @@
 <?php require_once 'templates/db_connection.php'; ?>
 
+<?php
+    $Message = "";
+    if($_SESSION['check']===1){
+        $Message = "
+                <div class='row'>
+                    <div class='alert alert-success' role='alert'>
+                        <strong>Success!</strong> Your post is now live.
+                    </div>
+                </div>";
+    }else{
+
+    }
+    $_SESSION['check'] = 0;
+?>
+
 <html>
     <head>
         <title>Forum</title>
@@ -9,7 +24,10 @@
 
     <body role='document'>
 
-        <?php include 'templates/template_header.php' ?>
+        <?php
+            include 'templates/template_header.php';
+            echo $Message;
+        ?>
 
         <div class="row">
         	<div class="page-header">

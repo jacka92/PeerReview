@@ -45,7 +45,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        Change user details
+                        Change your details
                     </h3>
                 </div>
                 <div class="panel-body">
