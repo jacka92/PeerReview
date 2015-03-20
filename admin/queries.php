@@ -65,4 +65,12 @@
 		$query  = "INSERT INTO groups (group_id) VALUES (NULL)";
         return $query;
     }
+
+// search_user.php ----------------------------------------
+    function get_user_id($User){
+        $query  = "SELECT user_id ";
+        $query .= "FROM users ";
+        $query .= "WHERE login = '{$User}' ";
+        return $query;
+    }
 ?>

@@ -38,6 +38,9 @@
                         while ( $row0 = mysqli_fetch_assoc ( $groupmembers ) ){
                             echo "<li> User ";
                             echo $row0 ["user_id"];
+                            if($row0['user_id']==$_SESSION['user_id']){
+                                echo " - This is you";
+                            }
                             echo "</li>";
                         }; 
                     }

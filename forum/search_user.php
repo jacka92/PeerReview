@@ -3,7 +3,7 @@
 	include '../templates/included_functions.php';
 	include 'queries.php';
 
-    $User = isset($_GET['user']) ? $_GET['user'] : '';
+    $User = mysqli_real_escape_string($connection,(isset($_GET['user']) ? $_GET['user'] : ''));
 
     if($User === ''){
         $_SESSION['check'] = 2;
