@@ -17,8 +17,9 @@
 
         while($User_Details = mysqli_fetch_assoc($id_check)){
             $User_ID = $User_Details['user_id'];
+            $_SESSION['check'] = 3;
     ?>
-                <form id="redirect" action="../admin_search_results.php" method="post">
+                <form id="redirect" action="../admin.php" method="post">
                     <input type="text" name="view" value=<?php echo $User_ID ?> style="position: absolute; display: none;">
                 </form>
     <?php

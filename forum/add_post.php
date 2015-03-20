@@ -6,8 +6,8 @@
 	$Title = mysqli_real_escape_string($connection,(isset($_POST ['title']) ? $_POST ['title'] : ''));
 	$Content = mysqli_real_escape_string($connection,(isset($_POST ['content']) ? $_POST ['content'] : ''));
 
-    $sql  = "SELECT * FROM forum WHERE login = '{$Title}'";
-    $check = mysqli_query($connection, $sql) or die("Query to check if username exists failed");
+    $sql  = "SELECT * FROM forum WHERE post_title = '{$Title}'";
+    $check = mysqli_query($connection, $sql) or die("Query to check if post title exists failed");
     confirm_query($check);
 
     if(!null == (mysqli_fetch_assoc($check))){

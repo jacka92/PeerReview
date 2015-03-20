@@ -80,7 +80,6 @@
                                         <td><input type="text" name="surname" placeholder="Enter the surname..."></td>
                                         <td><?php echo $users["group_id"]; ?></td>
                                         <td><button name="update" class="btn btn-primary">Update</button></td>
-                                        <td><button name="delete" class="btn btn-danger">Delete</button></td>
                                     </tr>
                                 </form>
                             <?php
