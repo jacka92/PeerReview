@@ -7,16 +7,12 @@
     </head>
 
 <?php
-$Message = "";
+	$Message = '';
 
 	if(isset($_SESSION)&&!empty($_SESSION['user_id'])){
 		redirect_to('dashboard.php');
-/*		header("Location: ". 'dashboard.php');
-		exit;*/
 	}else{
-		//$Message
 	}
-	//$firstname = mysqli_real_escape_string($con, $_POST['firstname']);
 	if (isset ( $_POST ['submit'] )) {
 		$User = mysqli_real_escape_string($connection, $_POST ['username']);
 		$Pass = mysqli_real_escape_string($connection, $_POST ['password']);
@@ -24,7 +20,6 @@ $Message = "";
 		// If neither field is blank
 		if (! empty ( $User ) && ! empty ( $Pass )) {
 			
-			//$hashed_password = password_encrypt ( $_POST ['password'] );
 			$hashed_password = password_encrypt($_POST ['password']);
 			
 			$query = "SELECT * FROM users WHERE '$User' = login AND '$hashed_password' = password LIMIT 1";
@@ -38,11 +33,12 @@ $Message = "";
 				  	</div>";
 			} else {
 				while ( $row = mysqli_fetch_assoc ( $result ) ) {
-					// /TODO Store user id in session as well
 					$_SESSION ['first_name'] = $row ["first_name"];
 					$_SESSION ['group_id'] = $row ["group_id"];
 					$_SESSION ['user_id'] = $row ["user_id"];
 					$_SESSION ['admin'] = $row ["admin"];
+
+    				$_SESSION['check'] = 0;
 				}
 				
 				if (! isset ( $_SESSION ) || empty ( $_SESSION ['first_name'] )) {
@@ -71,13 +67,7 @@ $Message = "";
 	<body role='document'>
         <?php
 			require_once 'templates/template_header.php';
-			/*
-			 * $html_string = header();
-			 * echo html_string;
-			 */
-			
-			// $Message = $User;
-			echo $Message
+			echo $Message;
 		?>
 
         <div class="jumbotron">

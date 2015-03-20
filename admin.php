@@ -1,6 +1,28 @@
 <?php require_once 'templates/db_connection.php'; ?>
 <?php include 'admin/queries.php'; ?>
 
+<?php
+    $Message = "";
+    if($_SESSION['check']===1){
+        $Message = "
+                <div class='row'>
+                    <div class='alert alert-success' role='alert'>
+                        <strong>Success!</strong> The user's details have been updated.
+                    </div>
+                </div>";
+    }elseif($_SESSION['check']===2){
+        $Message = "
+                <div class='row'>
+                    <div class='alert alert-success' role='alert'>
+                        <strong>Success!</strong> The user has been deleted.
+                    </div>
+                </div>";
+    }else{
+
+    }
+    $_SESSION['check'] = 0;
+?>
+
 <html>
     <head>
         <title>Admin page</title>
@@ -14,7 +36,10 @@
 
     <body role='document'>
 
-        <?php include 'templates/template_header.php' ?>
+        <?php
+            include 'templates/template_header.php';
+            echo $Message;
+        ?>
 
         <div class="page-header">
             <h1>Admin Page</h1>
@@ -266,6 +291,4 @@ make drop down list of all usesr_id / username, select, show
     </body>
 </html>
 
-<?php
-    mysqli_close($connection);
-?>
+<?php mysqli_close($connection); ?>

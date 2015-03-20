@@ -11,6 +11,10 @@
 				?>
 					<li><a href='dashboard.php'>Dashboard</a></li>
 					<li><a href='viewreport.php'>Reports</a></li>
+					<li><a href='profile.php'><?php echo $_SESSION ['first_name']."'s "; ?>Profile</a></li>
+					<li><a href='forum.php'>Forum</a></li>
+					<li><a href='reportrankings.php'>Report Rankings</a></li>
+					<li><a href='assessormarks.php'>Marks</a></li>
 					<?php
 						if (($_SESSION['admin'])==0){
 						}else{
@@ -19,9 +23,6 @@
 					<?php
 						}
 					?>
-					<li><a href='forum.php'>Forum</a></li>
-					<li><a href='reportrankings.php'>Report Rankings</a></li>
-					<li><a href='assessormarks.php'>Marks</a></li>
 				<?php
 					}
 				?>

@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Forum</title>
+        <title>Logout</title>
         <link rel="stylesheet" href="jquery-ui-1.11.3/jquery-ui.css">
         <script src='jquery-ui-1.11.3/external/jquery/jquery.js'></script>
         <script src='jquery-ui-1.11.3/jquery-ui.js'></script>

@@ -46,10 +46,10 @@ if (isset ( $_POST ['submit'] )) {
 		
 		///Query then redirect
 		$query = "INSERT INTO users (first_name, surname, login, password) VALUES ('{$First_Name}','{$Surname}','{$User}','{$Pass}')";
-                $result = mysqli_query($connection, $query)
-                    or die ('Error: insert failed'.mysql_error());  
-		
-		redirect_to('index.php');
+        $result = mysqli_query($connection, $query)
+            or die ('Error: insert failed'.mysql_error());
+
+		redirect_to('account_created.php');
 		
 	} elseif($WrongUsername == 0){
 		$Message = "
@@ -136,6 +136,4 @@ if (isset ( $_POST ['submit'] )) {
     </body>
 </html>
 
-<?php
-mysqli_close ( $connection );
-?>
+<?php mysqli_close ( $connection ); ?>

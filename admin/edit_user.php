@@ -26,16 +26,18 @@
             
             $q2  = update_user($First_Name,$Surname,$Admin,$Group,$User_ID);
             $check2 = mysqli_query($connection, $q2)
-                    or die ('Error: insert failed'.mysql_error());  
+                    or die ('Error: insert failed'.mysql_error());
 
+            $_SESSION ['check'] = 1;
         } 
         $delete = isset($_POST['delete']) ? $_POST['delete'] : "";
         if ($delete == $User_ID){
             $qdrop = delete_user($User_ID);
             $drop = mysqli_query($connection, $qdrop)
                     or die ('Error: insert failed'.mysql_error());
-        }
 
+            $_SESSION ['check'] = 2;
+        }
     }
 
     redirect_to('../admin.php');
