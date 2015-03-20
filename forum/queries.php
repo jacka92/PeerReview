@@ -13,7 +13,7 @@
         return $query;
     }
     function search_users(){
-        $query  = "SELECT users.login ";
+        $query  = "SELECT DISTINCT users.login ";
         $query .= "FROM users,forum ";
         $query .= "WHERE users.user_id = forum.user_id ";
         return $query;

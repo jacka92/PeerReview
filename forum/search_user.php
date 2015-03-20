@@ -28,7 +28,7 @@
                     <input type="text" name="view" value=<?php echo $User_ID ?> style="position: absolute; display: none;">
                 </form>
     <?php
-            }elseif(count($check)==1){
+            }elseif(count($check)===1){
                 $q2 = get_post_id($User_ID);
                 $check2 = mysqli_query($connection, $q2)
                     or die ('Error: get post id failed'.mysql_error());  

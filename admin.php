@@ -24,6 +24,13 @@
                         <strong>Oh snap!</strong> Your search yielded 0 results. Try searching again.
                     </div>
                 </div>";
+    }elseif($_SESSION['check']===4){
+        $Message = "
+                <div class='row'>
+                    <div class='alert alert-success' role='alert'>
+                        <strong>Success!</strong> Your search result is below.
+                    </div>
+                </div>";
     }else{
 
     }
@@ -77,25 +84,13 @@
                                                 <?php
                                                     while($users = mysqli_fetch_assoc($result)){
                                                 ?>
-                                                    <option value=<?php echo $users["login"]; ?>>
+                                                    <option value=<?php echo $users["user_id"]; ?>>
                                                         <?php echo $users["login"]; ?>
                                                     </option>
                                                 <?php
                                                     }
                                                 ?>
                                             </select>
-                                        </td>
-                                        <td><button name="search_user" class="btn btn-primary">Search</button></td>
-                                    </form>
-                                </tr>
-                                <tr>
-                                    <th colspan="3">Alternatively, you could type in the username</th>
-                                </tr>
-                                <tr>
-                                    <form method="get" action="admin/search.php">
-                                        <td>Username:</td>
-                                        <td>
-                                            <input type="text" name='user' placeholder="Enter the username...">
                                         </td>
                                         <td><button name="search_user" class="btn btn-primary">Search</button></td>
                                     </form>
@@ -157,8 +152,8 @@
                         </thead>
                         <tbody>
                             <?php
-                                if(isset($_POST ['submit'])){
-                                    $query  = users($_POST ['submit']);
+                                if(isset($_POST ['view'])){
+                                    $query  = user_specific($_POST ['view']);
                                     $result = mysqli_query($connection, $query);
                                     confirm_query($result);
                                 }else{

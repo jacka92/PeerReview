@@ -87,7 +87,7 @@
                                         </td>
                                         <td><button name="search_user" class="btn btn-primary">Search</button></td>
                                     </form>
-                                </tr>
+                                </tr><!-- 
                                 <tr>
                                     <form method="get" action="forum/search_thread.php">
                                         <td>Thread name:</td>
@@ -133,7 +133,7 @@
                                         </td>
                                         <td><button name="search_thread" class="btn btn-primary">Search</button></td>
                                     </form>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
